@@ -1,0 +1,338 @@
+[metadata]
+name = "SMBProgNeg"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000\u0000\u0000¤ÿSMBr\u0000\u0000\u0000\u0000\b\u0001@\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u0006\u0000\u0000\u0001\u0000\u0000\u0000\u0002PC NETWORK PROGRAM 1.0\u0000\u0002MICROSOFT NETWORKS 1.03\u0000\u0002MICROSOFT NETWORKS 3.0\u0000\u0002LANMAN1.0\u0000\u0002LM1.2X002\u0000\u0002Samba\u0000\u0002NT LANMAN 1.0\u0000\u0002NT LM 0.12\u0000"
+rarity = 4
+ports = [
+    27000,
+    27001,
+    27002,
+    27003,
+    27004,
+    27005,
+    27006,
+    27007,
+    27008,
+    27009,
+]
+
+[matches.sap-gui]
+regex = '^\0\0\0\x0e\*\*DPTMMSG\*\*\0\0\xf8'
+soft = false
+product_name = "SAP Gui Dispatcher"
+
+[matches.airport-admin]
+regex = '^acpp\0.\0.....\0\0\0\x01'
+soft = false
+product_name = "Apple AirPort or Time Capsule admin"
+
+[matches.remote-volume]
+regex = '^\0\0\0\x18\xffSMB\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\x01\0\0\0'
+soft = false
+product_name = "NetApp Remote Volume protocol"
+
+[matches.docbroker]
+regex = '^\0\0\0\x080\x06\x02\x01\0\x02\x01i'
+soft = false
+product_name = "Documentum Content Server"
+
+[matches.ftp]
+regex = '^2[23]0 FTP Server Ready\r\n504 Comand length not supported\.\r\n'
+soft = false
+product_name = "HP JetDirect ftpd"
+device_type = "printer"
+
+[matches.msrpc]
+regex = '^\x05\0\r\x03\x10\0\0\0\x18\0\0\0....\x04\0\x01\x05\0...$'
+regex_flags = "s"
+soft = false
+product_name = "Microsoft Windows RPC"
+operating_system = "Windows"
+
+[matches.lexmark-objectstore]
+regex = '^\0\0\0\x7c<\?xml version="1\.0" encoding="UTF-8"\?>\r\n<exception requestID="0">\n<message>Unable to parse Message\.</message>\n</exception>\r\n'
+soft = false
+product_name = "Lexmark printer objectstore"
+device_type = "printer"
+
+[matches.caigos-pactor]
+regex = '^\0\0\0\0\0\0\0:r\0\0\0\0\0\0\0\xe8EU\x04\x10\0\0\0PACTOR_PG([\w._-]+)\x1a\0\0\0unbekannter Code: 72697320$'
+soft = false
+product_name = "Pactor"
+version = "$1"
+info = "Caigos GIS"
+
+[matches.postgresql]
+regex = '^E\0\0\0.SFATAL\0(?:VFATAL\0)?C\w{5}\0M'
+soft = true
+product_name = "PostgreSQL DB"
+
+[matches.smpp]
+regex = '^\0\0\0\x10\x80\0\0\0\0\0\0\x03....$'
+regex_flags = "s"
+soft = true
+
+[matches.bacula-fd]
+regex = '^\0\0\0\x152999 Invalid command\n\xff\xff\xff\xfc$'
+soft = false
+product_name = "Bacula file daemon"
+
+[matches.afarianotify]
+regex = '^\0\0\x017<AfariaNotify version=\"([\w._-]+)\"><Client name=\"\w+\" GUID=\"{[0-9A-F-]+}\"/><Message type=\"Response\" value=\"Client Error\"><Description><!\[CDATA\[\[\w\w\w \w\w\w \d\d \d\d:\d\d:\d\d \d\d\d\d\]\t\[Unrecognized notification header\]:\t\[Expected\]:<AfariaNotify version=\r\n\r\n\]\]></Description></Message></AfariaNotify>'
+soft = false
+product_name = "Sybase Afaria"
+version = "$1"
+info = "Abbott i-STAT blood analyzer"
+
+[matches.lorex-monitor]
+regex = '^\0\0\x01\x01@\n\0\x08\x80\0\x82\0L\xb8..\xff\xff\xff\xff\0\0\0\0$'
+regex_flags = "s"
+soft = false
+product_name = "Lorex security camera monitor"
+device_type = "webcam"
+
+[matches.anynet-sna]
+regex = '^\0\0MF\xff\xf3MBr\0\0\0\0\x08\x01@\0\0\0\0\0\0\0\0\0\0\0\0\0\0@\x06\0\0\x01\0\0\x81\0\x02PC NETWORK PROGRAM 1\.0\0\x02MICROSOFT NETWORKS 1\.03\0\x02MICROSOFT NETWORKS 3\.0\0\x02LANMAN1\.0\0\x02LM1\.2X002\0\x02Samba\0\x02NT LANMAN 1\.0\0\x02NT LM 0$'
+soft = false
+product_name = "AnyNet SNA"
+
+[matches.caigos-conductus]
+regex = '^\0\0\0\0\0\0\0=r\0\0\0\0\0\0\0\xd8\x97%\x01\x13\0\0\0CONDUCTUS_PG([\w._-]+)\x1a\0\0\0unbekannter Code: 19240920$'
+soft = false
+product_name = "Conductus"
+version = "$1"
+info = "Caigos GIS"
+
+[matches.netradio]
+regex = "^@(?:NETRADIO|MAIN|SYS):[A-Z0-9]+="
+soft = false
+product_name = "Yamaha Net Radio"
+device_type = "media device"
+
+[matches.caigos-paratus]
+regex = '^\0\0\0\0\0\0\0;r\0\0\0\0\0\0\0XL\)\x01\x11\0\0\0PARATUS_PG([\w._-]+)\x1a\0\0\0unbekannter Code: 19483736$'
+soft = false
+product_name = "Paratus"
+version = "$1"
+info = "Caigos GIS"
+
+[matches.http]
+regex = '^HTTP/1\.1 414 Request URI Too Long\r\nServer: Catwalk\r\nDate: .*\r\nContent-Length: 0\r\nConnection: close\r\n\r\n$'
+soft = false
+product_name = "Catwalk httpd"
+info = "Canon imageRUNNER printer"
+device_type = "printer"
+
+[matches.sap-its]
+regex = '^\0\0\0\x0c\x01\x03\0\0\0\0\x07.\0\0\0\0\0\0\x07.Content-Type:  text/html; charset=Windows-\d+\r\n\r\n<!--\r\n This page was created by the \r\n SAP Internet Transaction Server'
+regex_flags = "s"
+soft = false
+product_name = "SAP Internet Transaction Server"
+
+[matches.ajp13]
+regex = '^\0\0\0\x01\0\x0cUnauthorized'
+soft = false
+product_name = "Oracle Containers for J2EE"
+info = "unauthorized"
+
+[matches.iperf3]
+regex = '^\t$'
+soft = false
+
+[matches.symantec-esm]
+regex = '^\0\x01[#,]$'
+soft = false
+product_name = "Symantec Enterprise Security Manager agent"
+
+[matches.honeywell-hscodbcn]
+regex = '^\0\0\0\x02\0\x03$'
+soft = false
+product_name = "Honeywell hscodbcn power management server"
+
+[matches.hik-connect]
+regex = '^\0\0\0\x10\0\0\0\r\0\0\0\r\0\0\0\0$'
+soft = false
+product_name = "HikVision camera control"
+device_type = "webcam"
+
+[matches.caigos-conspectus]
+regex = '^\0\0\0\0\0\0\0>r\0\0\0\0\0\0\0\xf8\x926\x01\x14\0\0\0CONSPECTUS_PG([\w._-]+)\x1a\0\0\0unbekannter Code: 20353784$'
+soft = false
+product_name = "Conspectus"
+version = "$1"
+info = "Caigos GIS"
+
+[matches.bacula-sd]
+regex = '^\0\0\0\x0b3999 No go\n$'
+soft = false
+product_name = "Bacula storage daemon"
+
+[matches.brassmonkey]
+regex = '^\x08\0\0\0\0\0\x08\x01\0\0\t\0$'
+soft = false
+product_name = "Brass Monkey controller service"
+
+[matches.microsoft-ds]
+regex = '^\0\0..\xffSMBr\0\0\0\0[\x80-\xff]..\0\0\0\0\0\0\0\0\0\0\0\0\0\0@\x06\0\0\x01\0\x11[\x01-\x07]\0'
+regex_flags = "s"
+soft = true
+
+[matches.opsec-ufp]
+regex = '^\0\0\0\x0c\x01\x01\0\x04r\0\0\0$'
+soft = false
+product_name = "Check-Point NG firewall"
+
+[matches.nightwatchman]
+regex = '^ACKDONEV\$\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0([\d.]+)\0\0\0'
+soft = false
+product_name = "1E NightWatchman WakeUp Server"
+version = "$1"
+
+[matches.flexlm]
+regex = '^W.\0\0\0\0'
+regex_flags = "s"
+soft = false
+product_name = "FlexLM license manager"
+
+[matches.tcsd]
+regex = '^\0\0\0\x1c\0\0 \x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "TCSD daemon"
+
+[matches.spark]
+regex = '^\0\0\0\0$'
+soft = false
+product_name = "Apache Spark"
+
+[matches.metatrader]
+regex = "^A$"
+soft = false
+product_name = "MetaTrader Data Center"
+
+[matches.teradata]
+regex = '^\x03\x02\x01\0\0\0\0\0\x004\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x7f\0\0\0\0\0\0\0\0\0\0\0\0\0\x001\x004\0\0\0\0\0K\x1f\(\0The LAN message Format field is invalid\.'
+soft = false
+product_name = "Teradata database"
+
+[matches.omniback]
+regex = '^\0\0\0.15\0 \x07\x01\[12:1\]\0 \x07\x02\[2003\]\0 \x07\x051\d+\0 INET\0 ([\w._-]+)\0'
+regex_flags = "s"
+soft = false
+hostname = "$1"
+operating_system = "Unix"
+
+[matches.h2]
+regex = '^\x52\x00\x00\x00\x08\x00\x00\x00\x03$'
+soft = false
+product_name = "H2 database"
+
+[matches.libvirt-rpc]
+regex = '''^\0\0\0\xb8\xffSMBr\0\0\0\0\x08\x01@\0\0\0\x01\0\0\0\0\0\0\0\x01\0\0\0'\0\0\0\x07\0\0\0\x01\0\0\0\x30Cannot find program -11317950 version 1912602624\0\0\0\x02\0\0\0\0\0\0\0\x01\0\0\0\x02%s\0\0\0\0\0\x01\0\0\0\x30Cannot find program -11317950 version 1912602624\0\0\0\0\xff\xff\xff\xff\xff\xff\xff\xff\0\0\0\0'''
+soft = false
+product_name = "libvirt RPC"
+
+[matches.spotify-login]
+regex = '^\x01\0$'
+soft = false
+product_name = "Spotify login server"
+
+[matches.caigos-fundus]
+regex = '^\0\0\0\0\0\0\0;r\0\0\0\0\0\0\0h\xd52\t\x10\0\0\0FUNDUS_PG([\w._-]+)\x1b\0\0\0unbekannter Code: 154326376$'
+soft = false
+product_name = "Fundus"
+version = "$1"
+info = "Caigos GIS"
+
+[matches.greenplum]
+regex = '^E\0\0\0\x83SFATAL\0C0A000\0Munsupported frontend protocol 3923\.19778: server supports 1\.0 to 3\.0\0Fpostmaster\.c\0L2504\0RProcessStartupPacket\0\0'
+soft = false
+product_name = "Greenplum database"
+
+[matches.digitalwatchdog]
+regex = '^\x01\0\0\0\0\0\0\(PSPROTOCOL\0\0\0\0\0\0\xa0\0\0\x01\0\0\0\x0c\0\0\0\0\0\0\0\0\xe0\0\0\x04\0\0\0\0\0\0\0\0'
+soft = false
+product_name = "Digital Watchdog IP camera unknown service"
+device_type = "webcam"
+
+[matches.nomachine-nx]
+regex = '^...................................................................................................\x00\x00\x00\x00\x00.\x00\x00\x00\x00\x00\x00\x00...\x00\x00\x00\x00\x00...\x84\x8e\x7f\x00\x00......\x00\x00......\x00\x00......\x00\x00......\x00\x00...\x00\x00\x00\x00\x00....\x8e\x7f\x00\x00......\x00\x00......\x00\x00...\x00\x00\x00\x00\x00...\x00\x00\x00\x00\x00...\x00\x00\x00\x00\x00......\x00\x00...\x00\x00\x00\x00\x00....\x00\x00\x00\x00......\x00\x00...\x84\x8e\x7f\x00\x00......\x00\x00......\x00\x00....\x00\x00\x00\x00......\x00\x00...\x00\x00\x00\x00\x00.....\x7f\x00\x00......\x00\x00.\xfe\x7c\x17..\x00\x00......\x00\x00...\x00\x00\x00\x00\x00......\x00\x00......\x00\x00....\x00\x00\x00\x00......\x00\x00...\x00\x00\x00\x00\x00......\x00\x00\x40.....\x00\x00......\x00\x00......\x00\x00......\x00\x00.....\x7f\x00\x00...\x00\x00\x00\x00\x00...\x00\x00\x00\x00\x00...\x00\x00\x00\x00\x00...\x00\x00\x00\x00\x00....\x8e\x7f\x00\x00......\x00\x00...'
+soft = false
+product_name = "NoMachine NX remote administration"
+
+[matches.netbios-ssn]
+regex = '^\x82\0\0\0$'
+soft = false
+product_name = "Konica Minolta bizhub C452 printer smbd"
+device_type = "printer"
+
+[matches.tng-dts]
+regex = '^\0\0\0\$sequence_number=\[0\] result=\[-2005\] \0$'
+soft = false
+product_name = "CA DTS Agent"
+
+[matches.serversettingsd]
+regex = '^\0\0\x004main\0\0\x01\0\0\0\0\x0c\0\0\0\0\0\0\0\x0c\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0quit\xff\xff\xff\xffcrpt$'
+soft = false
+product_name = "Apple serversettingsd administration daemon"
+operating_system = "Mac OS X"
+
+[matches.wins]
+regex = '^\0\0\0\x1e\xffS\xad\x80\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0...\0\0\x01\0\0\x81\0\x02'
+regex_flags = "s"
+soft = false
+product_name = "Microsoft Windows Wins"
+operating_system = "Windows"
+
+[matches.routersetup]
+regex = '^\0\0\0.\xffSMBr\0\0\0\0\x80'
+regex_flags = "s"
+soft = false
+device_type = "router"
+
+[matches.fastobjects-db]
+regex = '^\xce\xfa\x01\0\x16\0\0\0\0\0\0\x003\xf6\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "Versant FastObjects database"
+
+[matches.vertica]
+regex = '^V\0\0\x01f:ErrorMsg\nelevel:23\nfilename:/scratch_a/release/vbuild/vertica/Session/ClientSession\.cpp\nlineno:(\d+)\ncaught:SessionRun\nsqlerrcode:16933376\nverticacode:3753\nmessage:Invalid startup packet layout: expected terminator as last byte\ndetail:\nhint:\nlog_message:Invalid startup packet layout: expected terminator as last byte\nlog_detail:\nlog_hint:\ncursorpos:0\n\.\n'
+soft = true
+product_name = "HP Vertica database"
+info = "error line $1"
+
+[matches.byond]
+regex = '^\0\0\0\x02\0\0$'
+soft = false
+product_name = "BYOND game platform"
+
+[matches.kerberos-sec]
+regex = "^.*Internal KDC error, contact administrator"
+regex_flags = "s"
+soft = false
+product_name = "Shishi kerberos-sec"
+
+[matches.as-signon]
+regex = '^\0\0\0\x18\xffSMBr\0\0\0\0\x08\x01@\0\x04\xf0\0\0\x01\0\x03$'
+soft = false
+product_name = "IBM Client Tools signon"
+
+[matches.ouman-trend]
+regex = '^\0\0\0\x05\xffSMBr$'
+soft = false
+product_name = "Ouman Trend environmental sensor"
+
+[matches.tally-census]
+regex = '^\xcd\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\x02\0\0\0\0\0$'
+soft = false
+product_name = "Tally Collection Client"
+
+[matches.bmc-tmart]
+regex = '^\x15uBMC TM ART Version ([\w._-]+, Build \d+ from [\d-]+), Copyright \? [\d-]+ BMC Software, Inc\. \| All Rights Reserved\.'
+soft = false
+product_name = "BMC Transaction Management Application Response Time"
+version = "$1"

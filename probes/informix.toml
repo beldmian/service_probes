@@ -1,0 +1,28 @@
+[metadata]
+name = "informix"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000\u0001<\u0000\u0000\u0000d\u0000e\u0000\u0000\u0000=\u0000\u0006IEEEM\u0000\u0000lsqlexec\u0000\u0000\u0000\u0000\u0000\u0000\u00069.280\u0000\u0000\fRDS#R000000\u0000\u0000\u0005sqli\u0000\u0000\u0000\u00013\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0005nmap\u0000\u0000\u0005nmap\u0000ol\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000=tlitcp\u0000\u0000\u0000\u0000\u0000\u0001\u0000h\u0000\u000B\u0000\u0000\u0000\u0003\u0000\u0005nmap\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000j\u0000\u0000\u0000\u007F"
+rarity = 8
+ports = [
+    9088,
+    9089,
+    9090,
+    9091,
+    9092,
+    9093,
+    9094,
+    9095,
+    9096,
+    9097,
+    9098,
+    9099,
+]
+
+[matches.informix]
+regex = '^..\x03<\x10\0\0d\0e\0\0\0='
+soft = true

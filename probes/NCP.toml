@@ -1,0 +1,89 @@
+[metadata]
+name = "NCP"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "DmdT\u0000\u0000\u0000\u0017\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0011\u0011\u0000ÿ\u0001ÿ\u0013"
+rarity = 6
+ports = [
+    3000,
+    3001,
+    3002,
+    3003,
+    3004,
+    3005,
+]
+
+[matches.srun]
+regex = '^X\0\0\0$'
+soft = false
+product_name = "Caucho Resin JSP Engine srun"
+
+[matches.jute]
+regex = '^\0\0\0\(\0\0\0\x01\0\0\0\0\0\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\x01\0\0\0\x01\0\0\0\(\0\0\0\x01\0\0\0\0\0\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\x01\0\0\0\x01'
+soft = false
+product_name = "Apache ZooKeeper"
+
+[matches.smpp]
+regex = '^\0\0\0\(\0\0\0\x01\0\0\0\0\0\0\0\x02\0\0\0\x02\0\0.*\0\0\0\0\0\0\0\x03\0\0\0\0\0\0\0\x03\0\0\0\x01'
+regex_flags = "s"
+soft = false
+product_name = "Apache Zookeeper smpp"
+
+[matches.telnet]
+regex = '^\xff\xfd\x98\xff\xfb\x01\xff\xfd\x18\xff\xfd\x98Welcome to UniData Telnet Server\r\nlogin: '
+soft = false
+product_name = "Rocket UniData RDBMS telnetd"
+
+[matches.appleevents]
+regex = '^DmdT\0\0\0\x17\0\0\0\x01$'
+soft = false
+product_name = "Apple Remote Events"
+operating_system = "Mac OS X"
+
+[matches.pigpio]
+regex = '^DmdT\0\0\0\x17\0\0\0\x01\xa8\xff\xff\xff'
+soft = false
+product_name = "pigpiod"
+device_type = ""
+
+[matches.textui]
+regex = '^R:ERROR:6 \"Syntax Error\"\r\n'
+soft = false
+product_name = "Vantage InFusion home automation controller port"
+
+[matches.resin-watchdog]
+regex = "^Q$"
+soft = false
+product_name = "Caucho Resin Pro Watchdog"
+
+[matches.softplc]
+regex = '^\x04\xef\xef\xb3\0\0\0\x01\x01\0\xc4\x01\0\0\0\0'
+soft = false
+product_name = "CODESYS SoftPLC"
+
+[matches.progress]
+regex = '^\0\0\0\x01\0\x17\0\x14\0\x06\0\0\0.\0\0\0\0\0\0'
+regex_flags = "s"
+soft = false
+product_name = "Progress Database"
+
+[matches.audioworks]
+regex = '^\0\0$'
+soft = false
+product_name = "AudioWorks sound server"
+operating_system = "IRIX"
+
+[matches.ncp]
+regex = '^\x74\x4e\x63\x50\0\0\0\x10\x33\x33'
+soft = false
+product_name = "Novell NetWare NCP"
+
+[matches.tuxedo-wsl]
+regex = '^\d+SESSIONDENIED&REASON=Protocol violation\n$'
+soft = false
+product_name = "BEA Tuxedo WorkStation Listener"
+operating_system = ""

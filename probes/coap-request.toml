@@ -1,0 +1,14 @@
+[metadata]
+name = "coap-request"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "@\u0001\u0001Î».well-known\u0004core"
+rarity = 9
+
+[matches.coap]
+regex = "^`E"
+soft = true

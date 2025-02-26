@@ -1,0 +1,12 @@
+[metadata]
+name = "DNS_SD_QU"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\t_services\u0007_dns-sd\u0004_udp\u0005local\u0000\u0000\f\u0001"
+rarity = 8
+
+[matches]

@@ -1,0 +1,20 @@
+[metadata]
+name = "docker"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+GET /version HTTP/1.1\r
+\r
+"""
+rarity = 8
+
+[matches.docker]
+regex = '^HTTP/1\.1 200 OK\r\nContent-Type: application/json\r\nJob-Name: version\r\nDate: .*\r\nContent-Length: \d+\r\n\r\n{.*\"Version\":\"([^"]+)\"'
+soft = false
+product_name = "Docker remote API"
+version = "$1"
+info = "API 1.11 or older"

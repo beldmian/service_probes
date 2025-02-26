@@ -1,0 +1,24 @@
+[metadata]
+name = "vuze-dht"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = """
+ÿð\r.`Ño\u0000\u0000\u0004\u0000\u0000U«ì2\u0000\u0000\u0000\u0000\u00002\u0004
+\u0000Èuø\u0016\u0000\\¹e\u0000\u0000\u0000\u0000NÑõ("""
+rarity = 8
+ports = [
+    49152,
+    49153,
+    49154,
+    49155,
+]
+
+[matches.vuze-dht]
+regex = '^\0\0\x04\x01\0U\xab\xec\xff\xf0\x97\r\.`\xd1o..........'
+regex_flags = "s"
+soft = false
+product_name = "Vuze"

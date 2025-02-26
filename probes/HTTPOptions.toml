@@ -1,0 +1,158 @@
+[metadata]
+name = "HTTPOptions"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+OPTIONS / HTTP/1.0\r
+\r
+"""
+rarity = 4
+ports = [
+    80,
+    81,
+    82,
+    83,
+    84,
+]
+
+[matches.http]
+regex = '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: 13\r\n\r\n404 Not Found'
+soft = false
+product_name = "McAfee Agent Common Services httpd"
+operating_system = "Windows"
+
+[matches.dgld]
+regex = "^OPTI$"
+soft = false
+product_name = "IRIX Distributed GL Daemon"
+operating_system = "IRIX"
+
+[matches.vnc-http]
+regex = '^HTTP/1\.1 200\r\nContent-Type: text/html\r\nContent-Length: \d+\r\nSet-Cookie: UBRWID=[A-F0-9]+\r\nAccess-Control-Allow-Origin: \*\r\nConnection: Keep-Alive\r\n\r\n\xef\xbb\xbf<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<title>ThinVNC</title>\r\n'
+soft = false
+product_name = "ThinVNC"
+
+[matches.monsoon]
+regex = '^\0\x14\0\x01\xff\xff\xff\xfd\0\0\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "Monsoon HAVA media streaming"
+device_type = "media device"
+
+[matches.pop3]
+regex = '^\+OK Citadel POP3 server <\d+@([-\w_.]+)>\r\n-ERR Not logged in\.\r\n-ERR Not logged in\.\r\n'
+soft = false
+product_name = "Citadel pop3d"
+hostname = "$1"
+
+[matches.apollo-server]
+regex = "^0000000001(?:3C|C0)0000$"
+soft = false
+product_name = "Apollo Server database access"
+
+[matches.ets2]
+regex = '^\xff\xfe\\\0n\0e\0w\0f\0r\0e\0i\0g\0h\0t\0 \0E\0u\0r\0o\0 \0T\0r\0u\0c\0k\0 \0S\0i\0m\0u\0l\0a\0t\0o\0r\0 \x002\0;([^;]+);'
+soft = false
+product_name = "newfreight Euro Truck Simulator 2"
+info = "level: $P(1)"
+
+[matches.irc]
+regex = '(^:[-.\w]+) 421 \* OPTIONS :Unknown command\r\n'
+soft = false
+product_name = "Webmaster Conferenceroom IRC server"
+hostname = "$1"
+
+[matches.kmldonkey]
+regex = '^HTTP/1\.1 400 Bad Request\r\nServer: KMLDonkey/(\d\S+)'
+soft = false
+product_name = "KMLDonkey"
+version = "$1"
+
+[matches.sand-db]
+regex = '^\xff\x02\x04\0\x03\0r\n\x08\0@L\x01\0\x01\x01\0\0\0\0[A-Z]{16}$'
+soft = false
+product_name = "SAND database"
+
+[matches.websocket]
+regex = '''^HTTP/1\.0 501 Unsupported method \('OPTIONS'\)\r\nServer: SimpleHTTP/([\w._-]+) Python/([\w._+-]+)\r\nDate: .* GMT\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<head>\n<title>Error response</title>\n</head>\n<body>\n<h1>Error response</h1>\n<p>Error code 501\.\n<p>Message: Unsupported method \('OPTIONS'\)\.\n<p>Error code explanation: 501 = Server does not support this operation\.\n</body>\n$'''
+soft = false
+product_name = "websockify"
+info = "SimpleHTTP $1; Python $2"
+
+[matches.msdtc]
+regex = '^\x10\x1a\x0b\x00\x60\x4d$'
+soft = false
+product_name = "Microsoft Distributed Transaction Coordinator"
+operating_system = "Windows"
+
+[matches.tgcmd]
+regex = '^\d+ \d+ \d+,Invalid command\.\n$'
+soft = false
+product_name = "tgcmd.exe support daemon"
+operating_system = "Windows"
+
+[matches.policy]
+regex = '^action=defer_if_permit Policy Rejection: Invalid data\n\n$'
+soft = false
+product_name = "Postfix mail policyd"
+
+[matches.rtsp]
+regex = '^RTSP/1\.0 200 OK\r\nCSeq: 0\r\nPublic: OPTIONS, DESCRIBE, SETUP, TEARDOWN, PLAY\r\nBoard: MIPS\r\nDevCaps: VideoColor,IRLed,LightMode,\r\n\r\n'
+soft = false
+product_name = "Maygion IPCamera rtspd"
+device_type = "webcam"
+
+[matches.stingray]
+regex = '^\x02\x004ComDU2\0\0\0\0\0\0\0\0\0ON\0\x08OPTIONS \0\0\0\0<\x9e\x0e\x08!\x8a6@@\xb2W@\0\0\0\00\xd8\xdd\xbf\xbe\x99\r9@\x0c\xe0\x0b\x08\xb5\xd6\x0f@\xe8\xdd\xbf\xbeh\xa6>@0O\x18\x08\xd4\xb4U@'
+soft = false
+product_name = "StingRay file transfer"
+
+[matches.docker]
+regex = '^HTTP/1\.0 200 OK\r\nApi-Version: ([\d.]+)\r\nDocker-Experimental: false\r\nOstype: (.+)\r\nServer: Docker/(\d[\w.-]*) \(.*\)\r\nDate: .*\r\nContent-Length: 0\r\n\r\n'
+soft = false
+product_name = "Docker remote API"
+version = "$3"
+info = "API $1"
+operating_system = "$2"
+
+[matches.ipp]
+regex = '^HTTP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: CUPS/([-\w_.]+)'
+regex_flags = "s"
+soft = false
+product_name = "CUPS"
+version = "$1"
+
+[matches.webdav]
+regex = '^HTTP/1\.[01] 200 OK.*\r\nAllow:[^\r\n]* PROPFIND.*\r\nDAV: *1'
+regex_flags = "s"
+soft = true
+
+[matches.kerberos-sec]
+regex = '^\0\0\0[\x50-\x90]~[\x4e-\x8e]0[\x4c-\x8c]\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x1e\xa4\x11\x18\x0f(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z\xa5\x05\x02\x03...\xa6\x03\x02\x01=\xa9.\x1b.([\w.-]+)\xaa\x1d0\x1b\xa0\x03\x02\x01\0\xa1\x140\x12\x1b\x06kadmin\x1b\x08changepw'
+regex_flags = "s"
+soft = false
+product_name = "MIT Kerberos"
+info = "server time: $1-$2-$3 $4:$5:$6Z"
+hostname = "$7"
+
+[matches.upnp]
+regex = '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: Debian/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+soft = false
+product_name = "MiniDLNA"
+version = "$4"
+info = "Debian $1; DLNADOC $2; UPnP $3"
+operating_system = "Linux"
+
+[matches.caldav]
+regex = '^HTTP/1\.[01] 200 OK\r\n.*DAV: [^\r\n]*calendar.*\r\nAllow:'
+regex_flags = "s"
+soft = true
+
+[matches.http-proxy]
+regex = '^HTTP/1\.1 200 OK\r\nCache-Control: no-cache\r\nConnection: close\r\nContent-Type: text/html; charset=utf-8\r\nPragma: no-cache\r\nContent-Length: \d+\r\nSet-Cookie: f5[a-z]+=[A-Z]+; HttpOnly; secure\r\n\r\n<html><head><title>Request Rejected</title>'
+soft = false
+product_name = "F5 BIG-IP load balancer http-proxy"
+device_type = "load balancer"

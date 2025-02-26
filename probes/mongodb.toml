@@ -1,0 +1,16 @@
+[metadata]
+name = "mongodb"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "A\u0000\u0000\u0000:0\u0000\u0000ÿÿÿÿÔ\u0007\u0000\u0000\u0000\u0000\u0000\u0000test.$cmd\u0000\u0000\u0000\u0000\u0000ÿÿÿÿ\u001B\u0000\u0000\u0000\u0001serverStatus\u0000\u0000\u0000\u0000\u0000\u0000\u0000ð?\u0000"
+rarity = 8
+
+[matches.mongodb]
+regex = '^..\0\0....:0\0\0\x01\0\0\0\x08\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\xf0\0\0\0\x01ok\0\0\0\0\0\0\0\0\0\x02errmsg\0\xa1\0\0\0Unsupported OP_QUERY command: serverStatus\. The client driver may require an upgrade\. For more details see https://dochub\.mongodb\.org/core/legacy-opcode-removal\0\x10code\0`\x01\0\0\x02codeName\0\x1a\0\0\0UnsupportedOpQueryCommand\0\0'
+soft = false
+product_name = "MongoDB"
+version = "6.1 or later"

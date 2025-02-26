@@ -1,0 +1,219 @@
+[metadata]
+name = "SSLSessionReq"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+\u0016\u0003\u0000\u0000S\u0001\u0000\u0000O\u0003\u0000?G×÷º,îê²`~ó\u0000ý{¹ÕÈwæÄÛ<=Ûoï\u0010n\u0000\u0000(\u0000\u0016\u0000\u0013\u0000
+\u0000f\u0000\u0005\u0000\u0004\u0000e\u0000d\u0000c\u0000b\u0000a\u0000`\u0000\u0015\u0000\u0012\u0000\t\u0000\u0014\u0000\u0011\u0000\b\u0000\u0006\u0000\u0003\u0001\u0000"""
+rarity = 1
+ports = [
+    992,
+    993,
+    994,
+]
+
+[matches.xtel]
+regex = '^\x15Annuaire \xe9lectronique'
+soft = false
+product_name = "xteld"
+info = "French"
+
+[matches.http]
+regex = '^<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2\.0//EN">\n<html><head>\n<title>501 Method Not Implemented</title>\n</head><body>\n<h1>Method Not Implemented</h1>\n<p>\x16\x03 to /[^ ]* not supported\.<br />\n</p>\n<hr>\n<address>Apache Server at ([\w.-]+) Port \d+</address>\n</body></html>\n'
+soft = false
+product_name = "Apache httpd"
+hostname = "$1"
+
+[matches.login]
+regex = '^\0\r\nlogin: \^W\^@\^@\^@\^'
+soft = false
+product_name = "VxWorks logind"
+operating_system = "VxWorks"
+
+[matches.dsr-video]
+regex = '^\0\0\0\0\0\x84\0\x10\x01\xa3{\x10\0\0\0\0$'
+soft = false
+product_name = "Avocent KVM DSR video"
+
+[matches.progress]
+regex = '^\0\0\0\x01\0\x17\0\x14\0\x06\0\0\0.\0\0\0\0\0\0'
+regex_flags = "s"
+soft = false
+product_name = "Progress Database"
+
+[matches.tor]
+regex = '^\x16\x03\0\0\*\x02\0\0&\x03\0.*T[oO][rR]1.*[\x00-\x20]([-\w_.]+) <identity>'
+regex_flags = "s"
+soft = false
+product_name = "Tor node"
+info = "Node name: $1"
+
+[matches."h.239"]
+regex = "^BadRecord"
+soft = false
+product_name = "Polycom People+Content IP H.239"
+device_type = "VoIP phone"
+
+[matches.ssl]
+regex = '^\x15\x03[\0-\x04]\0\x02[\x01\x02].$'
+regex_flags = "s"
+soft = false
+
+[matches.ftp]
+regex = '^220 .*\r\n451 The parameter is incorrect\. \r\n'
+soft = true
+product_name = "IIS ftpd"
+operating_system = "Windows"
+
+[matches.siebel]
+regex = '^\0\0\0\x40\0\0\0\0\0\0\0\x01\0\0\0\0\0\0..\0\0\0\x05\0\0\0\0\0\0\0\0\x4e...\0...\0\0\0\0\0\0\0\0\0\0\0\x05\0\0\0\x0c\0\0\0\x08\0\x12\0\x68\0\0\0\0$'
+soft = false
+product_name = "Siebel Gateway Name Server"
+
+[matches.vmware-print]
+regex = '^\r\0\0+$'
+soft = false
+product_name = "VMware virtual printing service"
+
+[matches.unknown-camera]
+regex = '^\x9c\xff\xff\xff\0{408}'
+soft = false
+product_name = "V308 camera service"
+device_type = "webcam"
+
+[matches.h323q931]
+regex = '^\x03\0\x000\x08\x02\0\0}\x08\x02\x80\xe2\x14\x01\0~\0\x1d\x05\x08 \x19\0\x06\0\x08\x91J\0\x05\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
+soft = false
+product_name = "Polycom ViewStation H.323"
+
+[matches.pbx-alarm]
+regex = '^1\x0c5\x0c9\x0c\x0b\x03$'
+soft = false
+product_name = ""
+device_type = "PBX"
+
+[matches.minecraft]
+regex = '^\x98\x01[\x17-\x1b]\x95\x01\{"translate":"disconnect\.genericReason","with":\["Internal Exception: io\.netty\.handler\.codec\.DecoderException: java\.io\.IOException: Bad packet id 3"\]\}'
+soft = false
+product_name = "Minecraft game server"
+
+[matches.ilo-vm]
+regex = '^\"\0\x03\0$'
+soft = false
+product_name = "HP Integrated Lights-Out Virtual Media"
+
+[matches.echo]
+regex = '^\x16\x03\0\0S\x01\0\0O\x03\0\?G\xd7\xf7\xba,\xee\xea\xb2`~\xf3\0\xfd\x82\{\xb9\xd5\x96\xc8w\x9b\xe6\xc4\xdb<=\xdbo\xef\x10n\0\0\(\0\x16\0\x13\0\n'
+soft = true
+
+[matches.postx-reporting]
+regex = '^OPTIONS / RTSP/1\.0'
+soft = false
+product_name = "PostX IP Reporting alarm system"
+
+[matches.msexchange-logcopier]
+regex = '^\x15\x01\0\0\x08\0\0\0\0\x80\t\x03\x08$'
+soft = false
+product_name = "Microsoft Exchange 2010 log copier"
+
+[matches.ajp13]
+regex = '^AB\0N\x04\x01\x94\0\x06/cccb/\0\0\x02\0\x0cContent-Type\0\0\x17text/html;charset=utf-8\0\0\x0eContent-Length\0\0\x03970\0AB\x03'
+soft = false
+product_name = "Apache Jserv"
+
+[matches.http-proxy]
+regex = '^HTTP/1\.0 414 Request URI too long\r\nContent-Type: text/html\r\nContent-Length: 23\r\nExpires: now\r\nPragma: no-cache\r\nCache-control: no-cache,no-store\r\n\r\nRequest URI is too long'
+soft = false
+product_name = "Pound http reverse proxy"
+
+[matches.ptp-ip]
+regex = '^\x0c\0\0\0\x05\0\0\0\x03\0\0\0'
+soft = false
+product_name = "Picture Transport Protocol over IP"
+
+[matches.cpu]
+regex = '^unsupported auth method\0'
+soft = false
+product_name = "Plan 9 cpu"
+operating_system = "Plan 9"
+
+[matches.remoting]
+regex = '^\.NET\x01\0\x02\0\0\0\0\0\0\0\x02\0\x03\x01\0\x03\0\x01\x01..\0\0System\.Runtime\.Remoting\.RemotingException: '
+regex_flags = "s"
+soft = false
+product_name = "MS .NET Remoting services"
+
+[matches."ssl/openvas"]
+regex = '^\x16\x03\x01\0J\x02\0\0F\x03\x01'
+soft = false
+product_name = "OpenVAS server"
+
+[matches.adabas]
+regex = '^,\0,\0\x03\x02\0\0G\xd7\xf7\xbaO\x03\0\?\x05\0\0\0\0\x02\x18\0\xfd\x0b\0\0<=\xdbo\xef\x10n \xd5\x96\xc8w\x9b\xe6\xc4\xdb$'
+soft = false
+product_name = "ADABAS database"
+
+[matches."ssl/sophos"]
+regex = '^\x16\x03\0.*Sophos EM Certification Manager'
+regex_flags = "s"
+soft = false
+product_name = "Sophos Message Router"
+
+[matches.modbus]
+regex = '^\x16\x03\0\0S\x03\0\x93\x01'
+soft = false
+product_name = "Modbus TCP"
+
+[matches.pop3-proxy]
+regex = '^ERR concurrent connection limit in avast! exceeded\(pass:\d+, processes:([\w._-]+)\[\d+\]\)\r\n'
+soft = false
+product_name = "Avast! anti-virus pop3 proxy"
+info = "connection limit exceeded by $1"
+operating_system = "Windows"
+
+[matches.storagecraft-image]
+regex = '^\x15\x01\0\0\x08\0\0\0\0\x80\t\x03\x08\.NET\x01\0\x02\0\0\0\0\0\0\0\x02\0\x03\x01\0\x03\0\x01\x01 \0\0\0Authentication failure on server\x05\0\0\0\0$'
+soft = false
+product_name = "StorageCraft Image Manager"
+
+[matches.decomsrv]
+regex = '^\x02\0\0\x01\x03\0U\xd0DSQ\x02\0\0\x01\x03\0U\xd0DSQ$'
+soft = false
+product_name = "Lotus Domino decommission server"
+info = "decomsrv.exe"
+operating_system = ""
+
+[matches.maxdb]
+regex = '^.Rejected bad connect packet\0$'
+regex_flags = "s"
+soft = false
+product_name = "SAP MaxDB"
+
+[matches.xamarin]
+regex = '^ERROR: Another instance is running\n'
+soft = false
+product_name = "Xamarin MonoTouch"
+
+[matches.netbios-ssn]
+regex = '^\0\0\0%G\xd7\xf7\xba,\xff\xea\xff\xff~\xf3\0\xfd\x82{\xb9\xd5\x96\xc8w\x9b\xe6\xc4\xdb<=\xdbo\xef\x10n\0\0\0\0\x16\0$'
+soft = false
+product_name = "Konica Minolta bixhub 350 printer smbd"
+device_type = "printer"
+
+[matches.ptcp]
+regex = '^\0.\x02\0\0\x02\0CClient /[\d.]+:\d+ has requested unsupported pTCP version 0\x02\0\0\0\0'
+soft = false
+product_name = "Axway SecureTransport PeSIT over pTCP"
+
+[matches.iperf3]
+regex = '^\t$'
+soft = false
+
+[matches.afp]
+regex = '^\x01\x03\0\0........\0\0\0\0.*AFP'
+regex_flags = "s"
+soft = true

@@ -1,0 +1,18 @@
+[metadata]
+name = "ibm-db2-das-udp"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "DB2GETADDR\u0000SQL08010\u0000"
+rarity = 8
+
+[matches.ibm-db2]
+regex = '^DB2RETADDR\0SQL0(\d)(\d\d)(\d+)\0([^\0]+)\0'
+regex_flags = "s"
+soft = false
+product_name = "IBM DB2 Database Server"
+version = "$1.$2.$3"
+info = "Hostname: $4"

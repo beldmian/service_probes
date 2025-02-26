@@ -1,0 +1,26 @@
+[metadata]
+name = "AFSVersionRequest"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0000\u0003ç\u0000\u0000\u0000\u0000\u0000\u0000\u0000e\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\r\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+rarity = 5
+
+[matches."H.323-gatekeeper-discovery"]
+regex = '^\x06\x80\x03\xe7\x06\0\x08\x91J\0\x05\x12\0G\0A\0T\0E\0K\0E\0E\0P\0E\0R\0......'
+soft = false
+product_name = "Cisco Unified Communications Manager Gatekeeper RAS service"
+
+[matches.dtls]
+regex = '^\x15\xfe\xff\0\0\0\0\0\0\0\0\0\x07\x02\x16\0\0\0\0\0$'
+soft = false
+product_name = "OpenSSL DTLS 1.0"
+
+[matches.afs]
+regex = '^[\d\D]{28}\s*arla-([\d\.]+)\0'
+soft = false
+product_name = "Arla"
+version = "$1"

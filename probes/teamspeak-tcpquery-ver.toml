@@ -1,0 +1,28 @@
+[metadata]
+name = "teamspeak-tcpquery-ver"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+ver\r
+"""
+rarity = 9
+
+[matches.teamspeak-tcpquery]
+regex = '^\[TS\]\r\n([\w._-]+) Linux ([\w._-]+)\r\nOK\r\n$'
+soft = false
+product_name = "TeamSpeak 2 TCPQuery"
+version = "$1"
+info = "$2"
+operating_system = "Linux"
+
+[matches.uptime-agent]
+regex = '^up.time agent ([\d.]+) \(build (\d+)\) ([\w._-]+)\n'
+soft = false
+product_name = "Idera Uptime Infrastructure Monitor"
+version = "$1"
+info = "build $2"
+operating_system = "$3"

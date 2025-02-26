@@ -1,0 +1,15 @@
+[metadata]
+name = "AMANDA_NOOP"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = """
+Amanda 2.6 REQ HANDLE 000-00000000 SEQ 0
+SERVICE noop
+"""
+rarity = 8
+
+[matches]

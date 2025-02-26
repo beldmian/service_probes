@@ -1,0 +1,62 @@
+[metadata]
+name = "oracle-tns"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000Z\u0000\u0000\u0001\u0000\u0000\u0000\u00016\u0001,\u0000\u0000\b\u0000\u007Fÿ\u007F\b\u0000\u0000\u0000\u0001\u0000 \u0000:\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u00004æ\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000(CONNECT_DATA=(COMMAND=version))"
+rarity = 7
+
+[matches.dbsnmp]
+regex = '^\0,\0\0\x04\0\0\0\"\0\0 \(CONNECT_DATA=\(COMMAND=version\)\)'
+soft = false
+product_name = "Oracle DBSNMP"
+
+[matches.iscsi]
+regex = '^\x3f\x80\x04\0\0\0\x00\x30\0\0\0\0\0\0\0\0\xff\xff\xff\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x00\x00\0\0\0\0\0\0\0\0\0\0\0\0\0Z\0\0\x01\0\0\0\x016\x01\x2c\0\0\x08\0\x7f\xff\x7f\x08\0\0\0\x01\0\x20\0\x3a\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x004\xe6\0\0$'
+soft = false
+product_name = "HP StorageWorks D2D backup system iSCSI"
+device_type = "storage-misc"
+
+[matches.oracle]
+regex = '^\+\0\0\0$'
+soft = false
+product_name = "Oracle Database"
+
+[matches.hp-radia]
+regex = '^\xff\xff$'
+soft = false
+product_name = "HP Radia configuration server"
+
+[matches.http]
+regex = '^HTTP/1\.0 400 Bad Request\r\nDate: .*\r\nServer: Boa/([\w._-]+)\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n<HTML><HEAD><TITLE>400 Bad Request</TITLE></HEAD>\n<BODY><H1>400 Bad Request</H1>\nYour client has issued a malformed or illegal request\.\n</BODY></HTML>\n$'
+soft = false
+product_name = "Boa httpd"
+version = "$1"
+info = "Prolink ADSL router"
+device_type = "broadband router"
+
+[matches.winbox]
+regex = '^.\x01\0.M2\x01\0\xff\x88\0\0\x02\0\xff\x88[\x01\x02]\0'
+regex_flags = "s"
+soft = false
+product_name = "MikroTik WinBox"
+
+[matches.oracle-tns]
+regex = '^\0.\0\0[\x02\x04]\0\0\0.*\([ABD-Z]'
+regex_flags = "s"
+soft = true
+product_name = "Oracle TNS Listener"
+
+[matches.palm-hotsync]
+regex = '^\x01.\0\0\0\x14\x11\x01\0\0\0\0\0\0\0\x20\0\0\0\x06\x01\0..\0\0$'
+regex_flags = "s"
+soft = false
+product_name = "Palm Pilot HotSync"
+
+[matches.wow]
+regex = '^\0\0\t.{32}\x01..{32}'
+soft = false
+product_name = "World of Warcraft authserver"

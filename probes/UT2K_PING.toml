@@ -1,0 +1,12 @@
+[metadata]
+name = "UT2K_PING"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "None\u0000"
+rarity = 8
+
+[matches]

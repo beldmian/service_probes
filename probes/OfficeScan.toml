@@ -1,0 +1,18 @@
+[metadata]
+name = "OfficeScan"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+GET /?CAVIT HTTP/1.1\r
+\r
+"""
+rarity = 9
+
+[matches.http]
+regex = '^HTTP/1.0 \d\d\d .*\r\nServer: OfficeScan Client'
+soft = false
+product_name = "Trend Micro OfficeScan Antivirus http config"

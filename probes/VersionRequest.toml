@@ -1,0 +1,17 @@
+[metadata]
+name = "VersionRequest"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "VERSION"
+rarity = 8
+
+[matches.clam]
+regex = '^ClamAV ([\w.]+)/(\w+)/(.+)$'
+soft = false
+product_name = "ClamAV"
+version = "$1 ($2)"
+info = "AV definitions updated on:$3"

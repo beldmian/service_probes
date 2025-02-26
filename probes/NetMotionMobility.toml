@@ -1,0 +1,15 @@
+[metadata]
+name = "NetMotionMobility"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000@P\u0000\u0000\u0000\u0000]´(\u0000\u0000\u0000\u0000\u0000\u0001|@\u0000\u0000\u0000ª9ÚB7eÏ\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+rarity = 7
+
+[matches.NetMotionMobility]
+regex = '^\0\x40\x51\0\0\0\0'
+soft = false
+product_name = "NetMotion Mobility VPN"

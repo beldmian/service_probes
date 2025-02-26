@@ -1,0 +1,18 @@
+[metadata]
+name = "serialnumberd"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "SNQUERY: 127.0.0.1:AAAAAA:xsvr"
+rarity = 8
+
+[matches.serialnumber]
+regex = '^SNRESPS:([\w._-]+):(0x[0-9A-F]{40}):xsvr:(0x[0-9A-F]{40}):(0x[0-9a-f]{8}):(0x[0-9A-F]{40}):[\w._-]+\0$'
+soft = false
+product_name = "Mac OS X Server serialnumberd"
+info = "numbers: $2 $3 $4 $5"
+hostname = "$1"
+operating_system = "Mac OS X"

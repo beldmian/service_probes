@@ -1,0 +1,22 @@
+[metadata]
+name = "ms-sql-s"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0012\u0001\u00004\u0000\u0000\u0000\u0000\u0000\u0000\u0015\u0000\u0006\u0001\u0000\u001B\u0000\u0001\u0002\u0000\u001C\u0000\f\u0003\u0000(\u0000\u0004ÿ\b\u0000\u0001U\u0000\u0000\u0000MSSQLServer\u0000H\u000F\u0000\u0000"
+rarity = 7
+
+[matches.ms-sql-s]
+regex = '^\x04\x01\x00\x2b\x00\x00\x00\x00\x00\x00\x1a\x00\x06\x01\x00\x20\x00\x01\x02\x00\x21\x00\x01\x03\x00\x22\x00\x00\x04\x00\x22\x00\x01\xff\x08\x00\x02\x10\x00\x00\x02\x00\x00'
+soft = false
+product_name = "Dionaea honeypot MS-SQL server"
+
+[matches.iscsi]
+regex = '^\?\x80\x04\0\0\0\x000\0\0\0\0\0\0\0\0\xff\xff\xff\xff\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\x12\x01\x004\0\0\0\0\0\0\x15\0\x06\x01\0\x1b\0\x01\x02\0\x1c\0\x0c\x03\0\(\0\x04\xff\x08\0\x01U\0\0\0MSSQLServer\0$'
+soft = false
+product_name = "iSCSI Target"
+operating_system = "iOS"
+device_type = "phone"

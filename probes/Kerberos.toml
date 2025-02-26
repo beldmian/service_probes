@@ -1,0 +1,27 @@
+[metadata]
+name = "Kerberos"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = """
+jn0k¡\u0003\u0002\u0001\u0005¢\u0003\u0002\u0001
+¤^0\\ \u0007\u0003\u0005\u0000P\u0000\u0010¢\u0004\u001B\u0002NM£\u00170\u0015 \u0003\u0002\u0001\u0000¡\u000E0\f\u001B\u0006krbtgt\u001B\u0002NM¥\u0011\u0018\u000F19700101000000Z§\u0006\u0002\u0004\u001F\u001E¹Ù¨\u00170\u0015\u0002\u0001\u0012\u0002\u0001\u0011\u0002\u0001\u0010\u0002\u0001\u0017\u0002\u0001\u0001\u0002\u0001\u0003\u0002\u0001\u0002"""
+rarity = 5
+
+[matches.kerberos-sec]
+regex = '^~[\x48-\x4a]0[\x46-\x48]\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x1e\xa4\x11\x18\x0f(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z\xa5[\x03-\x05]\x02(?:\x03...|\x02..|\x01.)\xa6\x03\x02\x01D\xa9\x04\x1b\x02NM\xaa\x170\x15\xa0\x03\x02\x01\0\xa1\x0e0\x0c\x1b\x06krbtgt\x1b\x02NM$'
+regex_flags = "s"
+soft = false
+product_name = "Microsoft Windows Kerberos"
+info = "server time: $1-$2-$3 $4:$5:$6Z"
+operating_system = "Windows"
+
+[matches.msrpc]
+regex = '^\x04\x06\x20\0\x10\0\0\x03\x02\x01\x05\xa2\x03\x02\x01\n\xa4\x81\x5e0\x5c\xa0\x07\x03\x05\0\x50\x80\0\x10\xa2\x04\x1b\x02NM\xa3\x170\x15\xa0\x03\x02\x01\0\xa1\x0e0\x0c\x1b\x06krbtg....'
+regex_flags = "s"
+soft = false
+product_name = "Microsoft RPC"
+operating_system = "Windows"

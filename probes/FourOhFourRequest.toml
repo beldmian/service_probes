@@ -1,0 +1,91 @@
+[metadata]
+name = "FourOhFourRequest"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+GET /nice%20ports%2C/Tri%6Eity.txt%2ebak HTTP/1.0\r
+\r
+"""
+rarity = 6
+ports = [
+    80,
+    81,
+    82,
+    83,
+    84,
+    8000,
+    8001,
+    8002,
+    8003,
+    8004,
+    8005,
+    8006,
+    8007,
+    8008,
+    8009,
+    8080,
+    8081,
+    8082,
+    8083,
+    8084,
+    8880,
+    8881,
+    8882,
+    8883,
+    8884,
+    8885,
+    8886,
+    8887,
+]
+
+[matches.bittorrent-tracker]
+regex = '^HTTP/1\.0 404 Not Found\r\nContent-Length: \d+\r\nContent-Type: text/plain\r\nPragma: no-cache\r\n\r\nyour file may exist elsewhere in the universe\nbut alas, not here\n'
+soft = false
+product_name = "BitTornado tracker httpd"
+
+[matches.http]
+regex = '^HTTP/1\.1 500 Server error\r\nConnection: close\r\nContent-Type: text/html\r\nContent-Length: \d+\r\nPragma: no-cache\r\nExpires: .*\r\n\r\n<html><head><script>\r\nfunction IWTop\(\)\{'
+soft = false
+product_name = "Atozed IntraWeb httpd"
+
+[matches.rtsp]
+regex = '^RTSP/1\.0 400 Bad Request\r\nServer: AirTunes/([\w._-]+)\r\n\r\n$'
+soft = false
+product_name = "Apple AirTunes rtspd"
+version = " cpe:"
+info = "Apple TV"
+operating_system = "Mac OS X"
+device_type = "media device"
+
+[matches.scifinder]
+regex = '^\0\[T /nic$'
+soft = false
+product_name = "CAS SciFinder"
+
+[matches.upnp]
+regex = '^HTTP/1\.0 401 Unauthorized\r\nContent-Type: text/plain;charset=UTF-8\r\nContent-Length: [23]\d\d\r\nConnection: close\r\nCache-control: no-cache\r\n\r\n00007\r\n00004\r\n00000\r\n'
+soft = false
+product_name = "TP-LINK router upnpd"
+
+[matches.http-proxy]
+regex = '^HTTP/1\.0 404 Not Found\r\nDate: .*\r\nServer: PanWeb Server/ - \r\n'
+soft = false
+product_name = "Palo Alto PanWeb httpd"
+device_type = "firewall"
+
+[matches.raop]
+regex = '^RTSP/1\.0 401 Unauthorized\r\nServer: AirTunes/([\w._-]+)\r\nWWW-Authenticate: Digest realm=\"raop\" nonce=\"\w+\"\r\n\r\n$'
+soft = false
+product_name = "Apple AirTunes RAOP"
+version = "$1"
+info = "Apple AirPort Express"
+device_type = "WAP"
+
+[matches.vnc-http]
+regex = '^HTTP/1\.0 404 Not Found\r?\n\r?\n<HTML>\n  <HEAD><TITLE>404 Not Found</TITLE></HEAD>\n  <BODY>\n    <H1>Not Found</H1>\n    The requested file could not be found\.\n  </BODY>\n</HTML>\n'
+soft = false
+product_name = "TightVNC"

@@ -1,0 +1,17 @@
+[metadata]
+name = "pc-duo-gw"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = " \bÿ\u0000"
+rarity = 8
+
+[matches.pc-duo-gw]
+regex = '^.........(.*)\0'
+regex_flags = "s"
+soft = false
+product_name = "Vector PC-Duo Gateway Server"
+info = "Servername: $1"

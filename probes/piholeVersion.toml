@@ -1,0 +1,18 @@
+[metadata]
+name = "piholeVersion"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+>version
+"""
+rarity = 9
+
+[matches.pi-hole-stats]
+regex = '^unknown command: .*---EOM---\n\n$'
+regex_flags = "s"
+soft = false
+product_name = "pi-hole Telnet API"

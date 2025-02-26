@@ -1,0 +1,18 @@
+[metadata]
+name = "rotctl"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+get_info
+"""
+rarity = 9
+
+[matches.rotctld]
+regex = '^get_info: (.*)\nRPRT 0\n'
+soft = false
+product_name = "Hamlib rotctld"
+info = "model: $1"

@@ -1,0 +1,45 @@
+[metadata]
+name = "LDAPBindReq"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "0\f\u0002\u0001\u0001`\u0007\u0002\u0001\u0002\u0004\u0000\u0000"
+rarity = 6
+
+[matches.drobo-dsvc]
+regex = '^(?:DRIDDSVC\x07\x01.\0\0\0..[^\0]*\0)?DRIDDSVC\x07\x01.\0\0\0..<ESATMUpdate>\r\n\t<mESAUpdateSignature>ESAINFO</mESAUpdateSignature>\r\n\t<mESAUpdateVersion>\d+</mESAUpdateVersion>\r\n\t<mESAUpdateSize>\d+</mESAUpdateSize>\r\n\t<mESAID>\w+</mESAID>\r\n\t<mSerial>\w+</mSerial>\r\n\t<mName>Drobo(?:-FS)?</mName>\r\n\t<mVersion>([][\w._ ]+)</mVersion>\r\n\t<mReleaseDate>([^<]+)</mReleaseDate>\r\n'
+regex_flags = "s"
+soft = false
+product_name = "Drobo-FS DDSVC"
+version = "$1 ($2)"
+
+[matches.oo-defrag]
+regex = '^h\0\0\0\x01\0\0\0\x03\0\0\0\x07\x08\0\0\x02\0\0\0\0d\0\0\0\0\xd9\$\x01\0\0\0\0\0\0T\0\0\0\0\0\0\xb7x\x01\0\0\0\0\0\xc4\x05\0\0\0\0\0\0\xc4\x05\0\0\0\0\0\0\xe2\x0b\0\0\0\0\0\0\xb7\xb5p@\^\xa7\x08\0\0\0\0\0'
+soft = false
+product_name = "O&O Defrag"
+operating_system = "Windows"
+
+[matches.fw1-secureremote]
+regex = '^[AQ]\0\0\0\0\0\0[^\0]'
+soft = false
+product_name = "Check Point Firewall-1 SecureRemote"
+device_type = "firewall"
+
+[matches.fw1-log]
+regex = '^\0\0\0\t51000000\0\0\0\0[^\0]'
+soft = false
+product_name = "Check Point Firewall-1 logging service"
+device_type = "firewall"
+
+[matches.ldap]
+regex = '^0..?\x02\x01\x01a..?\n\x01.\x04\0\x04'
+regex_flags = "s"
+soft = true
+
+[matches.rse]
+regex = '^\xa2\x85\x99\xa5\x85\x99@'
+soft = false
+product_name = "IBM Explorer for zOS (FMID HALG300)"

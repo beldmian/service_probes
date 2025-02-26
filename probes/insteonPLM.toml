@@ -1,0 +1,16 @@
+[metadata]
+name = "insteonPLM"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0002`"
+rarity = 9
+
+[matches.insteon-plm]
+regex = '^\x02\x60...(.).[\x9c\x9d]\x06$'
+soft = false
+product_name = "Insteon Hub PLM"
+info = 'device type: $I(1,">")'

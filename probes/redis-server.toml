@@ -1,0 +1,21 @@
+[metadata]
+name = "redis-server"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+*1\r
+$4\r
+info\r
+"""
+rarity = 8
+
+[matches.redis]
+regex = '^\$\d+\r\n(?:#[^\r\n]*\r\n)*redis_version:([.\d]+)\r\n'
+regex_flags = "s"
+soft = false
+product_name = "Redis key-value store"
+version = "$1"

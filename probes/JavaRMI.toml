@@ -1,0 +1,42 @@
+[metadata]
+name = "JavaRMI"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "JRMI\u0000\u0002K"
+rarity = 7
+ports = [
+    1100,
+    1101,
+    1102,
+    8888,
+    8889,
+    8901,
+    8902,
+    9003,
+    9004,
+    9810,
+    9811,
+    9812,
+    9813,
+    9814,
+    50500,
+    50501,
+    50502,
+    50503,
+]
+
+[matches.gopro-json]
+regex = '^\{"rval": -7, "param_size": 0 \}\0'
+soft = false
+product_name = "GoPro or similar camera json service"
+device_type = "webcam"
+
+[matches.java-rmi]
+regex = '^\x4e..[\w._-]+\0\0..$'
+regex_flags = "s"
+soft = false
+product_name = "GNU Classpath grmiregistry"

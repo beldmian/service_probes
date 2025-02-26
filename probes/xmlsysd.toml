@@ -1,0 +1,26 @@
+[metadata]
+name = "xmlsysd"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+init
+off all
+on identity version
+send
+quit
+"""
+rarity = 9
+
+[matches.xmlsysd]
+regex = '^Content-Length: [0-9]+\n\n<\?xml version=\"1\.0\"\?>\s*<xmlsysd init=\"1\">\s*<system>\s*<identity>\s*<hostname>([^<]*)</hostname>\s*<hostip>([^<]*)</hostip>\s*</identity>\s*</system>\s*<proc>\s*<version>([^<]*)</version>\s*</proc>\s*</xmlsysd>'
+regex_flags = "s"
+soft = false
+product_name = "xmlsysd daemon"
+info = "IP: $2"
+hostname = "$1"
+operating_system = "$3"
+device_type = ""

@@ -1,0 +1,16 @@
+[metadata]
+name = "svrloc"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0002\u0001\u0000\u00006 \u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0002en\u0000\u0000\u0000\u0015service:service-agent\u0000\u0007default\u0000\u0000\u0000\u0000"
+rarity = 8
+
+[matches.svrloc]
+regex = '^\x02\x0b'
+soft = false
+product_name = "Service Location Protocol"
+version = "2"

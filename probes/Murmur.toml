@@ -1,0 +1,17 @@
+[metadata]
+name = "Murmur"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0000\u0000\u0000abcdefgh"
+rarity = 9
+
+[matches.murmur]
+regex = '^\0...abcdefgh............$'
+regex_flags = "s"
+soft = false
+product_name = "Murmur"
+version = "1.2.X"

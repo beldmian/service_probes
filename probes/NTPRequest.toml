@@ -1,0 +1,53 @@
+[metadata]
+name = "NTPRequest"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "ã\u0000\u0004ú\u0000\u0001\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000ÅO#Kq±Ró"
+rarity = 5
+
+[matches.hbn3]
+regex = '^\0\0\x84\0\0\0\0\x05\0\0\0\0\x15S300-S400 Series.+ET(\w{2})(\w{2})(\w{2})(\w{2})(\w{2})(\w{2})'
+soft = false
+product_name = "Lexmark S300-S400 Series HBN3"
+info = "MAC: $1:$2:$3:$4:$5:$6"
+device_type = "printer"
+
+[matches.sip]
+regex = '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, UPDATE, OPTIONS, MESSAGE, NOTIFY, INFO, REFER\r\n(?:[^\r\n]+\r\n)*?User-Agent: SightSpeedClient v\. ([\w._-]+)\r\n'
+regex_flags = "s"
+soft = false
+product_name = "SightSpeedClient sipd"
+version = "$1"
+info = "AVM FRITZ!Box Fon WAP"
+
+[matches.ntp]
+regex = '^\x5c\x03..............................................$'
+regex_flags = "s"
+soft = false
+product_name = "Microsoft Windows Server 2003 NTP"
+version = "v3"
+operating_system = "Windows 2003"
+
+[matches.ca-mq]
+regex = '^\xfa\xfe\0\x10\0\0\x01\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "CA Message Queuing Server"
+
+[matches.nameserver]
+regex = '^help\r\n\r\n\0\0\0\0\x20CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01'
+soft = false
+product_name = "Solaris Internet Name Server"
+info = "IEN 116"
+operating_system = "Solaris"
+
+[matches.echo]
+regex = '^\xe3\x00\x04\xfa\x00\x01\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc5\x4f\x23\x4b\x71\xb1\x52\xf3$'
+soft = false
+
+[matches.mdns]
+regex = '^\0\0\x84\0\0\0\0\x05\0\0\0\0'
+soft = true

@@ -1,0 +1,36 @@
+[metadata]
+name = "DNS-SD"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\t_services\u0007_dns-sd\u0004_udp\u0005local\u0000\u0000\f\u0000\u0001"
+rarity = 4
+
+[matches.domain]
+regex = '^(?:..)?\0\0[\x80-\x90][\x00\x10\x80\x90]\0[\0\x01]\0\0\0.\0.'
+regex_flags = "s"
+soft = true
+info = "generic dns response: no error"
+
+[matches.hbn3]
+regex = '^\0\0\x84\0\0\0\0\x01\0\0\0\0.Lexmark (\w+)\x0c_host-config\x04_udp\x05local\0\0\x10\0\x01\0\0\0<\x01\x19.IPADDRESS [\d.]+.IPNETMASK [\d.]+.IPGATEWAY [\d.]+.IPNAME \"([\w._-]+)\"\x15MACLAA \"000000000000\"\x15MACUAA \"([0-9A-F]{12})\"'
+regex_flags = "s"
+soft = false
+product_name = "Lexmark hbn3 (DNS-SD-like configuration)"
+info = "Lexmark $1 printer; MAC $3"
+hostname = "$2"
+device_type = "printer"
+
+[matches.isakmp]
+regex = '^\0\0\0\0\0\x01\0\0\0\0\0\0\t_servic\) % \0\0\0\0\0\0\0\$\0\0\0\x08\0\0\0\x05'
+soft = false
+product_name = "StrongSwan ISAKMP"
+
+[matches.mdns]
+regex = '^(?:..)?\0\0\x84\0\0\x01..\0\0\0\0\x09_services\x07_dns-sd\x04_udp\x05local\0\0\x0c\0\x01'
+regex_flags = "s"
+soft = false
+product_name = "DNS-based service discovery"

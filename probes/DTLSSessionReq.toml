@@ -1,0 +1,16 @@
+[metadata]
+name = "DTLSSessionReq"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = """
+\u0016þÿ\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u00006\u0001\u0000\u0000*\u0000\u0000\u0000\u0000\u0000\u0000\u0000*þý\u0000\u0000\u0000\u0000|w@\u001EÈ\"  \u0018ÿ\bÊ¬
+d/É\"d¼\b¨\u0016\u00190\u0000\u0000\u0000\u0002\u0000/\u0001\u0000"""
+rarity = 2
+
+[matches.dtls]
+regex = '^\x15\xfe\xff\0\0\0\0\0\0\0\0..\x02\(\0\0\0\0\0'
+soft = false

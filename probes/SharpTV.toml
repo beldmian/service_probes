@@ -1,0 +1,14 @@
+[metadata]
+name = "SharpTV"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "TVNM1 \rMNRD1 \rSWVN1 \rIPPV1 \r"
+rarity = 9
+
+[matches.sharp-remote]
+regex = "^(?!x)x"
+soft = false

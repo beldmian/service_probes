@@ -1,0 +1,29 @@
+[metadata]
+name = "NessusTPv10"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+< NTP/1.0 >
+"""
+rarity = 8
+
+[matches.http-proxy]
+regex = '^HTTP/1\.0 400 Bad Request\r\nServer: squid/([\w._+-]+)\r\n'
+soft = false
+product_name = "Squid"
+version = "$1"
+
+[matches.zabbix]
+regex = '^NOT OK\n$'
+soft = false
+product_name = "Zabbix Monitoring System"
+
+[matches.nessus]
+regex = '^< NTP/1.0 >\n'
+soft = false
+product_name = "Nessus Daemon"
+info = "NTP v1.0"

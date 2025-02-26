@@ -1,0 +1,27 @@
+[metadata]
+name = "hp-pjl"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+\u001B%-12345X@PJL INFO ID\r
+\u001B%-12345X\r
+"""
+rarity = 9
+ports = [
+    9100,
+    9101,
+    9102,
+    9103,
+    9104,
+    9105,
+    9106,
+]
+
+[matches.hp-pjl]
+regex = '@PJL\x20INFO\x20ID\r?\n\r?\n'
+soft = false
+device_type = "printer"

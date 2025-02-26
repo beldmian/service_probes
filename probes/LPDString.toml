@@ -1,0 +1,52 @@
+[metadata]
+name = "LPDString"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+\u0001default
+"""
+rarity = 6
+
+[matches.fms-core]
+regex = '^\x01\x01\x14\0\0%\0\0\0\0\0\0\0\x02\0\x08register\0\0\0\0\0\0\0\0\0\x05\x02\0\r_defaultRoot_'
+soft = false
+product_name = "Adobe Flash Media Server core"
+
+[matches.http]
+regex = '^<html><head><title>Error</title></head>\n<body>Your client sent an invalid \x01default request without a\nprotocol version \(assuming HTTP v0\.9\)\.\n<p>The request can not be processed\.</body></html>$'
+soft = false
+product_name = "Polycom VVX VoIP phone http config"
+device_type = "VoIP phone"
+
+[matches.rfactor-monitor]
+regex = '^\x02rFactorMonitor\x000400\0$'
+soft = false
+product_name = "rFactor game monitor"
+
+[matches.printer]
+regex = '^Cirrato printing service \(with PayEx support\)\0'
+soft = false
+product_name = "Cirrato lpd"
+info = "with PayEx support"
+
+[matches.winlog]
+regex = '^\xd0\xb7\x07\x01$'
+soft = false
+product_name = "Sielco Sistemi Winlog Pro"
+operating_system = ""
+
+[matches.rbnb]
+regex = '^EXM {EXC \0\x1fcom\.rbnb\.api\.SerializeExceptionMSG \0JUnrecognizable parameter read from input stream\.\nElement read was \x01default}\r\nPNG {}\r\n'
+soft = false
+product_name = "Ring Buffered Network Bus"
+
+[matches.gpsd]
+regex = '^GPSD,D=\?,E=\?,F=([-\w_./]+),A=\?,U=\?,L=\d ([-\w_.]+) abcdefgiklmnopqrstuvwxyz,T=\?\r\n'
+soft = false
+product_name = "gpsd"
+version = "$2"
+info = "Serial port $1"

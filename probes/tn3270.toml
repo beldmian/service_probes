@@ -1,0 +1,22 @@
+[metadata]
+name = "tn3270"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "ÿû\u0018ÿú\u0018\u0000IBM-3279-4-Eÿðÿû\u0019ÿý\u0019ÿû\u0000ÿý\u0000"
+rarity = 8
+
+[matches.tn3270]
+regex = '^\xff\xfd\x18\xff\xfa\x18\x01\xff\xf0.*?\xff\xfd\x19'
+soft = false
+product_name = "IBM Telnet TN3270"
+info = "traditional tn3270"
+
+[matches.telnet]
+regex = '^\xff\xfd\x18\xff\xfa\x18\x01\xff\xf0\xff\xfb\x01\xff\xfb\x03\xff\xfd\x01'
+soft = true
+product_name = "2.11BSD-derived telnetd"
+operating_system = "Unix"

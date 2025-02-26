@@ -1,0 +1,23 @@
+[metadata]
+name = "Quake2_status"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "ÿÿÿÿstatus"
+rarity = 8
+ports = [
+    27910,
+    27911,
+    27912,
+    27913,
+]
+
+[matches.quake2]
+regex = '^\xff\xff\xff\xffprint\n.*\\version\\([^\\]* Linux)(?=\\).*\\gamename\\data1(?=\\)'
+soft = false
+product_name = "Alien Arena game server"
+version = "$1"
+operating_system = "Linux"

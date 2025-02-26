@@ -1,0 +1,81 @@
+[metadata]
+name = "TerminalServer"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0003\u0000\u0000\u000B\u0006à\u0000\u0000\u0000\u0000\u0000"
+rarity = 6
+
+[matches.activefax]
+regex = "^ActiveFax Server: Es befinden sich insgesamt"
+soft = false
+product_name = "ActFax Communication ActiveFax"
+info = "German"
+
+[matches.ms-wbt-server]
+regex = '^\x03\0\0..\xd0\0\0'
+soft = true
+
+[matches.rtmp]
+regex = '^\x03.{899,1536}$'
+regex_flags = "s"
+soft = false
+product_name = "Real-Time Messaging Protocol"
+
+[matches."H.323/Q.931"]
+regex = '^\x03\0\0\x10\x08\x02\x80\0}\x08\x02\x80\xe2\x14\x01\0'
+soft = false
+
+[matches.sybase-monitor]
+regex = '^\0\x01\0\x08\0\0\x01\0$'
+soft = false
+product_name = "Sybase Monitor Server"
+operating_system = "Windows"
+
+[matches.minecraft]
+regex = '^\xf3\x01\x1a\xf0\x01\{"translate":"disconnect\.genericReason","with":\["Internal Exception: io\.netty\.handler\.codec\.DecoderException: java\.lang\.IndexOutOfBoundsException: readerIndex: (?:45|14), writerIndex: 3 \(expected: 0 <= readerIndex <= writerIndex <= capacity\(3\)\)"\]\}'
+soft = false
+product_name = "Minecraft game server"
+
+[matches.printer]
+regex = '^414A_Citizen_CLP(\d+): \xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe1\xa0 no entries\n$'
+soft = false
+product_name = "Citizen CLP-$1 lpd"
+device_type = "printer"
+
+[matches.arcserve-gdd]
+regex = '^\0\0\x0b\x06\xe0\0\0\0\0\0\0\0\0\0\0\0......\0\0\xa0\xf9\x7f\xee\xfb\x7f\0\0'
+regex_flags = "s"
+soft = false
+product_name = ""
+
+[matches.ms-wbt-server-proxy]
+regex = '^nmproxy: Procotol byte is not 8\n$'
+soft = false
+product_name = "nmproxy NetMeeting proxy"
+
+[matches."ssl/consul-rpc"]
+regex = '^\x15\x03\x01\0\x02\x02\n'
+soft = false
+product_name = "HashiCorp Consul RPC"
+
+[matches.trustwave]
+regex = '^control\n   ping\n   endping\nendcontrol\n'
+soft = false
+product_name = "Trustwave SIEM OE"
+
+[matches.lineage-ii]
+regex = '^G\0\0\x01\0\0\0\xce\x1e\0\0\xce\x1e\0\0\xce\x1e\0\0/\x04\0\x000\0,\x006\0,\x003\x003\x003\x002\0,\x003\x003\x003\x003\0\0\0\x81\x8d\0\0\x81\x8d\0\0\x91\x91\0\0\0\0\0\0\x02\0\0\0'
+soft = false
+product_name = "L2J Lineage II game server"
+
+[matches.trillian]
+regex = '^.\0\x01.....\0([^\0]+)\0'
+regex_flags = "s"
+soft = false
+product_name = "Trillian MSN Module"
+info = "Name $1"
+operating_system = "Windows"

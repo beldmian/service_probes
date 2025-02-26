@@ -1,0 +1,31 @@
+[metadata]
+name = "hazelcast-http"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+GET /hazelcast/rest/cluster HTTP/1.0\r
+\r
+\r
+"""
+rarity = 9
+ports = [
+    5701,
+    5702,
+    5703,
+    5704,
+    5705,
+    5706,
+    5707,
+    5708,
+]
+
+[matches.hazelcast]
+regex = '^HTTP/1\.1 200 OK\r\nContent-Length: \d+\r\n\r\nCluster \[\d+\] {\n\tMember (.*?)}\n\nConnectionCount: (\d+)\nAllConnectionCount: (\d+)\n\r\n$'
+regex_flags = "s"
+soft = false
+product_name = "Hazelcast"
+info = 'ConnectionCount $2; AllConnectionCount $3; $SUBST(1,"ntMember",",")'

@@ -1,0 +1,14 @@
+[metadata]
+name = "Quake3_master_getservers"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "ÿÿÿÿgetservers 68 empty full"
+rarity = 9
+
+[matches.quake3-master]
+regex = '^\xff\xff\xff\xffgetserversResponse'
+soft = false

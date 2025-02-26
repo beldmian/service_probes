@@ -1,0 +1,16 @@
+[metadata]
+name = "gkrellm"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "gkrellm 0.0.0"
+rarity = 9
+
+[matches.gkrellm]
+regex = '^<gkrellmd_setup>\n<version>\ngkrellmd ([\w._-]+)\n'
+soft = false
+product_name = "GKrellM System Monitor"
+version = "$1"

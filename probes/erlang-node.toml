@@ -1,0 +1,17 @@
+[metadata]
+name = "erlang-node"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000\u000Bn\u0000\u0000\u0000\u0000\u0001\u0004nm@p"
+rarity = 9
+
+[matches.erlang-node]
+regex = '^\0[^\x03]s(.+)'
+regex_flags = "s"
+soft = false
+product_name = "Erlang Distribution Node"
+info = "Status: $1"

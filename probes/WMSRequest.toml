@@ -1,0 +1,72 @@
+[metadata]
+name = "WMSRequest"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0001\u0000\u0000ýÎú\u000B° \u0000\u0000\u0000MMS\u0014\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0012\u0000\u0000\u0000\u0001\u0000\u0003\u0000ðððð\u000B\u0000\u0004\u0000\u001C\u0000\u0003\u0000N\u0000S\u0000P\u0000l\u0000a\u0000y\u0000e\u0000r\u0000/\u00009\u0000.\u00000\u0000.\u00000\u0000.\u00002\u00009\u00008\u00000\u0000;\u0000 \u0000{\u00000\u00000\u00000\u00000\u0000A\u0000A\u00000\u00000\u0000-\u00000\u0000A\u00000\u00000\u0000-\u00000\u00000\u0000a\u00000\u0000-\u0000A\u0000A\u00000\u0000A\u0000-\u00000\u00000\u00000\u00000\u0000A\u00000\u0000A\u0000A\u00000\u0000A\u0000A\u00000\u0000}\u0000\u0000\u0000àmß_"
+rarity = 6
+
+[matches.slingbox]
+regex = '^\x01\x01\0\xfd\xce\xfa\x0b\xb0\xa0\0\0\0\x0f\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x12$'
+soft = false
+product_name = "Slingbox streaming video"
+
+[matches.afp]
+regex = '^\x01\x03\0\x4e........\0\0\0\0........\x9f\xfb.([^\0\x01]+)[\0\x01].*MacBookPro\d+,\d+\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06\tDHCAST128\x04DHX2\x06Recon1\rClient Krb v2\x03GSS\x0fNo User Authent.*\x1b\$not_defined_in_RFC4178@please_ignore$'
+regex_flags = "s"
+soft = false
+product_name = "Apple AFP"
+info = "name: $1; protocol 3.4; Mac OS X 10.6; MacBook Pro"
+operating_system = "Mac OS X"
+
+[matches.warcraft]
+regex = '^\0\0\x09$'
+soft = false
+product_name = "World of Warcraft game server"
+
+[matches.dec-notes]
+regex = '^\x08\0\0\0\x01\0\x02\x04\0\0\0\0$'
+soft = false
+product_name = "DEC Notes"
+operating_system = "VMS"
+
+[matches.jsonrpc]
+regex = '^{\"error\":{\"code\":-32700,\"message\":\"Parse error\.\"},\"id\":null,\"jsonrpc\":\"([\w._-]+)\"}'
+soft = false
+product_name = "XBMC JSON-RPC"
+version = "$1"
+operating_system = "Linux"
+device_type = "media device"
+
+[matches.slmp]
+regex = '^\xd4\0MP\x04\0\0\0TNM\x0b\0P\0\0\0.......'
+regex_flags = "s"
+soft = true
+product_name = "Mitsubishi PLC SLMP"
+device_type = "specialized"
+
+[matches.wms]
+regex = '^\x01\0\0.\xce\xfa\x0b\xb0.\0\0\0MMS .\0{7}.{9}\0\0\0\x01\0\x04\0\0\0\0\0\xf0\xf0\xf0\xf0\x0b\0\x04\0\x1c\0\x03\0\0\0\0\0\0\0\xf0\?\x01\0\0\0\x01\0\0\0\0\x80\0\0...\0.\0\0\0\0\0\0\0\0\0\0\0.\0\0\x00(\d)\0\.\x00(\d)\x00(\d)\0\.\x00(\d)\x00(\d)\0\.\x00(\d)\x00(\d)\x00(\d)\x00(\d)\0\0\0'
+regex_flags = "s"
+soft = false
+product_name = "Microsoft Windows Media Services"
+version = "$1.$2$3.$4$5.$6$7$8$9"
+operating_system = "Windows"
+
+[matches.hl7-mlp]
+regex = '^\x0b\x1c\r'
+soft = false
+product_name = "HL7 Minimum Layer Protocol"
+
+[matches.shivahose]
+regex = '^\x02\x06$'
+soft = false
+info = "Shiva network modem access"
+
+[matches.ms-kms]
+regex = '^\x05\0\x03#\x10\0\0\0 \0\0\0\x02\0\0\0 \0\0\0\0\0\0\0\x03\0\x01\x1c\0\0\0\0'
+soft = false
+product_name = "vlmcsd KMS server emulator"

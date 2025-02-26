@@ -1,0 +1,15 @@
+[metadata]
+name = "epmd"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000\u0001n"
+rarity = 8
+
+[matches.epmd]
+regex = '^\0\0\x11\x11'
+soft = false
+product_name = "Erlang Port Mapper Daemon"

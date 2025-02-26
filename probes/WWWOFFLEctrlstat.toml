@@ -1,0 +1,24 @@
+[metadata]
+name = "WWWOFFLEctrlstat"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+WWWOFFLE STATUS\r
+"""
+rarity = 9
+
+[matches.http-proxy-ctrl]
+regex = '^WWWOFFLE Incorrect Password\n'
+soft = false
+product_name = "WWWOFFLE proxy control"
+info = "Unauthorized"
+
+[matches.silc]
+regex = '^\0\x13\0\x01\r\0\x08\0\x01S\x96Rz\xc2\x02\0\xff\0.............4$'
+regex_flags = "s"
+soft = false
+product_name = "SILCd conferencing service"

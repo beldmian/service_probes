@@ -1,0 +1,34 @@
+[metadata]
+name = "drda"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u00002Ð\u0001\u0000\u0001\u0000,\u0010A\u0000\u0004\u0011^\u0000\u0004\u0011m\u0000\u0004\u0011Z\u0000\u0018\u0014\u0004\u0014\u0003\u0000\u0007$\u0007\u0000\b$\u000F\u0000\b\u0014@\u0000\b\u0014t\u0000\b\u0000\u0004\u0011G"
+rarity = 8
+ports = [
+    9088,
+    9089,
+    9090,
+    9091,
+    9092,
+    9093,
+    9094,
+    9095,
+    9096,
+    9097,
+    9098,
+    9099,
+]
+
+[matches.drda]
+regex = '^\0.......\x14\x43..\x11\x5e.*\x11\x47'
+soft = true
+
+[matches.oo-defrag]
+regex = '^\x10\0\0\0\x01\0\0\0\x03\0\0\0\r\x08\0\0\x02\0{7}j\0\0\0\x01\0\0\0\x03\0\0\0\x07\x08\0\0\x02\0{97}\x10\0\0\0\x01\0\0\0\x03\0\0\0\r\x08\0\0\x02\0{7}j\0\0\0\x01\0\0\0\x03\0\0\0\x07\x08\0\0\x02\0{97}\x0c\0\0\0\x01\0{7}\xd7\x07\0{6}'
+soft = false
+product_name = "O&O Defrag"
+operating_system = "Windows"

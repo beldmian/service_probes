@@ -1,0 +1,77 @@
+[metadata]
+name = "RTSPRequest"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+OPTIONS / RTSP/1.0\r
+\r
+"""
+rarity = 5
+
+[matches.http-proxy]
+regex = '^RTSP/1\.0 400 Bad Request\r\nServer: PanWeb Server/([\w._-]+)\r\n(?:[^\r\n]+\r\n)*?Keep-Alive: timeout=60, max=2000\r\nContent-Type: text/html\r\nContent-length: 130\r\n\r\n<HTML><HEAD><TITLE>Document Error: Bad Request</TITLE>'
+regex_flags = "s"
+soft = false
+product_name = "Palo Alto PanWeb httpd"
+version = "$1"
+device_type = "proxy server"
+
+[matches.remote-control]
+regex = '^\x01\0\0\0\0\0\0$'
+soft = false
+product_name = "Alchemy Lab Remote Control PRO remote management"
+device_type = "remote management"
+
+[matches.rtsp-proxy]
+regex = '^RTSP/1\.0 403 Forbidden: Proxy not licensed\r\nSession: \w+\r\n\r\n'
+soft = false
+product_name = "Blue Coat rtsp proxy"
+info = "Unlicensed"
+
+[matches.sonicmq]
+regex = '^\x1a\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x08\xff\xff\xff\xf1\0\0\0O$'
+soft = false
+product_name = "Novell Sentinel SonicMQ broker"
+
+[matches.raop]
+regex = '^RTSP/1\.0 401 Unauthorized\r\nWWW-Authenticate: Digest realm=\"raop\", nonce=\"[0-9A-F]{40}\"\r\nContent-Length: 0\r\n\r\n$'
+soft = false
+product_name = "Remote Audio Output Protocol"
+info = "Rogue Amoeba Airfoil speakers"
+device_type = "media device"
+
+[matches.rtsp]
+regex = '^RTSP/1\.0 200 OK\r\nCSeq: 0\r\nServer: Wowza Streaming Engine ([\d.]+) build ?(\d+)\r\nCache-Control: no-cache\r\nPublic: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, OPTIONS, ANNOUNCE, RECORD, GET_PARAMETER\r\n'
+soft = false
+product_name = "Wowza Streaming Engine rtspd"
+version = "$1 build $2"
+
+[matches.http]
+regex = '^<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>Microsoft-Azure-Application-Gateway/(v\d+)</center>\r\n</body>\r\n</html>\r\n'
+soft = false
+product_name = "Microsoft Azure Application Gateway"
+version = "$1"
+
+[matches.upnp]
+regex = '^HTTP/1\.1 400 Bad Request\r\nContent-Type: text/html; charset=us-ascii\r\nDate: .*\r\nConnection: close\r\nContent-Length: \d+\r\n\r\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4\.01//EN\"\"http://www\.w3\.org/TR/html4/strict\.dtd\">'
+soft = false
+product_name = "Microsoft IIS httpd"
+
+[matches.msdtc]
+regex = '^ERROR\n$'
+regex_flags = "s"
+soft = false
+product_name = "Microsoft Distributed Transaction Coordinator"
+info = "error"
+operating_system = "Windows"
+
+[matches.powerchute]
+regex = '^RTSP/1\.0 400 Bad request\nContent-type: text/html\n\n'
+soft = false
+product_name = "APC PowerChute Agent"
+version = "7.X"
+device_type = "power-device"

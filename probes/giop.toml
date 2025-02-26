@@ -1,0 +1,20 @@
+[metadata]
+name = "giop"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "GIOP\u0001\u0000\u0001\u0000$\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0006\u0000\u0000\u0000abcdef\u0000\u0000\u0004\u0000\u0000\u0000get\u0000\u0000\u0000\u0000\u0000"
+rarity = 7
+
+[matches.giop]
+regex = '^GIOP.*IDL:omg\.org'
+regex_flags = "s"
+soft = true
+
+[matches.iscsi]
+regex = '^#\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x02\0\0\0\0\0\0\0\0\0\0\0'
+soft = false
+product_name = "Synology DSM iSCSI"

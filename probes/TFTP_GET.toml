@@ -1,0 +1,12 @@
+[metadata]
+name = "TFTP_GET"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0001r7tftp.txt\u0000octet\u0000"
+rarity = 8
+
+[matches]

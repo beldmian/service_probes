@@ -1,0 +1,18 @@
+[metadata]
+name = "NoMachine"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+NXSH-5.6.7
+"""
+rarity = 9
+
+[matches.nomachine-nx]
+regex = '^NXD-([\d.]+)\n'
+soft = false
+product_name = "NoMachine NX Server remote desktop"
+version = "$1"

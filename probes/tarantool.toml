@@ -1,0 +1,27 @@
+[metadata]
+name = "tarantool"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+show info\r
+"""
+rarity = 8
+
+[matches.haproxy-stats]
+regex = '^Name: HAProxy\nVersion: (\d[\w._~+-]*)\n.*\nUptime: (.+)\n'
+regex_flags = "s"
+soft = false
+product_name = "HAProxy stats socket"
+version = "$1"
+info = "uptime: $2"
+
+[matches.tarantool]
+regex = '---\r\ninfo:\r\n  version: \"([^\"]*)\"\r\n  uptime: (\d*)\r\n  pid: (\d*)\r\n  (?:[._\w\s]*: .*\r\n)*  config: \"([^\"]*)\"'
+soft = false
+product_name = "Tarantool"
+version = "$1"
+info = "Uptime: $2, PID: $3, Config: $4"

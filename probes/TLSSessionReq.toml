@@ -1,0 +1,28 @@
+[metadata]
+name = "TLSSessionReq"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+\u0016\u0003\u0000\u0000i\u0001\u0000\u0000e\u0003\u0003U\u001C§ärandom1random2random3random4\u0000\u0000\f\u0000/\u0000
+\u0000\u0013\u00009\u0000\u0004\u0000ÿ\u0001\u0000\u00000\u0000\r\u0000,\u0000*\u0000\u0001\u0000\u0003\u0000\u0002\u0006\u0001\u0006\u0003\u0006\u0002\u0002\u0001\u0002\u0003\u0002\u0002\u0003\u0001\u0003\u0003\u0003\u0002\u0004\u0001\u0004\u0003\u0004\u0002\u0001\u0001\u0001\u0003\u0001\u0002\u0005\u0001\u0005\u0003\u0005\u0002"""
+rarity = 1
+
+[matches.ssl]
+regex = '^\x15\x03[\0-\x04]\0\x02[\x01\x02].$'
+regex_flags = "s"
+soft = false
+
+[matches.iperf3]
+regex = '^\t$'
+soft = false
+
+[matches.autonomic-mrad]
+regex = '''^\x1b\[2J\x1b\[2J\r\n\r\nAutonomic Controls MRAD Bridge version (\d[\w.]+) Release\.\r\nMore info found on the Web http://www\.Autonomic-Controls\.com\r\n\r\nType '\?' for help or 'help <command>' for help on <command>\.\r\n\r\n\r\nError: Unknown command '\x01'\.\r\nError: Unknown command '\x03'\.\r\n'''
+soft = false
+product_name = "Autonomic Controls MRAD Bridge"
+version = "$1"
+device_type = "media device"

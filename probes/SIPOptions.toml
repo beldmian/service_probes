@@ -1,0 +1,44 @@
+[metadata]
+name = "SIPOptions"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = """
+OPTIONS sip:nm SIP/2.0\r
+Via: SIP/2.0/UDP nm;branch=foo;rport\r
+From: <sip:nm@nm>;tag=root\r
+To: <sip:nm2@nm2>\r
+Call-ID: 50000\r
+CSeq: 42 OPTIONS\r
+Max-Forwards: 70\r
+Content-Length: 0\r
+Contact: <sip:nm@nm>\r
+Accept: application/sdp\r
+\r
+"""
+rarity = 5
+wait = 7500
+
+[matches.sip-proxy]
+regex = '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: STARFACE PBX\r\n'
+regex_flags = "s"
+soft = false
+product_name = "STARFACE PBX"
+
+[matches.quic]
+regex = '^\rPTIONS sQ\d\d\d'
+soft = true
+
+[matches.sip]
+regex = '^SIP/2\.0 ([-\w\s.]+)\r\n'
+soft = true
+info = "SIP end point; Status: $1"
+
+[matches.ws-discovery]
+regex = '^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?>\n<SOAP-ENV:Envelope .*xmlns:\w+=\"http://schemas\.xmlsoap\.org/ws/2005/04/discovery\" .*xmlns:\w+=\"http://schemas\.microsoft\.com/windows/2006/08/wdp/print\"'
+soft = true
+product_name = "WS-Print 1.0 responder"
+device_type = "printer"

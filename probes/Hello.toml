@@ -1,0 +1,28 @@
+[metadata]
+name = "Hello"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+EHLO\r
+"""
+rarity = 8
+wait = 7500
+
+[matches.smtp]
+regex = "^220 $"
+soft = false
+product_name = "OpenBSD spamd"
+
+[matches.smtp-proxy]
+regex = '^220 OutgoingFilter SMTP\r\n502 OutgoingFilter Command not implemented\r\n'
+soft = false
+product_name = "Dr.Web SMTP-proxy"
+
+[matches.exalead]
+regex = '^\? 1 illegal command\n\0'
+soft = false
+product_name = "Exalead search appliance"

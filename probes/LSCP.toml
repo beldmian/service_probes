@@ -1,0 +1,19 @@
+[metadata]
+name = "LSCP"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+GET SERVER INFO\r
+"""
+rarity = 9
+
+[matches.lscp]
+regex = '^DESCRIPTION: LinuxSampler - modular, streaming capable sampler\r\nVERSION: ([\d.]+)\r\nPROTOCOL_VERSION: ([\d.]+)\r\n'
+soft = false
+product_name = "LinuxSampler"
+version = "$1"
+info = "LSCP $2"

@@ -1,0 +1,26 @@
+[metadata]
+name = "afp"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000\u0003\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u000F\u0000"
+rarity = 6
+
+[matches.pigpio]
+regex = '^\0\x03\0\x01\0\0\0\0\0\0\0\x02\xa8\xff\xff\xff'
+soft = false
+product_name = "pigpiod"
+device_type = ""
+
+[matches.afp]
+regex = '^\x01\x03\0\x01\0\0\0\0....\0\0\0\0.*AFP'
+regex_flags = "s"
+soft = true
+
+[matches.lsf-mbd]
+regex = '^\0\"\0\0\x17\0\0\0\0\0\0\0\0\0\0\0'
+soft = false
+product_name = "Platform Load Sharing Facility MBD"

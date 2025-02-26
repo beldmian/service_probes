@@ -1,0 +1,19 @@
+[metadata]
+name = "HELP4STOMP"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+HELP
+
+\u0000"""
+rarity = 8
+
+[matches.stomp]
+regex = '^ERROR\nmessage:Illegal command\ncontent-type:text/plain\nversion:([\d.,]+)\ncontent-length:\d+\n\nYou must log in using CONNECT first\0\n'
+soft = false
+product_name = "RabbitMQ"
+info = "versions: $1"

@@ -1,0 +1,17 @@
+[metadata]
+name = "JMON"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+CONNECT01 v09
+"""
+rarity = 9
+
+[matches.jmon]
+regex = "^ACKNOWLEDGE"
+soft = false
+product_name = "JMON for zOS (FMID HALG300)"

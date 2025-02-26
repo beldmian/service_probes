@@ -1,0 +1,20 @@
+[metadata]
+name = "dominoconsole"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+#ST
+"""
+rarity = 8
+
+[matches.dominoconsole]
+regex = '^([^/]+)/([\w._-]+):([^:]*):([^:]*):'
+soft = false
+product_name = "Lotus Domino Console"
+info = 'domain: $1; description: "$4"'
+hostname = "$2"
+operating_system = ""

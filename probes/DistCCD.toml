@@ -1,0 +1,17 @@
+[metadata]
+name = "DistCCD"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "DIST00000001ARGC00000005ARGV00000002ccARGV00000002-cARGV00000006nmap.cARGV00000002-oARGV00000006nmap.oDOTI00000000"
+rarity = 8
+
+[matches.distccd]
+regex = '^[\w._-]+DONE[\w._-]+ .*ERROR: attempt to use unknown compiler aborted: ([\w._-]+)\n'
+regex_flags = "s"
+soft = false
+product_name = "distccd"
+info = "broken: compiler $1 doesn't exist"

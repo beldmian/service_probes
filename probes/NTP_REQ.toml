@@ -1,0 +1,14 @@
+[metadata]
+name = "NTP_REQ"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = """
+Ù\u0000
+ú\u0000\u0000\u0000\u0000\u0000\u0001\u0004\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000Æñ^Ûx\u0000\u0000\u0000"""
+rarity = 8
+
+[matches]

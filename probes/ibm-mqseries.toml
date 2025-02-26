@@ -1,0 +1,26 @@
+[metadata]
+name = "ibm-mqseries"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+TSH \u0000\u0000\u0000ì\u0001\u00011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0011\u0004¸\u0000\u0000ID  
+&\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u007Fö\u0006@\u0000\u0000\u0000\u0000\u0000\u0000SYSTEM.ADMIN.SVRCONNQ\u0000\u0004¸nmap-probe                                      \u0000\u0000\u0000\u0001\u0000j\u0000\u0000\u0000ÿ\u0000ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000
+\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002MQJB00000000CANNED_DATA                                     """
+rarity = 8
+ports = [
+    1414,
+    1415,
+    1416,
+    1417,
+    1418,
+    1419,
+]
+
+[matches.ibm-mqseries]
+regex = '^TSH\x20\0\0\0'
+soft = true
+product_name = "IBM WebSphere MQ"

@@ -1,0 +1,31 @@
+[metadata]
+name = "LANDesk-RC"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "TNMP\u0004\u0000\u0000\u0000TNME\u0000\u0000\u0004\u0000"
+rarity = 6
+ports = [
+    1761,
+    1762,
+]
+
+[matches.essnet]
+regex = '^\xff\0\x13\0/v\x0f\0\0\0\0\0\0\0\x01\0\xc8\0\t\0/v\x0f\0\x04\x001040025\0\0'
+soft = false
+product_name = "Hyperion Essbase"
+
+[matches.spice]
+regex = '^REDQ\x02\0\0\0\x02\0\0\0[^\0]'
+soft = false
+info = "SPICE 2.2"
+
+[matches.landesk-rc]
+regex = '^TNMP.\0\0\0TNME.\0\0\0USER.\x07\x04\0\x08\0.{9}\0P\0\x03\0U\0\xff\xff\0.*Desktop Manager ([\d.]+)\0'
+regex_flags = "s"
+soft = false
+product_name = "LANDesk RC"
+version = "$1"

@@ -1,0 +1,16 @@
+[metadata]
+name = "AndroMouse"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "AMSNIFF"
+rarity = 9
+
+[matches.AndroMouse]
+regex = "^GOTBACK$"
+regex_flags = "s"
+soft = false
+product_name = "AndroMouse Android remote mouse server"

@@ -1,0 +1,264 @@
+[metadata]
+name = "RPCCheck"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "rþ\u001D\u0013\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0000\u0001 \u0000\u0001|\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+rarity = 1
+ports = [
+    32750,
+    32751,
+    32752,
+    32753,
+    32754,
+    32755,
+    32756,
+    32757,
+    32758,
+    32759,
+    32760,
+    32761,
+    32762,
+    32763,
+    32764,
+    32765,
+    32766,
+    32767,
+    32768,
+    32769,
+    32770,
+    32771,
+    32772,
+    32773,
+    32774,
+    32775,
+    32776,
+    32777,
+    32778,
+    32779,
+    32780,
+    32781,
+    32782,
+    32783,
+    32784,
+    32785,
+    32786,
+    32787,
+    32788,
+    32789,
+    32790,
+    32791,
+    32792,
+    32793,
+    32794,
+    32795,
+    32796,
+    32797,
+    32798,
+    32799,
+    32800,
+    32801,
+    32802,
+    32803,
+    32804,
+    32805,
+    32806,
+    32807,
+    32808,
+    32809,
+]
+
+[matches.ericssontimestep]
+regex = '^.{8}\0\0\0\0\0\0\0\0\x0b\x10\x05\0\0\0\0\0\0\0\0\(\0\0\0\x0c\0\0\0\0\x01\0\0\x1e$'
+regex_flags = "s"
+soft = false
+product_name = "Ericsson Timestep Permit VPN"
+
+[matches.chargen]
+regex = '''^ !\"#\$%&'\(\)\*\+'''
+soft = false
+product_name = "SunOS chargen"
+operating_system = "SunOS"
+
+[matches.jetadmin]
+regex = '^2;http://[\d.]+:\d+/;[\d.]+;\d+:\d+;\w+,[\d.]+,PLUGIN_LOADED'
+soft = false
+product_name = "HP Jetadmin"
+
+[matches.webmin]
+regex = '^([^:]*):(\d+):1:(.+)$'
+soft = false
+info = "https on $1:$2 ($3)"
+
+[matches.kerberos-sec]
+regex = '^\x04\n\0\0\0\0\0\0\0\0\0\0\x04code = 4: packet version number unknown\0'
+soft = false
+product_name = "OpenAFS"
+
+[matches.amanda]
+regex = '^Amanda ([\d.]+) NAK HANDLE  SEQ 0\nERROR expected \"Amanda\", got \"r\xfe\x1d\x13\"\n'
+soft = false
+product_name = "Amanda backup service"
+version = "$1"
+operating_system = "Unix"
+
+[matches.brio]
+regex = '^\0\0\x01\(\x16\x85..$'
+regex_flags = "s"
+soft = false
+product_name = "Brio 8 business intelligence"
+
+[matches.dnastar]
+regex = '^....\0{7}.,PSH,[\x21-\x7e]{55}\0{800}'
+regex_flags = "s"
+soft = false
+product_name = "Dnastar Lasergene"
+
+[matches.rtp]
+regex = '^501 0 Endpoint is not ready - Unrecognized command verb\n'
+soft = false
+
+[matches.radius]
+regex = '^\x03\xfe\0\x14................$'
+regex_flags = "s"
+soft = false
+product_name = "Juniper Steel-Belted Radius radiusd"
+
+[matches.sentinel-lm]
+regex = '''^r\xfe\x1d\x13\0\0\0\0\0\0\0\x02,PSH,'A{\^QOHpe\]\)\]\\\^cRH>%gNQX$'''
+soft = false
+product_name = "SafeNet Sentinel License Manager"
+
+[matches.sauerbraten]
+regex = '^r\xfe\x1d\x13\0\0\0\0\0\0\0\x02\0\x01\x86\xa0\0\x01\x97\x7c\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x05\x80\x02\x01\0\0\x0c\0\0([\w._ -]+)\0$'
+soft = false
+product_name = "Sauerbraten game server"
+info = "server name: $1"
+
+[matches.lantronix-config]
+regex = '^\xff$'
+soft = false
+product_name = "Lantronix DSTni networking chip configuration"
+
+[matches.bittorrent-udp-tracker]
+regex = '^\x03\0\0\0\0\x01\x86\xa0Connection ID missmatch\.\0'
+soft = false
+product_name = "opentracker UDP tracker"
+
+[matches.utorrent-udp]
+regex = '^\x72\xfe\x1d\x13\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x03....$'
+regex_flags = "s"
+soft = false
+product_name = "uTorrent UDP listener"
+operating_system = "Windows"
+
+[matches.nameserver]
+regex = '^help\r\n\r\n\xff\xbf\xf8\xb0\xff7\0\x18\0\0\0\x01\0\0\0\0'
+soft = false
+product_name = "Solaris Internet Name Server"
+operating_system = "Solaris"
+
+[matches.ssdp]
+regex = '^HTTP/1\.1 200 OK\r\nST:upnp:rootdevice\r\nUSN:uuid:11111111-0000-c0a8-0101-efefefef8035::upnp:rootdevice\r\nLocation:http://[\d.]+:\d+/DeviceDescription\.xml\r\nCache-Control:max-age=480\r\nServer:Allegro-Software-RomUpnp/([\w._-]+) UPnP/([\w._-]+) IGD/1\.00\r\nExt:\r\n\r\n'
+regex_flags = "s"
+soft = false
+product_name = "Allegro RomUPnP"
+version = "$1"
+info = "UPnP $2"
+
+[matches.ppp]
+regex = '''^\x7e\xff\x7d\x23\xc0!}!#} }8}\"}&} } } } }#}\$\xc2'}%}&Q\x93\xee,}'}\"}\(}\"}\(D~'''
+soft = false
+product_name = "pppd"
+version = "2.4.5"
+
+[matches.timbuktu]
+regex = '^\0#\xd1\x1f$'
+soft = false
+product_name = "Timbuktu remote desktop"
+
+[matches.apple-sasl]
+regex = 'How was your weekend\?;[0-9A-F]*\0'
+soft = false
+product_name = "Mac OS X Server Password Server"
+operating_system = "Mac OS X"
+
+[matches.xdmcp]
+regex = '^\0\x01\0\x05..\0\0\0.(.+)\0.(.+)'
+regex_flags = "s"
+soft = false
+product_name = "XDMCP"
+info = "willing; status: $2"
+hostname = "$1"
+operating_system = "Unix"
+
+[matches.domain]
+regex = '^r\xfe[\x98-\x9f][\x02\x12\x82\x92]\0\0\0\0\0\0\0\0'
+soft = true
+
+[matches.rpcbind]
+regex = '^\x72\xFE\x1D\x13\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x02'
+soft = false
+
+[matches.mohaa-gamespy]
+regex = '^\\final\\\\queryid\\\d+\.1'
+soft = false
+product_name = "Medal Of Honor Allied Assault gamespy query port"
+
+[matches.isakmp]
+regex = '^r\xfe\x1d\x13\0\0\0\0\0\0\0\x02\0\x01\x86\xa0\) % \0\0\0\0\0\0\0\$\0\0\0\x08\0\0\0\x05'
+soft = false
+product_name = "StrongSwan ISAKMP"
+
+[matches.nat-pmp]
+regex = '^\0\0\0\x01...\0$'
+regex_flags = "s"
+soft = false
+product_name = "Apple Time Capsule"
+device_type = "router"
+
+[matches.slp-srvreg]
+regex = '^\x02\x05\0\0\x12\0\0\0\0\0\0\x02\0\x02en\0\x0e$'
+soft = false
+product_name = "IBM Director SLP Service Registration"
+info = "slp_srvreg.exe"
+
+[matches.mohaa]
+regex = '\xff\xff\xff\xff\x01disconnect'
+soft = false
+product_name = "Medal Of Honor Allied Assault game server"
+
+[matches.bittorrent-utp]
+regex = '^r\xfe\x1d\x13........\x7f\xff\xff\xff\xff\x02\x02..\0\x01\0\x08\0\0\0\0\0\0\0\0$'
+regex_flags = "s"
+soft = false
+
+[matches.talk]
+regex = '^\x01\xfe\x05\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
+soft = false
+product_name = "Talk server"
+
+[matches.mp-automation]
+regex = '^r\xfe\x1d\x13 ok'
+soft = false
+product_name = "Realtek MP Automation daemon"
+device_type = "WAP"
+
+[matches.quake3]
+regex = '^\xff\xff\xff\xffdisconnect$'
+soft = true
+product_name = "Quake 3 game server"
+
+[matches.dtls]
+regex = '^\x15\xfe[\xfd\xff]\0\0\0\0\0\0\0\0..\x02.\0\0\0\0\0'
+soft = false
+
+[matches.qotd]
+regex = '''^"(?:L'art de persuader consiste autant|Le peu que je sais, c'est \x85 mon ignorance|Certaines \x83mes vont \x85 l'absolu comme l'eau|Le m\x82rite a sa pudeur comme la chastet|Rien de plus futile, de plus faux, de plus|\xb7 vaincre sans p\x82ril, on triomphe|Le comble de l'orgueil, c'est de se)'''
+soft = false
+product_name = "Windows qotd"
+info = "French"
+operating_system = "Windows"

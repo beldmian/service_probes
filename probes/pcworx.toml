@@ -1,0 +1,15 @@
+[metadata]
+name = "pcworx"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0001\u0001\u0000\u001A\u0000\u0000\u0000\u0000x\u0000\u0003\u0000\fIBETH01N0_M\u0000"
+rarity = 9
+
+[matches.pcworx]
+regex = '\x81\x01\0\x14\0\0\0\x01\0\0\0\0\0\x02\0\0\0.\0\0'
+soft = false
+product_name = "Phoenix Contact PCWorx"

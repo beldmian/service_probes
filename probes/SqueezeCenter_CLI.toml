@@ -1,0 +1,20 @@
+[metadata]
+name = "SqueezeCenter_CLI"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+serverstatus\r
+"""
+rarity = 8
+
+[matches.squeezecli]
+regex = '^serverstatus.*version%3A([\.\d]+) uuid%3A([-\w]+) info%20total%20albums%3A\d+ info%20total%20artists%3A\d+ info%20total%20genres%3A\d+ info%20total%20songs%3A(\d+) player%20count%3A\d+ sn%20player%20count%3A\d+ other%20player%20count%3A\d+\r\n'
+regex_flags = "s"
+soft = false
+product_name = "SqueezeCenter CLI"
+version = "$1"
+info = "UUID: $2, Total songs: $3"

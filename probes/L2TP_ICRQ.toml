@@ -1,0 +1,14 @@
+[metadata]
+name = "L2TP_ICRQ"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = """
+È\u0002\u0000<\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\b\u0000\u0000\u0000\u0000\u0000\u0001\b\u0000\u0000\u0000\u0002\u0001\u0000\u000E\u0000\u0000\u0000\u0007nxp-scan
+\u0000\u0000\u0000\u0003\u0000\u0000\u0000\u0003\b\u0000\u0000\u0000\t\u0000\u0000"""
+rarity = 8
+
+[matches]

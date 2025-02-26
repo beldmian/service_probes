@@ -1,0 +1,22 @@
+[metadata]
+name = "LDAPSearchReqUDP"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = """
+0\u0000\u0000\u0000-\u0002\u0001\u0007c\u0000\u0000\u0000$\u0004\u0000
+\u0001\u0000
+\u0001\u0000\u0002\u0001\u0000\u0002\u0001d\u0001\u0001\u0000\u000BobjectClass0\u0000\u0000\u0000\u0000"""
+rarity = 8
+
+[matches.ldap]
+regex = '^0\x84\0\0..\x02\x01.*dsServiceName1\x84\0\0\0.\x04.CN=NTDS\x20Settings,CN=([^,]+),CN=Servers,CN=([^,]+),CN=Sites,CN=Configuration,DC=([^,]+),DC=([^,]+),DC=([^,]+)0\x84\0'
+regex_flags = "s"
+soft = false
+product_name = "Microsoft Windows Active Directory LDAP"
+info = "Domain: $3.$4.$5, Site: $2"
+hostname = "$1"
+operating_system = "Windows"

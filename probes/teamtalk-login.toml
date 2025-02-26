@@ -1,0 +1,18 @@
+[metadata]
+name = "teamtalk-login"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+login
+"""
+rarity = 9
+
+[matches.teamtalk]
+regex = '^(?:teamtalk|welcome) userid=\d+ servername=\"\" .* protocol=\"([\w._-]+)\"\r\n'
+soft = false
+product_name = "Bearware TeamTalk"
+info = "protocol: $1"

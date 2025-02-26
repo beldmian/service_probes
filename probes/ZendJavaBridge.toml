@@ -1,0 +1,48 @@
+[metadata]
+name = "ZendJavaBridge"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000\u0000\u0000\u001F\u0000\u0000\u0000\u0000\u0000\u0000\u0000\fGetClassName\u0000\u0000\u0000\u0002\u0004\u0000\u0000\u0000\u0000\u0001\u0000"
+rarity = 9
+ports = [
+    10001,
+    10002,
+]
+
+[matches.siemens-logo]
+regex = '^\x06\x03\x04\0\0\x002'
+soft = false
+product_name = "Siemens LOGO! PLC"
+device_type = "specialized"
+
+[matches.zend-java-bridge]
+regex = '^\0\0\0\x15\x04\0\0\0\x10java\.lang\.String$'
+soft = false
+
+[matches."h.239"]
+regex = "^BadRecord"
+soft = false
+product_name = "Polycom People+Content IP H.239"
+device_type = "VoIP phone"
+
+[matches.mitsubishi-qj71e71]
+regex = '^\x80\[\0K\xc7P'
+soft = false
+product_name = "Mitsubishi QJ71E71"
+device_type = "specialized"
+
+[matches.sybase-adaptive]
+regex = '^\x04\x01\0\x28\0\0\0\0\xaa\x14\0\xa2\x0f\0\0\x01\x0eLogin failed\.\n\xfd\x02\0\x02\0\0\0\0\0$'
+soft = false
+product_name = "Sybase Adaptive Server"
+operating_system = "Windows"
+
+[matches.sybase-monitor]
+regex = '^\x04\x01\0\x1a\0\0\0\0\xaa\x01\x0eLogin failed\.\n\xfd$'
+soft = false
+product_name = "Sybase Monitor Server"
+operating_system = "Windows"

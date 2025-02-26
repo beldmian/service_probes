@@ -1,0 +1,25 @@
+[metadata]
+name = "SNMPv3GetRequest"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "0:\u0002\u0001\u00030\u000F\u0002\u0002Ji\u0002\u0003\u0000ÿã\u0004\u0001\u0004\u0002\u0001\u0003\u0004\u00100\u000E\u0004\u0000\u0002\u0001\u0000\u0002\u0001\u0000\u0004\u0000\u0004\u0000\u0004\u00000\u0012\u0004\u0000\u0004\u0000 \f\u0002\u00027ð\u0002\u0001\u0000\u0002\u0001\u00000\u0000"
+rarity = 4
+
+[matches.snmp]
+regex = '^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04'
+regex_flags = "s"
+soft = true
+product_name = "SNMPv3 server"
+
+[matches.echo]
+regex = '^\x30\x3a\x02\x01\x03\x30\x0f\x02\x02\x4a\x69\x02\x03\0\xff\xe3\x04\x01\x04\x02\x01\x03\x04\x10\x30\x0e\x04\0\x02\x01\0\x02\x01\0\x04\0\x04\0\x04\0\x30\x12\x04\0\x04\0\xa0\x0c\x02\x02\x37\xf0\x02\x01\0\x02\x01\0\x30\0$'
+soft = false
+
+[matches."H.323-gatekeeper-discovery"]
+regex = '^8\x02\x01\x10\0$'
+soft = false
+product_name = "GNU Gatekeeper discovery"

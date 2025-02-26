@@ -1,0 +1,22 @@
+[metadata]
+name = "Quake1_server_info"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0000\f\u0002QUAKE\u0000\u0003"
+rarity = 9
+ports = [
+    26000,
+    26001,
+    26002,
+    26003,
+]
+
+[matches.quake]
+regex = '^\x80\x00..\x83([^\x00]*)\x00([^\x00]*)\x00'
+soft = false
+product_name = "Quake 1 server"
+info = "address: $1, name: $2"

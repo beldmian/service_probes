@@ -1,0 +1,23 @@
+[metadata]
+name = "Memcache"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+stats\r
+"""
+rarity = 8
+
+[matches.zookeeper]
+regex = '^Zookeeper version: ([\w.-]+), built on ([\w./]+)'
+soft = false
+product_name = "Zookeeper"
+version = "$1"
+info = "Built on $2"
+
+[matches.memcached]
+regex = '^STAT pid \d+\r\n'
+soft = true

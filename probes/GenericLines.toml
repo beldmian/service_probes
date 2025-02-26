@@ -1,0 +1,1209 @@
+[metadata]
+name = "GenericLines"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+\r
+\r
+"""
+rarity = 1
+ports = [
+    1040,
+    1041,
+    1042,
+    1687,
+    6667,
+    6668,
+    6669,
+    9000,
+    9001,
+    9002,
+    15000,
+    15001,
+]
+
+[matches.extron-serial]
+regex = '^\r\n\(c\) Copyright 2\d\d\d, Extron Electronics, ([^,]+), V([\d.]+)\r\n'
+soft = false
+product_name = "Extron $1 serial port"
+version = "$2"
+
+[matches.caldav]
+regex = '^HTTP/1\.1 503 Service Unavailable\r\nServer: DavMail Gateway ([\w._-]+)\r\nDAV: 1, calendar-access, calendar-schedule, calendarserver-private-events, addressbook\r\n(?:[^\r\n]+\r\n)*?Content-Length: 32\r\n\r\njava\.util\.NoSuchElementException$'
+regex_flags = "s"
+soft = false
+product_name = "DavMail CalDAV http gateway"
+version = "$1"
+device_type = "proxy server"
+
+[matches.printer]
+regex = '^\xff$'
+soft = false
+product_name = "Panasonic mfpscdl.exe service"
+
+[matches.access-remote-pc]
+regex = '^\x99\xf3\0\0\0\0\0\0\xff\xff\xff\xff$'
+soft = false
+product_name = "Access Remote PC"
+operating_system = "Windows"
+
+[matches.halfd]
+regex = '^{type INIT} {up \d+} {auth \d+} {name {([^}]+)}} {ip [\d.]+} {max \d+} {port (\d+)}\r\n'
+soft = false
+product_name = "halfd Half-Life admin"
+info = "Name $1; HL port $2"
+
+[matches.realport]
+regex = '^\xf0\xff\x14Port is out of range\0'
+soft = false
+product_name = "Digi RealPort"
+device_type = "terminal server"
+
+[matches.elm-manager]
+regex = '^ELM Enterprise Manager ([\w._-]+)\r\nCopyright \xa9 \d+-\d+ TNT Software, Inc\.\r\n'
+soft = false
+product_name = "TNT ELM log manager"
+version = "$1"
+operating_system = "Windows"
+
+[matches.eggdrop]
+regex = '^\r\nSurnom\.\r\nSorry, that nickname format is invalid\.\r\n$'
+soft = false
+product_name = "Eggdrop irc bot console"
+info = "French"
+
+[matches.samsung-twain]
+regex = '^\xa8\x08C\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "Samsung TWAIN"
+info = "SCX-4x28 series printer"
+device_type = "printer"
+
+[matches.intow]
+regex = '^<status><code>9999</code><result>App\.Version is out of date please update your version of InTow Mobile</result>'
+soft = false
+product_name = "InTow Mobile"
+info = "out of date"
+operating_system = "iOS"
+
+[matches.zebedee]
+regex = '^\x02\x01$'
+soft = false
+product_name = "Zebedee encrypted tunnel"
+
+[matches.uptime-agent]
+regex = '''^ERR - Command '\xe0\xb6VU\xd8\xbaVU' not found\n'''
+soft = false
+product_name = "up.time server monitor"
+
+[matches.wincomm]
+regex = '^128 System Incompatible Windows Communicator client or server version\r\n128 System Incompatible Windows Communicator client or server version\r\n'
+soft = false
+product_name = "Windows Communicator"
+
+[matches.vizio-tv]
+regex = '^ERROR\x7c101\x7cUnknown Message Type\x7cEND'
+soft = false
+product_name = "Vizio Smart TV unknown service"
+device_type = "media device"
+
+[matches.pbs-maui]
+regex = '^\+2\+15\+15056\+\d+\+\d+'
+soft = false
+device_type = ""
+
+[matches.inetd]
+regex = '^<\d+>[A-Z][a-z][a-z] +\d+ \d+:\d+:\d+ inetd\[\d+\]: execv (/[-.\\/\w]+): (\w[\s\w.,-]+)$'
+soft = false
+product_name = "inetd"
+info = "failed to exec $1: $2"
+
+[matches.ciscopsdm]
+regex = '^\xc0\0\x01\0....\0\0\0\x03'
+regex_flags = "s"
+soft = false
+product_name = "Cisco PIX Secure Database Manager"
+operating_system = "IOS"
+device_type = "firewall"
+
+[matches.crossmatchverifier]
+regex = '^Idle\r\n$'
+soft = false
+product_name = "Cross Match Technologies Verifier fingerprint capture control port"
+
+[matches.bru]
+regex = '^0\nBad hex string for A from client\n'
+soft = false
+product_name = "Tolis BRU Server"
+
+[matches.talesofpirates-gate]
+regex = '^\0\x02\0\x02\0\x02\0\x02\0\x02$'
+soft = false
+product_name = "Tales of Pirates game gate server"
+
+[matches.irc-proxy]
+regex = '^\+OK \r\n-ERR XXX authorization first\r\n$'
+soft = false
+product_name = "muh irc proxy"
+
+[matches.mon]
+regex = '^520 invalid command\n$'
+soft = false
+product_name = "mon service monitoring daemon"
+
+[matches.oracle-db-rmi]
+regex = '^\0\0\xfa\xda\0\x02$'
+soft = false
+product_name = "Oracle Database Lite RMI"
+
+[matches.pgbouncer]
+regex = '''^E\0\0\x002SERROR\0C08P01\0Mbad packet header: '0d0a0d0a'\0\0'''
+soft = false
+product_name = "PgFoundry PgBouncer PostgreSQL connection pooler"
+version = "1.5.3 or later"
+
+[matches.icy]
+regex = '^HTTP/1\.0 200 OK\r\nContent-type: application/ogg\r\nicy-br:(\d+)\r\nicy-description:VirtualDJ Direct Broadcast\r\nicy-genre:\r\nicy-name:VirtualDJ\r\nicy-pub:0\r\nicy-url:http://www\.virtualdj\.com/\r\nServer: VirtualDJ\r\n\r\n'
+soft = false
+product_name = "VirtualDJ streaming audio"
+info = "Bitrate $1"
+
+[matches.lirc]
+regex = '^BEGIN\n\r\nERROR\nDATA\n1\nbad send packet\nEND\nBEGIN\n\r\nERROR\nDATA\n1\nbad send packet\nEND\n'
+soft = false
+product_name = "LIRC infrared receiver daemon"
+
+[matches.clam]
+regex = '^UNKNOWN COMMAND\n$'
+soft = true
+product_name = "Clam AV"
+
+[matches.daap]
+regex = '^HTTP/1\.1 400 Bad Request\r\n(?:Date: .*\r\n)?DAAP-Server: iTunes/(\d[-.\w]+) \((.*)\)\r\n'
+soft = false
+product_name = "Apple iTunes DAAP"
+version = "$1"
+operating_system = "$2"
+
+[matches.bnetd]
+regex = '^\r\nEnter your account name and password\.\r\n\r\nUsername:'
+soft = false
+product_name = "bnetd open source Blizzard Battlenet server"
+
+[matches.cso]
+regex = '^598:\(null\):Command not recognized\.\n'
+soft = false
+product_name = "Columbia University QIL Gateway"
+info = "Qi to LDAP"
+
+[matches.imap]
+regex = '^\* OK IMAP4 1\.0 server ready\r\n\* BAD Argument\r\n'
+soft = false
+product_name = "Cisco VPN Concentrator 3000-series imapd"
+device_type = "terminal server"
+
+[matches.netapp-filer]
+regex = '^\x0b\0\0\0$'
+soft = false
+product_name = "NetApp filer data transfer"
+
+[matches.priv-print]
+regex = '^\xc0\0\x12Data field missing$'
+soft = false
+product_name = "AXIS 560 print server"
+device_type = "print server"
+
+[matches.bindshell]
+regex = '''\r: bad character in file name: '/bin/\r'\n$'''
+soft = false
+product_name = "Plan 9 rc shell"
+info = "**BACKDOOR**"
+operating_system = "Plan 9"
+
+[matches.airdroid]
+regex = '^#connected,all connect count: 1{\"event\":\"device_status\",\"data\":{\"wifi_name\":\"([^\"]+)\",\"wifi_signal\":\d+,\"battery\":\d+,\"batterycharging\":\w+,\"gsm_signal\":\d+,\"sms_unread\":\d+,\"sdcard\":\d+,\"updateinfo\":null}}'
+soft = false
+product_name = "AirDroid status port"
+info = "Android; wi-fi name: $1"
+device_type = ""
+
+[matches.genetec-directory]
+regex = '^\xde\xad\xad\xde\x0f\x03\0\0\xeed\xab\x99\x01\x05\x06\x05\x07Content}\x02\0\0\x01\0=Genetec\.Net,'
+soft = false
+product_name = "Genetec Security Center directory connection service"
+
+[matches.bitkeeper]
+regex = '^ERROR-Try help\nERROR-Try help\n$'
+soft = false
+product_name = "Bitkeeper"
+
+[matches.go-login]
+regex = '^\xff\xff\x80\x80\+\]\0\0'
+soft = false
+product_name = "GraphOn GO-Global"
+
+[matches.nuttcp]
+regex = '^KO\nnuttcp-t: v([\d.]+): error scanning parameters\nmay be using older client version than server\n\r\nKO\n'
+soft = false
+product_name = "nuttcp network throughput tester"
+version = "$1"
+
+[matches.3m-sip]
+regex = '^Invalid request string: Request string is: \"\r\"$'
+soft = false
+product_name = "Standard Interchange Prototol 2.0"
+info = "Integrated Library System authentication; Civica Spydus 7"
+
+[matches.dps-shell]
+regex = '^\+-{26}\+\r\n\x7c {6}Welcome to use {6}\x7c\r\n\x7c >Destiny DPS Mini shell< \x7c\r\n\+-{9}\+-{16}\+\r\n\x7c Author  \x7c TimesWu {8}\x7c\r\n\+-{9}\+-{16}\+\r\n\x7c Version \x7c V([\d.]+) {10}\x7c\r\n\+-{9}\+-{16}\+\r\n'
+soft = false
+product_name = "Destiny DPS Mini shell"
+version = "$1"
+info = "Ricoh printer"
+device_type = "printer"
+
+[matches.softros-im]
+regex = '^none\r\n$'
+soft = false
+product_name = "Softros LAN Messenger instant messaging"
+
+[matches.kerberos-sec]
+regex = '^\x00\x00\x00.~.0.\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x1e\xa4\x11\x18\x0f(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z\xa5[\x03-\x05]\x02(?:\x03...|\x02..|\x01.)\xa6\x03\x02\x01=\xa9.\x1b.([\w._-]+)\xaa'
+regex_flags = "s"
+soft = false
+product_name = "MIT Kerberos"
+info = "server time: $1-$2-$3 $4:$5:$6Z"
+hostname = "$7"
+
+[matches.websense-eim]
+regex = '^\0\x0c\r\n\0\x01\0\x01\0\0\0\0$'
+soft = false
+product_name = "Websense EIM"
+
+[matches.netasq-admin]
+regex = '^200 code=00100200 msg=\"[^"]+\"\r\n200 code=00100200 msg=\"[^"]+\"\r\n$'
+soft = false
+product_name = "Netasq firewall admin"
+device_type = "firewall"
+
+[matches.smtp]
+regex = '^220 ([\w._-]+) ESMTP I2PNet Mailservice\r\n500 5\.5\.2 Error: bad syntax\r\n500 5\.5\.2 Error: bad syntax\r\n'
+soft = false
+product_name = "I2P smtpd"
+hostname = "$1"
+
+[matches.conserver]
+regex = '^ok\r\nunknown command\r\nunknown command\r\n$'
+soft = false
+product_name = "conserver serial console daemon"
+device_type = "specialized"
+
+[matches.paromed]
+regex = '^PCS-[\w._-]+,V([\w._-]+),OK\nERROR:102: ENERROR:102: EN'
+soft = false
+product_name = "Paromed milling machine"
+version = "$1"
+device_type = "specialized"
+
+[matches.hp-problemdiagnostics]
+regex = '^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?>\n<NETPATH_PROBE version=\"[\w._-]+\">\n\t<SOURCE device_type=\"HOST\">\n\t\t<DNS>([\w._-]+)</DNS>\n\t\t<IP_OUT>[\d.]+</IP_OUT>\n\t</SOURCE>\n\t<DESTINATION name=\"\" arguments=\"\">\n\t\t<ERROR code=\"3\">\n\t\t\t<MESSAGE>No destination specified</MESSAGE>\n\t\t</ERROR>\n\t</DESTINATION>\n</NETPATH_PROBE>\n\n$'
+soft = false
+product_name = "HP Problem Diagnostics"
+hostname = "$1"
+
+[matches.boinc]
+regex = '^<boinc_gui_rpc_reply>\n<unauthorized/>\n</boinc_gui_rpc_reply>\n\x03'
+soft = false
+product_name = "Boinc GUI RPC port"
+info = "Unauthorized"
+
+[matches.jrpgt]
+regex = '^<<jrpgt!>>\x7c$'
+soft = false
+product_name = "JRPGT game server"
+operating_system = "Windows"
+
+[matches.achat]
+regex = '^ERROR\r\n$'
+soft = false
+product_name = "AChat chat system"
+
+[matches.asf-rmcp]
+regex = '^\0\0\0\x02\t\0\0\0\x01\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "SuperMicro IPMI RMCP"
+
+[matches.ircbot]
+regex = '^ \r\nSorry, that nickname format is invalid\.\r\r\n$'
+soft = false
+product_name = "Diverse IRC bot"
+
+[matches.irr]
+regex = '^%  No entries found for the selected source\(s\)\.\n$'
+soft = false
+product_name = "Merit Internet Routing Registry whoisd"
+
+[matches.cisco7200sim]
+regex = '^200-At least a module and a command must be specified\r\n200-At least a module and a command must be specified\r\n'
+soft = false
+product_name = "Cisco 7200 Simulator"
+
+[matches.laserfiche]
+regex = '^HLO 0 0 \. 0 71\r\nContent-type: application/vnd\.laserfiche\.lrnp\r\n\r\nLRNP/1\.1\r\n\r\nlistener\r\nEND\r\nERR 0 1 \. 71 80\r\nContent-type: application/vnd\.laserfiche\.lrnp\r\n\r\n451 0 Invalid message \(-2001\)\r\nEND\r\n'
+soft = false
+product_name = "Laserfiche document service"
+
+[matches.linuxconf]
+regex = '^500 access denied: Check config/networking/misc/linuxconf network access\r\n<p>\r\nBy default,'
+soft = false
+product_name = "Linuxconf"
+info = "Access denied"
+operating_system = "Linux"
+
+[matches.univention-json]
+regex = '^RESPONSE/None/53/application/json:  \n\{"status": 554, "message": "Unparsable message body"\}'
+soft = false
+product_name = "Univention Management Console"
+operating_system = "Linux"
+
+[matches.ident]
+regex = '^rc \(tcp113\): null list in concatenation\n'
+soft = false
+product_name = "Plan 9 identd"
+operating_system = "Plan 9"
+
+[matches.postgresql]
+regex = '^E\0\0\09SFATAL\0MExpecting a startup message, but received \r\0\0'
+soft = false
+product_name = "Postgres-XC"
+version = "1.1"
+
+[matches.ftp]
+regex = '^220 .*\r\n530 Please login with USER and PASS\.\r\n530 Please login with USER and PASS\.\r\n'
+soft = false
+product_name = "vsftpd (before 2.0.8) or WU-FTPD"
+
+[matches.csync]
+regex = '^Expecting SSL \(optional\) and CONFIG as first commands\.\n'
+soft = false
+product_name = "csync2"
+
+[matches.olsrd-txtinfo]
+regex = '^HTTP/1\.0 200 OK\0Content-type: text/plain\n\0Table: Links\nLocal IP\tRemote IP\tHyst\.\tLQ\tNLQ\tCost\0[\w._-]+\t[\w._-]+\t[\d.]+\t[\d.]+\t[\d.]+\t[\d.]+\t\n'
+soft = false
+product_name = "olsrd txtinfo plugin"
+version = "0.6.7"
+
+[matches.telemecanique]
+regex = '^220 Service ready on ([\w._-]+) system Version:([\w._:-]+) Subsystem:([\w._:-]+)\r\n500 Unsupported command\r\n'
+soft = false
+product_name = "Telemecanique Magelis XBTGT 7340 industrial control"
+version = "$2"
+info = "Subsystem $3; Name $1"
+device_type = "specialized"
+
+[matches.tsdns]
+regex = '^[\d.]+:\$PORT$'
+soft = false
+product_name = "TeamSpeak domain name server"
+
+[matches.http-proxy]
+regex = '^HTTP/1\.0 400 Bad Request\r\nContent-Type: text/html\r\nPragma: no-cache\r\nConnection: close\r\nContent-Type: text/html; charset=utf-8\r\n\r\n<html><body>[^<]+<P><HR><i>[^<]*Kerio Control[^<]*?</i></body></html> {100}'
+soft = false
+product_name = "Kerio Control http proxy"
+
+[matches.upsd]
+regex = '^ERR UNKNOWN-COMMAND\nERR UNKNOWN-COMMAND\n$'
+soft = false
+product_name = "Network UPS Tools upsd"
+version = "2.6.1"
+info = "Synology DS209 NAS device"
+device_type = "storage-misc"
+
+[matches.gntp]
+regex = '^GNTP/1\.0 -ERROR NONE\r\nError-Code: 301\r\nError-Description: Growl does not recognize the protocol beginning with \r\n\r\n\r\nOrigin-Software-Name: Growl\r\nOrigin-Software-Version: ([\d.]+)\r\nOrigin-Platform-Version: ([\d.]+)\r\nOrigin-Machine-Name: (.*)\r\nOrigin-Platform-Name: Mac OS X\r\n\r\n\r\n'
+soft = false
+product_name = "Growl notification platform"
+version = "$1"
+hostname = "$3"
+operating_system = "Mac OS X $2"
+
+[matches.t-doc-2000]
+regex = '^READY \r\nERROR 10000 \"Unknown command\. Write HELP to get help\.\" \[Unknown\]\r\nERROR 10000 \"Unknown command\. Write HELP to get help\.\" \[Unknown\]\r\n'
+soft = false
+product_name = "Getinge T-DOC 2000 hospital instrument management system"
+
+[matches.wesnoth]
+regex = '^\0\0\0.\0\0\0.\x1f\x8b\x08\0\0\0\0\0\0\xff\x8b\.K-\*\xce\xcc\xcf\x8b\xe5\x8a\xd6\x873\x01 \xbc\x17\x06\x15\0\0\0'
+soft = false
+product_name = "Battle For Wesnoth game server"
+
+[matches.wub-command]
+regex = '^Command Shell\r\n\r\n% \r\n% '
+soft = false
+product_name = "Wub httpd command console"
+
+[matches.biff]
+regex = '^Use of uninitialized value in transliteration \(tr///\) at /var/jchkmail/user-filter'
+soft = false
+product_name = "Joe's j-chkmail biffd"
+
+[matches.citrix-licensing]
+regex = '^WW\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "Citrix Licensing Server"
+
+[matches.ftp-proxy]
+regex = '^220 .*FTP Proxy\r\n500 Syntax error, command unrecognized\.\r\n'
+soft = false
+product_name = "Cisco Web Security ftp proxy"
+
+[matches.pbs]
+regex = '^\+2\+(\d)5\+15058\+0\+72\+56Bad DIS based Request Protocol MSG=cannot decode message'
+soft = false
+product_name = "Portable Batch System"
+version = "2.$1"
+
+[matches.gipc]
+regex = '^gipc....................HTTP/1\.0 503 Service Unavailable\r\nHost: ([^\r\n]+)\r\nServer: GPnPD/([\d.]+)\r\n\r\n'
+soft = false
+product_name = "Oracle Grid Plug and Play daemon"
+version = "$2"
+hostname = "$1"
+
+[matches.pop3]
+regex = '^\+OK [^\r\n]*\r\n-ERR Unknown command\.\r\n-ERR Unknown command\.\r\n'
+soft = false
+product_name = "Dovecot pop3d"
+
+[matches.wrproxy]
+regex = '^error wrproxy: Error parsing command line\0'
+soft = false
+product_name = "Wind River wrproxy"
+
+[matches.computone-intelliserver]
+regex = '''^\nWelcome to the Computone IntelliServer `([\w._-]+)'\nRunning cnx kernel release ([\w._, -]+)\n\npt-ses day time  owner         command\n'''
+soft = false
+product_name = "Computone IntelliServer serial port terminal server"
+version = "$2"
+hostname = "$1"
+operating_system = "cnx"
+device_type = "bridge"
+
+[matches.datamaxdb]
+regex = '^X01\r\nX01\r\n$'
+soft = false
+product_name = "MailMax DataMaxDB"
+operating_system = "Windows"
+
+[matches.printeron]
+regex = '^\xc4\t$'
+soft = false
+product_name = "PrinterOn mobile print server"
+device_type = "print server"
+
+[matches.cassandra-native]
+regex = '^.\x10\0\0\0\0\0\0.\0\0\0\n\0\\Invalid or unsupported protocol version \(13\); supported versions are \((\d+[^)]+)\)'
+soft = false
+product_name = "Apache Cassandra"
+version = "3.10 or later"
+info = "native protocol versions $1"
+
+[matches.saprouter]
+regex = '''^\0\0\0.NI_RTERR\0.\0\0\xff\xff\xff\xa3\0\0\0.\*ERR\*\x001\0Network packet too big\0-93\0NI \(network interface\)\x00\d+\x00\d+\0nibuf\.cpp\x00\d+\0NiBufIIn: message length 218762506 exceeds max \(10024\)\0([^\0]*)\0\0\0\x00\d+\0SAProuter ([\d.]+) on '([^']+)'\0\0\0\0\0\*ERR\*\0\0\0\0\0'''
+soft = false
+product_name = "SAProuter"
+version = "$2"
+info = "local time: $1"
+hostname = "$3"
+
+[matches.upnp]
+regex = '^ 501 Not Implemented\r.*\nServer: [^\r\n]*UPnP/([\d.]+) MiniUPnPd/([\d.]+)\r\n'
+regex_flags = "s"
+soft = true
+product_name = "MiniUPnP"
+version = "$2"
+info = "UPnP $1"
+
+[matches.zmodem]
+regex = '^\*\*\x18B0100000023be50\r\x8a\x11$'
+soft = false
+product_name = "ZMODEM"
+
+[matches.wtam]
+regex = '^WTAM/1\.0 401 Unrecognized Command\n\n$'
+soft = false
+product_name = "Webtrends WTAM"
+
+[matches.isymphony-status]
+regex = '^Error: Invalid command\.\nError: Invalid command\.\n$'
+soft = false
+product_name = "iSymphony call manager Status API"
+
+[matches.keyence-pc]
+regex = '^ER,,02\rER,,02\r'
+soft = false
+device_type = "specialized"
+
+[matches.netbios-ssn]
+regex = '^\x82\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "Nepenthes honeypot netbios-ssn"
+
+[matches.bittorrent-tracker]
+regex = '''^This is not a rootkit or other backdoor, it's a BitTorrent\r\nclient\. Really\.'''
+soft = false
+product_name = "Transmission bittorrent tracker"
+
+[matches.lastfm]
+regex = '''^ERROR: Command doesn't seem to be followed by a space followed by arguments\n$'''
+soft = false
+product_name = "Last.fm client"
+
+[matches.minecraft]
+regex = '^\x0eYou need to log in!                                             $'
+soft = false
+product_name = "Minecraft game server"
+
+[matches.pathfinder-xml]
+regex = '^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?> <FatalError><Reason>Invalide XML!</Reason></FatalError>\r\n<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?> <FatalError><Reason>Invalide XML!</Reason></FatalError>\r\n'
+soft = false
+product_name = "Avaya Scopia Pathfinder XML API"
+
+[matches.control-gc-ports]
+regex = '^unknowncommand 14\r$'
+soft = false
+product_name = "Global Cache GC-100 config"
+device_type = "media device"
+
+[matches.avaya-aom]
+regex = '^\0\0\0T\0\0\0\x03\0\0\0\0\0\0\0\x01\x1b\xde\x83B\xca\xc0\xf3\?\0\0\0\x06aomSrv\0\0\0\0\0\x01\*\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\r[\d.]+\0\0\0\0\0\0\x04root\0\0\x06\(\0\0\0J$'
+soft = false
+product_name = "Avaya Alarm Origination Manager"
+device_type = "firewall"
+
+[matches.spy-net]
+regex = '^tentarnovamente\|\r\ntentarnovamente\|\r\n'
+soft = false
+product_name = "Spy-Net or CyberGate backdoor"
+info = "**BACKDOOR**"
+
+[matches.banner-ivu]
+regex = '^ERROR 10000_EMPTY_FRAME_RECEIVED\r\n'
+soft = false
+product_name = "Banner Engineering iVu Command Channel"
+device_type = "specialized"
+
+[matches.antivir]
+regex = '^\0\0\x80\0$'
+soft = false
+product_name = "drweb anti-virus"
+
+[matches.irc]
+regex = '^:([-\w_.]+) 421  : Unknown command\r\n:[-\w_.]+ 421  : Unknown command\r\n'
+soft = false
+product_name = ""
+hostname = "$1"
+
+[matches.emc-pp-mgmtsvc]
+regex = '^<EMCP_Len\d+><\?xml version=\"1\.0\" encoding=\"iso-8859-1\"\?>\n<pp_mgmt_packet>.*<version_protocol_major>(\d+)</version_protocol_major>\n\t<version_protocol_minor>(\d+)</version_protocol_minor>.*<host_name>([\w._-]+)</host_name>.*<host_pp_version>(([\d.]+)[^<]*)</host_pp_version>.*<host_os_version>([^<]+)</host_os_version>'
+regex_flags = "s"
+soft = false
+product_name = "EMC PowerPath"
+version = "$4"
+info = "protocol $1.$2"
+hostname = "$3"
+operating_system = "$6"
+
+[matches.zabbix]
+regex = '^ZBXD\x01.\0\0\0\0\0\0\0ZBX_NOTSUPPORTED'
+regex_flags = "s"
+soft = false
+product_name = "Zabbix Monitoring System"
+
+[matches.as-servermap]
+regex = '^-\0\0\0\0$'
+soft = false
+
+[matches.sdcomm]
+regex = "^ERR 27$"
+soft = false
+product_name = "RSA SecureID Ace Server"
+
+[matches.zenimaging]
+regex = '^\xff\xff\xfb&$'
+soft = false
+product_name = "Novell ZENworks Imaging Proxy"
+
+[matches.medcart]
+regex = '^PAR1\.750800000002B123456\?;\?\?;\?\?;\?\?;\?\?;\?08AC'
+soft = false
+product_name = "Howard Medical Med Display"
+version = "1.5.4.298"
+
+[matches.spamassassin]
+regex = '^SPAMD/1\.0 76 Bad header line: \r\n'
+soft = false
+product_name = "SpamAssassin spamd"
+
+[matches.sqlmonitor]
+regex = '^\0\0\0\0\0$'
+soft = false
+product_name = "Red-Gate SQL Monitor"
+operating_system = "Windows"
+
+[matches.gopher]
+regex = '^[0-9ghisIT](?:\t?[\x20-\x7f]+\t){3}[0-9]+\r\n'
+soft = true
+
+[matches.spectraport]
+regex = '''^\0\x01\0\0\0\x8e\0\x03\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x002\.1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0([\w._-]+)\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0[\w._-]+\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x02'$'''
+soft = false
+product_name = "AirTight SpectraGuard server-to-server communication"
+version = "$1"
+
+[matches.rlm]
+regex = '^\x01\0\x0c\0LYEfffffff0\0\0\0'
+soft = false
+product_name = "Reprise License Manager"
+
+[matches.unreal-media]
+regex = '^\xb1\x36\x00\x00\x19\x00\x00\x00\x30\x05\xff\x8f\x00\x00\x00\x00\x88\xff.\x03.\xef.\x00$'
+regex_flags = "s"
+soft = false
+product_name = "Unreal Media Server"
+operating_system = "Windows"
+
+[matches.signiant]
+regex = '^dds_pc: _ms=([\w._-]+)\xfe_si=Process controller\xfe_mid=9010\xfe_sev=0\xfe_dt=\d+/\d+/\d+\xfe_tm=\d+:\d+:\d+\xfe_pkg=\xfe\n\n'
+soft = false
+product_name = "Signiant Media Exchange"
+hostname = "$1"
+
+[matches.dusk]
+regex = '^\x03Not a valid name\. This may because you left it blank or used invalid symbols\. Please try again\.\n'
+soft = false
+product_name = "Dusk Java-based game"
+
+[matches.multicraft]
+regex = '^>ERROR - client not authorized\n>ERROR - client not authorized\n'
+soft = false
+product_name = "Bitnami Multicraft"
+
+[matches.qnap-transcode]
+regex = '''^\x01\0\0\0client's request is accepted\0{868}'''
+soft = false
+product_name = "QNAP NAS Transcoding Service"
+device_type = "storage-misc"
+
+[matches.ndv]
+regex = '^NDV_([\d.]+) (?:[0-9a-f][0-9a-f]:){5}[0-9a-f][0-9a-f]\n'
+soft = false
+product_name = "Neocoretech NDV"
+version = "$1"
+
+[matches.digi-usb]
+regex = '^\xff\x14Port is out of range\0\xff\x14Port is out of range\0\xff\x14Port is out of range\0\xff\x14Port is out of range\0\xff\x14Port is out of range\0'
+soft = false
+product_name = "Digi USB-over-TCP bridge"
+device_type = "specialized"
+
+[matches.flashconnect]
+regex = '^FlashCONNECT ([\d.]+) invalid message\.\n$'
+soft = false
+product_name = "Raining Data FlashCONNECT"
+version = "$1"
+
+[matches.mysql]
+regex = '^\x10\0\0\x01\xff\x13\x04Bad handshake$'
+soft = false
+product_name = "MySQL"
+
+[matches.memcached]
+regex = '^ERROR\r\nERROR\r\n$'
+soft = false
+product_name = "Memcached"
+
+[matches.ph-addressbook]
+regex = '^598::Command not recognized\.\r\n598::Command not recognized\.\r\n$'
+soft = false
+
+[matches.scmm]
+regex = '^MMcS\xff\xff\xff\xff\0\0\0\0'
+soft = false
+product_name = "SerComm manufacturer backdoor"
+device_type = "broadband router"
+
+[matches.tor-control]
+regex = '^514 Authentication required\.\r\n$'
+soft = false
+product_name = "Tor control port"
+info = "Authentication required"
+
+[matches.omniback]
+regex = '^HP OpenView OmniBack II ([-.\w]+): INET, '
+soft = false
+product_name = "HP OpenView OmniBackII"
+version = "$1"
+
+[matches.crestron-control]
+regex = '^INVALID_COMMAND\r'
+soft = false
+product_name = "TiVo DVR Crestron control server"
+device_type = "media device"
+
+[matches.insteon-plm]
+regex = '^\x15$'
+soft = true
+product_name = "Insteon PLM"
+
+[matches.modbus]
+regex = '^\r\n\r\n\0\x03[\0\x01]\x80[\x0a\x0b]'
+soft = false
+product_name = "Modbus TCP"
+info = "gateway"
+
+[matches.avk]
+regex = '^Unknown command\r\n$'
+soft = false
+product_name = "G Data AVK anti-virus"
+
+[matches.cmae]
+regex = '^_err=refused%20by%20workers\r\n$'
+soft = false
+product_name = "Cloudmark cmae_server antispam"
+
+[matches.nsclient]
+regex = '^ERROR: No command specified\.\nERROR: No command specified\.\n$'
+soft = false
+product_name = "NSClient++"
+
+[matches.omniinet]
+regex = '^H\0P\0 \0D\0a\0t\0a\0 \0P\0r\0o\0t\0e\0c\0t\0o\0r\0 \0A\0\.\x00[0\0]*([\0\w._-]+):\0 \0I\0N\0E\0T\0,\0 \0i\0n\0t\0e\0r\0n\0a\0l\0 \0b\0u\0i\0l\0d\0 \x00([\0\d]+),\0 \0b\0u\0i\0l\0t\0 \0o\0n\0 \0.*\n\0\0\0$'
+soft = false
+product_name = "HP Data Protector"
+version = "$P(1)"
+info = "build $P(2)"
+
+[matches.desktop-central]
+regex = '^\x10\0\0\0\t\xe7\xa0o\xde&\xdc\xfec\xbf\xb91\xef\xc3\?\xc9\x10\0\0\0\xd9\xe1\x14\xed\xb2\x7f\xccGc\xbf\xb91\xef\xc3\?\xc9\x08\0\xe4\xd0\xdfAl\xf7\x88y'
+soft = false
+product_name = "ManageEngine Desktop Central DesktopCentralServer"
+device_type = "remote management"
+
+[matches.gkrellm]
+regex = '^<error>\nBad connect string!'
+soft = true
+product_name = "GKrellM System Monitor"
+
+[matches.h2]
+regex = '^\0\0\0\0\0\0\0\x05\x009\x000\x000\x004\x007\0\0\0[A-B]\0V\0e\0r\0s\0i\0o\0n\0 \0m\0i\0s\0m\0a\0t\0c\0h\0,\0 \0d\0r\0i\0v\0e\0r\0 \0v\0e\0r\0s\0i\0o\0n\0 \0i\0s\0 \0\"\x000\0\"\0 \0b\0u\0t\0 \0s\0e\0r\0v\0e\0r\0 \0v\0e\0r\0s\0i\0o\0n\0 \0i\0s\0 \0\"([\d\0]+)\"\xff\xff\xff\xff'
+soft = false
+product_name = "H2 database"
+info = "TCP protocol version $P(1)"
+
+[matches.rethinkdb-client]
+regex = '^ERROR: Received an unsupported protocol version\. This port is for RethinkDB queries\. Does your client driver version not match the server\?\n\0?'
+soft = false
+product_name = "RethinkDB client driver"
+version = "1.13.2 or newer"
+
+[matches.drb]
+regex = '^\0\0\0\x03\x04\x08F\0\0\x03.\x04\x08o:\x16DRb::DRbConnError\x07:\x07bt\[.\"/(/usr/lib/ruby/([\w._-]+)/drb)/drb\.rb:573'
+soft = false
+product_name = "Ruby DRb RMI"
+info = "Ruby $2; path $1"
+
+[matches.textui]
+regex = '^too many clients, shut down int 15 seconds\n'
+soft = false
+product_name = "Vizio television textui"
+device_type = "media device"
+
+[matches.stargazer]
+regex = "^ERHD$"
+soft = false
+product_name = "Stargazer Billing System"
+
+[matches.icontrolav2]
+regex = '^E04\r\nR\r\n'
+soft = false
+product_name = "Pioneer iControlAV2 control port"
+device_type = "media device"
+
+[matches.sphereicall]
+regex = '^\x01\0\0\0z\0\0\x003,DBServer,\d+,Restarts,\d+,\d+,UpTime,\d+,\d+,MediaServer'
+soft = false
+product_name = "Sphericall DBServer MediaServer VoIP"
+
+[matches.tsd]
+regex = '''^unknown command: \.  Try `help'\.\nunknown command: \.  Try `help'\.\n'''
+soft = false
+product_name = "OpenTSDB TSD"
+info = "also http"
+
+[matches.smux]
+regex = '^A\x01\x02$'
+soft = false
+product_name = "Linux SNMP multiplexer"
+operating_system = "Linux"
+
+[matches.webcache]
+regex = '^HTTP/1\.0 400 Bad Request\r\nExpires: .*\r\nContent-Type: text/html\r\n\r\n<html>\n<head><title>Bad formed request or url</title>\n'
+soft = false
+product_name = "webcache"
+
+[matches.jd-gui]
+regex = '^\t$'
+soft = false
+product_name = "JD-GUI Java decompiler"
+version = "0.3.3"
+
+[matches.opentable]
+regex = '^\xc1\x02\0\0\x14\0\0\0\0\0\0\0\0\0\0\0\x44\x28\0\0$'
+soft = false
+product_name = "OpenTable restaurant reservation system"
+
+[matches.uucp]
+regex = '^login: uucpd: \d+-\d+ The user is not known\.\n'
+soft = false
+product_name = "AIX uucpd"
+operating_system = "AIX"
+
+[matches.transbase]
+regex = '^\0\0\+\x04\0\0\0@TransBase Multiplexer error report:\nIllegal request'
+soft = false
+product_name = "Transbase Database"
+
+[matches.seagull-lm]
+regex = '^\xf1\xf8\xf2\xf6\xf3\xf3\xf0\xf0\xf3\xf8\xf7\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xe2\xf6\xf5\xf6\xf9\xc5\xf9\xc3\0\xf0\xf0\xf3\xf1\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0$'
+soft = false
+product_name = "BlueZone Seagull license manager"
+operating_system = "Windows"
+
+[matches.vnc]
+regex = '^0\x82\x01\n\x02\x82\x01\x01\0'
+soft = false
+product_name = "Ultr@VNC"
+version = "1.0.8.0"
+operating_system = "Windows"
+
+[matches.xns]
+regex = "^HELLO XBOX!$"
+soft = false
+product_name = "Relax XBOX file server"
+device_type = "game console"
+
+[matches.telnet]
+regex = '^\xff\xfb\x01\xff\xfb\x01Connected to EPSON Network Image Express !!!\r\n\r\nPassword: \r\n'
+soft = false
+product_name = "Epson Network Image Express telnetd"
+
+[matches.workrave]
+regex = '^\0\x26\x02\0\0\x06\0.[\d.]+:\d+\0\x01\0\x11\0\x04\0\x01\0\x03\0\xaa\x02\0\0\x06\0.[\d.]+:\d+\0\x01\0\x10\0\x88\0\x03\0\x0bmicro_pause\0\x20\x4c\xa4\x86\x8e\0\0\0\xb4\0\0\0\x01\0\0\0\0\0\0\0\0L\xa4\x86\x8d\0\0\0\xb4\0\0\0\x0arest_break\0'
+regex_flags = "s"
+soft = false
+product_name = "Workrave"
+
+[matches.netbackup]
+regex = '^\xea\xdd\xbe\xef\0\0\0\x05\0\0\x000\0\0\x000\0\0..\0\0\0\x08\0a\0f\0f\0s\0p\0r\0n\0g\0\0\0\0\0\0\0\0$'
+regex_flags = "s"
+soft = false
+product_name = "Veritas Netbackup Professional"
+
+[matches.elm-agent]
+regex = '^ELM Manager Agent ([\w._-]+)\r\nCopyright \xa9 \d+-\d+ TNT Software, Inc\.\r\n'
+soft = false
+product_name = "TNT ELM log agent"
+version = "$1"
+operating_system = "Windows"
+
+[matches.jtag]
+regex = '^\x55\x0a\x04\x0d\xe5$'
+soft = false
+product_name = "Macraigor mpDemon JTAG debugger"
+device_type = "specialized"
+
+[matches.ups]
+regex = '^32\r $'
+soft = false
+product_name = "Cyber Power PowerPanelPlus UPS Server"
+operating_system = "Windows"
+
+[matches.imond]
+regex = '^ERR\r\nERR\r\n$'
+soft = false
+product_name = "imond fli4l router config"
+device_type = "router"
+
+[matches.http]
+regex = '^HTTP/1\.0 400 Bad Request\r\nContent-Length: 40\r\nContent-Type: text/plain; charset=UTF-8\r\nDate: .*\r\n\r\nMultiple leading empty lines not allowed'
+soft = true
+product_name = "Calibre Content Server httpd"
+
+[matches.adobe-crossdomain]
+regex = '^Goodbye\r\n'
+soft = true
+product_name = "Unknown Adobe Flash socket policy daemon"
+
+[matches.clickhouse]
+regex = '^\x02e\0\0\0\x10DB::NetException/DB::NetException: Unexpected packet from client..0\. clickhouse-server\(StackTrace::StackTrace\(\)\+0x16\) \[0x[0-9a-f]+\]\n'
+soft = false
+product_name = "ClickHouse DBMS"
+
+[matches.itach]
+regex = '^ERR 001\rERR 001\r'
+soft = false
+product_name = "Global Cache iTach API"
+device_type = "bridge"
+
+[matches.ajp12]
+regex = '^Status: 400 Bad Request\r\nServlet-Error: Malformed data sent to JServ\r\n\r\n$'
+soft = false
+product_name = "Apache Jserv"
+
+[matches.netsaint]
+regex = '^ERROR: Unknown request number\.'
+soft = false
+product_name = "NC_Net nagios server"
+
+[matches.qmqp]
+regex = "^58:Dnetstring format error while receiving QMQP packet header,$"
+soft = false
+product_name = "Postfix qmqpd"
+info = "Quick Mail Queueing Protocol"
+
+[matches.opentable-listener]
+regex = '^OpenTable Listener Version ([\w._-]+)\r\n\r\nerror=Bad request\r\n\r\nOTRequestHandler ([\w._-]+) WebRequest\r\n\r\n\0$'
+soft = false
+product_name = "OpenTable restaurant reservation listener"
+version = "$1"
+info = "request handler version $2"
+
+[matches.haproxy-stats]
+regex = '^Unknown command\. Please enter one of the following commands only :\n  '
+soft = true
+product_name = "HAProxy stats socket"
+
+[matches.hasp-lm]
+regex = '^\xf2\xfa\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "Aladdin NetHASP license manager"
+
+[matches.istat]
+regex = '^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?><isr athrej=\"1\"></isr>$'
+soft = false
+product_name = "istatd server for iStat iPhone app"
+
+[matches.ecopy]
+regex = '^e\0C\0o\0p\0y\0V\x004\x000\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \x006\x007\0 \x004\x000\x002\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \x000\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \x000\0F\0a\0i\0l\0e\0d\0 \0t\0o\0 \0r\0e\0t\0r\0i\0e\0v\0e\0 \0a\0 \0f\0u\0l\0l\0 \0e\0C\0o\0p\0y\0 \0T\0c\0p\0H\0e\0a\0d\0e\0r\0:\0 \0o\0n\0l\0y\0 \0\[\x004\0\]\0 \0b\0y\0t\0e\0s\0 \0r\0e\0c\0e\0i\0v\0e\0d\0!\0$'
+soft = false
+product_name = "eCopy Agent"
+
+[matches.rtsp]
+regex = '^RTSP/1\.0 400 CSeq required\r\nContent-Length: 0\r\n\r\n'
+soft = false
+product_name = "BlueCherry DVR rtspd"
+device_type = "media device"
+
+[matches.redcarpet]
+regex = '^Status: 400 Bad Request\r\nContent-Length: 0\r\n\r\n'
+soft = false
+product_name = "Ximian Red Carpet Daemon"
+
+[matches.rsa-authmgr]
+regex = '^-ERR Invalid command: \r\n-ERR Invalid command: \r\n'
+soft = false
+product_name = "RSA Authentication Manager node manager"
+
+[matches.cisco-lm]
+regex = '^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?><LicXmlDoc><MessageType><ParamValue>RESPONSE</ParamValue></MessageType><OperationCode><ParamValue>4923</ParamValue></OperationCode></LicXmlDoc>$'
+soft = false
+product_name = "Cisco CallManager license manager"
+version = "6"
+
+[matches.etrayz-setup]
+regex = '^\r\n\r\n\0\0\0\0\x26\x84\0\x04\0\0\0\0$'
+soft = false
+product_name = "eTRAYz NAS device setup port"
+device_type = "storage-misc"
+
+[matches.websocket]
+regex = '^HTTP/1\.1 404 WebSocket Upgrade Failure\r\nContent-Type: text/html\nServer: TooTallNate Java-WebSocket\r\n'
+soft = false
+product_name = "Java-WebSocket"
+
+[matches.whois]
+regex = '^ -{62}\n \| UNINET WHOIS Server {40}\|\n \| Created by i-DNS\.net\t\t\t\t\t      \|\n.* INFO: This domain name has not been registered\.\n'
+regex_flags = "s"
+soft = false
+product_name = "Uninet whois"
+
+[matches.abc]
+regex = '^Feedback\nError=You need unique ID to command ABC!'
+soft = false
+product_name = "ABC Torrent http interface"
+
+[matches.sharp-remote]
+regex = '^ERR\rERR\rERR\rERR\r'
+soft = true
+product_name = "Sharp TV remote control"
+device_type = "media device"
+
+[matches.pmcd]
+regex = '^\0\0\0\x14\0\0p\0\0\0\x03.\xff\xff\xfc\x11\x02\0..$'
+regex_flags = "s"
+soft = false
+product_name = "SGI performance metrics collector daemon"
+operating_system = "IRIX"
+
+[matches.sstp]
+regex = '^SSTP/([\d.]+) 400 Bad Request\r\n\r\n\0$'
+soft = false
+product_name = "Sakura Script Transfer Protocol"
+info = "Protocol $1"
+
+[matches.geovision-control]
+regex = '^..\0\0\xff\xff\xff\xff$'
+regex_flags = "s"
+soft = false
+product_name = "Geovision webcam control"
+device_type = "webcam"
+
+[matches.bzr]
+regex = '''^error\x01Generic bzr smart protocol error: bad request '\\r'\n$'''
+soft = false
+product_name = "Bazaar VCS bzr serve"
+
+[matches.finger]
+regex = '^Site: (.+)\n\nLogin     Name\n'
+soft = false
+product_name = "MiamiDx fingerd"
+info = "site: $1"
+operating_system = "AmigaOS"
+
+[matches.s2-emerge]
+regex = '^resolutions=\"4CIF\",\"2CIF\",\"CIF\",\"QCIF\"&mpeg_enabled=\"TRUE\"&jpeg_enabled=\"TRUE\"&alarms=\d+&relays=\d+&audio_in\[\]=0x3,0x0&audio_out=\[\]0x3,0x0\0{375,}'
+soft = false
+product_name = "S2 eMerge Door Access Controller"
+
+[matches.authpoint]
+regex = '^\[AUTHPOINT RESPONSE\]\r\nreturn_code=AUTHPOINT ERROR\r\nreturn_code_text=Error response parsed by base message object: Invalid or missing register #\r\nresponse=\r\nidentifier=\r\napproval_code=\r\n$'
+soft = false
+product_name = "Authpoint payment processing"
+
+[matches.gopro-json]
+regex = '^\{"rval": -7, "param_size": 0 \}\0'
+soft = false
+product_name = "GoPro or similar camera json service"
+device_type = "webcam"
+
+[matches.nimp]
+regex = '^V([\d.]+)\r\nERROR 0\r\n$'
+soft = false
+product_name = "Linux NetworX Network ICE Management Protocol"
+version = "$1"
+operating_system = "Linux"
+
+[matches.starbound]
+regex = '^\0\x08\0\0\x02\x9c'
+soft = false
+product_name = "Starbound game server"
+
+[matches.xboxdebug]
+regex = '^201- connected\r\n407- unknown command\r\n$'
+soft = false
+product_name = "Microsoft XBox Debugging Kit"
+device_type = "game console"
+
+[matches.loglogic]
+regex = '^\x02\x02$'
+soft = false
+product_name = "LogLogic protocol"
+device_type = "security-misc"
+
+[matches.hpssd]
+regex = '^msg=messageerror\nresult-code=5\n'
+soft = false
+product_name = "HP Services and Status Daemon"
+operating_system = "Linux"
+
+[matches.gearman]
+regex = '^ERR UNKNOWN_COMMAND Unknown\+server\+command\r\nERR UNKNOWN_COMMAND Unknown\+server\+command\r\n$'
+soft = false
+product_name = "Gearman Job Queue System"
+
+[matches.bitdefender-ctrl]
+regex = '^\(null\) 500 Internal Error\n\(null\) 500 Internal Error\n$'
+soft = false
+product_name = "Bitdefender Remote Admin Console"
+operating_system = "Windows"
+
+[matches.geovision-audio]
+regex = '^\$\0\0\0\xd4\x17\0\0\x01\0\0\0\x05\0\0\0\x01\0\0\0\x05\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "Geovision webcam audio"
+device_type = "webcam"
+
+[matches.as-sts]
+regex = '^\0\0\0\0\0\0\0\x08$'
+soft = false
+product_name = "IBM Service Tool Server AS-STS"
+
+[matches.pop3-proxy]
+regex = '^\+OK POP3Proxy ready on node \d+\r\n-ERR Unknown command\r\n-ERR Unknown command\r\n'
+soft = false
+product_name = "Astaro firewall pop3 proxy"
+device_type = "firewall"
+
+[matches.solfe]
+regex = '^\x02\0\x01\xfb\xff\xfb\xff\xff\xff\xff\xffNOSUP'
+soft = false
+product_name = "HP PNM Solid FlowEngine"
+
+[matches.bmc-perform-service]
+regex = "^SDPACK$"
+soft = false
+product_name = "BMC Perform Service Daemon"
+
+[matches.nntp]
+regex = '^200 Coruscant BBS News \(Synchronet NNTP Service v(\d[-.\w ]+)\)\r\n'
+soft = false
+product_name = "Synchronet NNTP Service"
+version = "$1"
+
+[matches.nsi]
+regex = '^%NSI\x91\xceWb\0\x08\x02\x04\x0f\x05\0\0'
+soft = false
+product_name = "Cisco Network Spectrum Interface"
+
+[matches.labtech-redirector]
+regex = '^\x02\0\0\x01B\t\0\0\x01B$'
+soft = false
+product_name = "Labtech"
+hostname = ""
+
+[matches.bigant]
+regex = '^ERR 0 222\n\n'
+soft = false
+product_name = "BigAnt Messenger server"
+
+[matches.hpdss]
+regex = '^(?:53 client not logged in\.\r\n)+$'
+soft = false
+product_name = "HP Digital Sender client"
+
+[matches.backdoor]
+regex = '^sh-2\.05b\$ '
+soft = false
+product_name = "r0nin rootkit backdoor"
+
+[matches.lexlm]
+regex = '^.\x08\0\0$'
+regex_flags = "s"
+soft = false
+product_name = "Lexmark language monitor"

@@ -1,0 +1,30 @@
+[metadata]
+name = "NBTStat"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "ð\u0000\u0010\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\u0000\u0000!\u0000\u0001"
+rarity = 4
+
+[matches.ntp]
+regex = '^\x04\x01\0\0\0\0\0\0\0\0\0\0LOCL....\0\0\0\0AAAAA\0\0!....\0\0\0\0....\0\0\0\0'
+soft = false
+product_name = "Actiontec ntpd"
+device_type = "broadband router"
+
+[matches.osu-nms]
+regex = '^\x08\x02\0\x03\x03\x11\0\0\x03\x03\x12\0\0\x03\x03\x13\0\0\x03\x03\x14\0\0\x06\x03\x15\0\0\0\0\0\x06\x03\x16\0\0\0\0\0\x03\x03\x18\0\0\x04\x03\x19\0\0\0\x06\x03!\0\0\0\0\0\x06\x03\"\0\0\0\0\0\x06\x03#\0\0\0\0\0\x06\x03\$\0\0\0\0\0\x06\x03%\0\0\0\0\0\x06\x03&\0\0\0\0$'
+soft = false
+product_name = "OSU Network Monitoring System"
+
+[matches.domain]
+regex = '^\x80\xf0\x80\x15\0\0\0\0\0\0\0\0'
+soft = false
+product_name = "Unbound"
+
+[matches.netbios-ns]
+regex = '^\x80\xf0[\x80-\x8f].\0\0\0.\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01'
+soft = true

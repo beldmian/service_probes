@@ -1,0 +1,26 @@
+[metadata]
+name = "Citrix"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u001E\u0000\u00010\u0002ý¨ã\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+rarity = 5
+
+[matches.icabrowser]
+regex = '^\x30\0\x02\x31\x02\xfd\xa8\xe3\x02\0\x06\x44'
+soft = false
+product_name = "Citrix MetaFrame"
+
+[matches.ntp]
+regex = '^\x1e\xc0\x010\x02\0\xa8\xe3\0\0\0\0$'
+soft = false
+product_name = "Digium Switchvox PBX ntpd"
+device_type = "PBX"
+
+[matches.openvpn]
+regex = '^\.\x83&SU\xe3_\xd5V\x01\0\0\0\0\0\x010\x02\xfd\xa8\xe3\0'
+soft = false
+product_name = "SoftEther VPN OpenVPN Clone Function"

@@ -1,0 +1,17 @@
+[metadata]
+name = "SqueezeCenter"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "eIPAD\u0000NAME\u0000JSON\u0000VERS\u0000UUID\u0000JVID\u0006\u00124Vx\u00124"
+rarity = 8
+
+[matches.squeezecenter]
+regex = '^ENAME.{1}(.+)JSON.{1}(\d+)VERS.{1}(.+)UUID.{1}(.+)$'
+soft = false
+product_name = "Logitech SqueezeCenter music server"
+version = "$3"
+info = "Server Name: $1, JSON: $2, UUID: $4"

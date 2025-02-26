@@ -1,0 +1,16 @@
+[metadata]
+name = "tor-versions"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000\u0000\u0007\u0000\b\u0000\u0003\u0000\u0004\u0000\u0005\u0000\u0006"
+rarity = 8
+
+[matches.tor-orport]
+regex = '^\x00\x00\x07\x00\x02\x00\x04'
+soft = false
+product_name = "GoTor"
+info = "supported protocol versions: 4"

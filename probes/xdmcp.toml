@@ -1,0 +1,34 @@
+[metadata]
+name = "xdmcp"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0001\u0000\u0002\u0000\u0001\u0000"
+rarity = 6
+
+[matches.bacnet]
+regex = '^\x81\n\0\t\x01\0`\x01\t$'
+soft = false
+product_name = "BACnet building automation"
+
+[matches.coap]
+regex = "^`E"
+soft = true
+
+[matches.tftp]
+regex = '^\0\x05\0\x02No such file or directory\0'
+soft = false
+product_name = "Windows 10 IoT tftpd"
+operating_system = "Windows 10"
+
+[matches.xdmcp]
+regex = '^\0\x01\0\x06..\0.(.+)\0.(.+)'
+regex_flags = "s"
+soft = false
+product_name = "XDMCP"
+info = "unwilling; status: $2"
+hostname = "$1"
+operating_system = "Unix"

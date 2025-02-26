@@ -1,0 +1,16 @@
+[metadata]
+name = "AirHID"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "from:airhid"
+rarity = 9
+
+[matches.AirHID]
+regex = '^andReceiver-\d+\.\d+\.\d+$'
+regex_flags = "s"
+soft = false
+product_name = "AirHID Andrioid remote mouse server"

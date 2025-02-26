@@ -1,0 +1,19 @@
+[metadata]
+name = "adbConnect"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "CNXN\u0000\u0000\u0000\u0001\u0000\u0010\u0000\u0000\u0007\u0000\u0000\u00002\u0002\u0000\u0000¼±§±host::\u0000"
+rarity = 8
+
+[matches.adb]
+regex = '^AUTH(.)\0\0\0\0\0\0\0........\xbc\xb1\xa7\xb1'
+regex_flags = "s"
+soft = false
+product_name = "Android Debug Bridge"
+info = 'auth required: $I(1,"<")'
+operating_system = "Android"
+device_type = "a cpe:"

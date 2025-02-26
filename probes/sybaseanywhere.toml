@@ -1,0 +1,17 @@
+[metadata]
+name = "sybaseanywhere"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u001B\u0000\u0000=\u0000\u0000\u0000\u0000\u0012CONNECTIONLESS_TDS\u0000\u0000\u0000\u0001\u0000\u0000\u0004\u0000\u0005\u0000\u0005\u0000\u0000\u0001\u0002\u0000\u0000\u0003\u0001\u0001\u0004\b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0007\u0002\u0004±"
+rarity = 7
+
+[matches.sybaseanywhere]
+regex = '^\x1b\0\0.\0\0\0\0\x12CONNECTIONLESS_TDS\0\0\0\x01\x01\0\x04\0\x05\0\x05\0.(.*)\0\x01\x02..\x03\x01\x02\x04\x08\0\0\0\0\0\0\0\0\x07\x02\x04\xb1'
+regex_flags = "s"
+soft = false
+product_name = "Sybase SQL Anywhere"
+info = "Instance name: $1"

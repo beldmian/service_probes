@@ -1,0 +1,16 @@
+[metadata]
+name = "memcached"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = """
+\u0000\u0001\u0000\u0000\u0000\u0001\u0000\u0000stats\r
+"""
+rarity = 8
+
+[matches.memcached]
+regex = '^\0\x01\0\0\0\x01\0\0STAT '
+soft = true

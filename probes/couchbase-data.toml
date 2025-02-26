@@ -1,0 +1,17 @@
+[metadata]
+name = "couchbase-data"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0015ðÑb\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+rarity = 8
+
+[matches.couchbase-tap]
+regex = '^\x81\x10..\0\0\0\0\0\0\0.....\0\0\0\0\0\0\0\0ep_version([._\w]+)'
+regex_flags = "s"
+soft = false
+product_name = "Couchbase Membase"
+version = "$1"

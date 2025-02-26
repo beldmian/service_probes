@@ -1,0 +1,27 @@
+[metadata]
+name = "Sqlping"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0002"
+rarity = 6
+ports = [
+    19131,
+    19132,
+]
+
+[matches.minecraft-pe]
+regex = '^\x1c................\0\xff\xff\0\xfe\xfe\xfe\xfe\xfd\xfd\xfd\xfd\x12\x34\x56\x78'
+soft = true
+product_name = "Minecraft Pocket Edition server"
+
+[matches.ms-sql-m]
+regex = '^\x05..ServerName;([\w\-]+);InstanceName;[\w\-]+;IsClustered;\w{2,3};Version;([\d\.]+);;'
+soft = false
+product_name = "Microsoft SQL Server"
+version = "$2"
+info = "ServerName: $1"
+operating_system = "Windows"

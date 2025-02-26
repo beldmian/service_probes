@@ -1,0 +1,26 @@
+[metadata]
+name = "SNMPv1public"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "0\u0000/\u0002\u0001\u0000\u0004\u0006public \u0000 \u0002\u0004L3§V\u0002\u0001\u0000\u0002\u0001\u00000\u0000\u00100\u0000\f\u0006\b+\u0006\u0001\u0002\u0001\u0001\u0005\u0000\u0005\u0000"
+rarity = 4
+
+[matches.snmp]
+regex = '^0.*\x02\x01\0\x04\x06public\xa2'
+regex_flags = "s"
+soft = false
+product_name = "SNMPv1 server"
+info = "public"
+
+[matches.echo]
+regex = '^0\x82\0/\x02\x01\0\x04\x06public\xa0\x82\0\x20\x02\x04\x4c\x33\xa7\x56\x02\x01\0\x02\x01\0\x30\x82\0\x10\x30\x82\0\x0c\x06\x08\x2b\x06\x01\x02\x01\x01\x05\0\x05\0$'
+soft = false
+
+[matches.bittorrent-udp-tracker]
+regex = '^\x03\0\0\0lic\xa0Connection ID missmatch\.\0'
+soft = false
+product_name = "opentracker UDP tracker"

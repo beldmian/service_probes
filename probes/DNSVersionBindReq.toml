@@ -1,0 +1,73 @@
+[metadata]
+name = "DNSVersionBindReq"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0006\u0001\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0007version\u0004bind\u0000\u0000\u0010\u0000\u0003"
+rarity = 1
+
+[matches.isakmp]
+regex = '^\0\x06\x01\0\0\x01\0\0\0\0\0\0\x07ver\x0b\x10\x05\0\0\0\0\0\0\0\0\(\0\0\0\x0c\0\0\0\x01\x01\0\0\x05'
+soft = true
+
+[matches.symantec-av]
+regex = '^\0\x06\x01\x01\0\x10..........$'
+regex_flags = "s"
+soft = false
+product_name = "Symantec rtvscan antivirus"
+
+[matches.statd]
+regex = '^r\xfe\x1d\x13\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01$'
+soft = false
+product_name = "NFS statd"
+
+[matches.dcc]
+regex = '^(?:..)?\0\x06\xf5\xff\0\0\x01\0'
+soft = false
+product_name = "D-Link Click 'n Connect"
+device_type = "broadband router"
+
+[matches.dtls]
+regex = '^\x15\xfe[\xfd\xff]\0\0\0\0\0\0\0\0..\x02.\0\0\0\0\0'
+soft = false
+
+[matches.chargen]
+regex = '''^ !\"#\$%&'\(\)\*\+,-\./0123456789:;<=>\?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\[\\\]\^_`abcdefg\r\n!\"#\$%&'\(\)\*\+,-\./0123456789'''
+soft = false
+product_name = "Windows Vista chargen"
+operating_system = "Windows Vista"
+
+[matches.domain]
+regex = '^(?:..)?\0\x06[\x80-\x90][\x09\x19\x89\x99]\0[\0\x01]\0\0\0.\0.'
+regex_flags = "s"
+soft = true
+info = "generic dns response: NOTAUTH"
+
+[matches.tunnel-test]
+regex = '^\0\x06\x01\0\0\x02\0\0\0\0\0\0$'
+soft = false
+product_name = "Check Point tunnel_test"
+
+[matches.kerberos-sec]
+regex = '^~[\x60-\x62]\x30[\x5e-\x60]\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x1e\xa4\x11\x18\x0f(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z\xa5[\x03-\x05]\x02(?:\x03...|\x02..|\x01.)\xa6\x03\x02\x01\x3c\xa9\x04\x1b\x02NM\xaa\x170\x15\xa0\x03\x02\x01\0\xa1\x0e0\x0c\x1b\x06krbtgt\x1b\x02NM\xab\x16\x1b\x14No client in request'
+regex_flags = "s"
+soft = false
+product_name = "MIT Kerberos"
+info = "server time: $1-$2-$3 $4:$5:$6Z"
+
+[matches.cisco-sla-responder]
+regex = '^..\0\x08\0\x03[\0\r][\0\n]$'
+regex_flags = "s"
+soft = false
+product_name = "Cisco SLA Responder"
+operating_system = "IOS"
+device_type = "router"
+
+[matches.unreal]
+regex = '^.[\x40\xc0].[\x20\x23\x32\x38].[\x40\xc0].[\x20\x23\x32\x38]'
+regex_flags = "s"
+soft = false
+product_name = "Unreal Tournament 2004 game server"

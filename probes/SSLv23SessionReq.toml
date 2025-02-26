@@ -1,0 +1,28 @@
+[metadata]
+name = "SSLv23SessionReq"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+\u0001\u0003\u0001\u0000u\u0000\u0000\u0000 \u0000\u0000f\u0000\u0000e\u0000\u0000d\u0000\u0000c\u0000\u0000b\u0000\u0000:\u0000\u00009\u0000\u00008\u0000\u00005\u0000\u00004\u0000\u00003\u0000\u00002\u0000\u0000/\u0000\u0000\u001B\u0000\u0000\u001A\u0000\u0000\u0019\u0000\u0000\u0018\u0000\u0000\u0017\u0000\u0000\u0016\u0000\u0000\u0015\u0000\u0000\u0014\u0000\u0000\u0013\u0000\u0000\u0012\u0000\u0000\u0011\u0000\u0000
+\u0000\u0000\t\u0000\u0000\b\u0000\u0000\u0006\u0000\u0000\u0005\u0000\u0000\u0004\u0000\u0000\u0003\u0007\u0000À\u0006\u0000@\u0004\u0000\u0003\u0000\u0002\u0000\u0001\u0000\u0000\u0000\u0002\u0000\u0000\u0001äi<+öÖ»Ó¿\u0015Á@¥o\u0014,M ÄÇà¶°²\u001Fù)è"""
+rarity = 8
+
+[matches.ssl]
+regex = '^\x15\x03[\0-\x04]\0\x02[\x01\x02].$'
+regex_flags = "s"
+soft = false
+
+[matches.iperf3]
+regex = '^\t$'
+soft = false
+
+[matches.misys-loaniq]
+regex = '^\0\0@\0tJ\0\0\0\0\0\0\0@\0\0\n Misys Loan IQ ([\w._-]+) \(Server\)\n Build  : for Windows using Oracle \(built: (\w\w\w \d\d \d\d\d\d_\d\d:\d\d:\d\d) \([\w._-]+@[\w._-]+-C:\\[^)]*\)\)\n Patch Info : \[\]\n\n Environment name: \w+ \w+\n    ADMCP Primary node: \w+;  Secondary node: \w+; Portdaem Port = (\d+)\n\n Current time: [^\n]*\n On: \w+  \([\w._-]+\)\n OS: (Microsoft Windows[^\n]*)\n MEMORY  \(Tot/Free\) : ([\d.]+) / ([\d.]+) MB\n'
+soft = false
+product_name = "Misys Loan IQ"
+version = "$1"
+operating_system = "Windows"

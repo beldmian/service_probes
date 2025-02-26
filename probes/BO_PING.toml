@@ -1,0 +1,12 @@
+[metadata]
+name = "BO_PING"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "ÎcÑÒ\u0016ç\u0013Ï8¥¥²uKª2X"
+rarity = 9
+
+[matches]

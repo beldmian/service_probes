@@ -1,0 +1,18 @@
+[metadata]
+name = "ajp"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+\u00124\u0000\u0001
+"""
+rarity = 8
+
+[matches.ajp13]
+regex = '^\x41\x42\x00\x01\x09$'
+soft = false
+product_name = "Apache Jserv"
+info = "Protocol v1.3"

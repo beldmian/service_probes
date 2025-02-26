@@ -1,0 +1,20 @@
+[metadata]
+name = "niagara-fox"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+fox a 1 -1 fox hello
+{
+fox.version=s:1.0
+id=i:1
+};;
+"""
+rarity = 9
+
+[matches.niagara-fox]
+regex = "^fox a 0"
+soft = true

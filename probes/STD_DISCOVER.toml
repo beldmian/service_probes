@@ -1,0 +1,12 @@
+[metadata]
+name = "STD_DISCOVER"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "[PROBE] 0000"
+rarity = 8
+
+[matches]

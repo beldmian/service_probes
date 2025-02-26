@@ -1,0 +1,18 @@
+[metadata]
+name = "riak-pbc"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000\u0000\u0000\u0001\u0007"
+rarity = 8
+
+[matches.riak-pbc]
+regex = '^....\x08..(riak@[\w._-]+)..([\w._-]+)$'
+regex_flags = "s"
+soft = false
+product_name = "Basho Riak"
+version = "$2"
+hostname = "$1"

@@ -1,0 +1,222 @@
+[metadata]
+name = "Help"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+HELP\r
+"""
+rarity = 3
+wait = 7500
+ports = [
+    6666,
+    6667,
+    6668,
+    6669,
+]
+
+[matches.irc-proxy]
+regex = '^:ezbounce!srv NOTICE \(unknown\) :\x02'
+soft = false
+product_name = "ezbounce irc proxy"
+operating_system = "Unix"
+
+[matches.bitkeeper]
+regex = '^@SERVER INFO@\nPROTOCOL=([\d.]+)\nVERSION=bk-([\w._-]+)\nUTC=\d+\nTIME_T=\d+\nROOT=([^\n]+)\nUSER=(?:[^\n]+)\nHOST=(?:[^\n]+)\nREALUSER=(?:[^\n]+)\nREALHOST=([^\n]+)\nPLATFORM=([^\n]+)\n'
+soft = false
+product_name = "BitKeeper distributed VCS"
+version = "$2"
+info = "protocol $1; root $3; $5"
+hostname = "$4"
+
+[matches.lmtp]
+regex = '^220 ([\w.-]+) LMTP\r\n214-This is DBMail-LMTP\.\r\n214-The following commands are supported:\r\n214-LHLO, RSET, NOOP, QUIT, HELP\.\r\n214-VRFY, EXPN, MAIL, RCPT, DATA\.\r\n214-For more information about a command:\r\n214 Use HELP <command>\.\r\n'
+soft = false
+product_name = "DBMail lmtpd"
+hostname = "$1"
+
+[matches.smtp-proxy]
+regex = '^220 ([\w._-]+)\r\n214-Usage: HELP <topic>\r\n214-Topics:\r\n214-\tHELO EHLO MAIL RCPT DATA\r\n214-\tVRFY EXPN RSET NOOP QUIT\r\n214 End of HELP info\r\n'
+soft = false
+product_name = "Barracuda Networks Spam Firewall"
+hostname = "$1"
+
+[matches.xmpp-transport]
+regex = '^\x05\xff$'
+soft = false
+product_name = "Spectrum XMPP file transfer"
+
+[matches.gd-comm]
+regex = '''^0:HELP command \[SET, GET,GO, DO, \*IDN\?, ERR\?, CLEAR, HELP\] -or- HELP Tag; HELP Tag will provide detailed formatted information for the field requested\.  Refer to the Programmer's Guide for more details\.\r\n'''
+soft = false
+product_name = "General Dynamics R8000 Communications System Analyzer control"
+device_type = "specialized"
+
+[matches.finger]
+regex = '''^\n    ----------------------------------------------------------------------\n                        Sorry, that user doesn't exist\.\n'''
+soft = false
+product_name = "Stock and Trade Finger Server fingerd"
+
+[matches.cvspserver]
+regex = '^-f \[pserver aborted\]: bad auth protocol start: HELP\r\n\n'
+soft = false
+product_name = "SunOS cvs pserver"
+operating_system = "SunOS"
+
+[matches.http-proxy]
+regex = '^<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4\.01 Transitional//EN" "http://www\.w3\.org/TR/html4/loose\.dtd">\n<HTML><HEAD>\n<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8"> \n<TITLE>\xe9\x94\x99\xe8\xaf\xaf\xef\xbc\x9a\xe6\x82\xa8\xe6\x89\x80\xe8\xaf\xb7\xe6\xb1\x82\xe7\x9a\x84\xe7\xbd\x91\xe5\x9d\x80\xef\xbc\x88URL\xef\xbc\x89\xe6\x97\xa0\xe6\xb3\x95\xe8\x8e\xb7\xe5\x8f\x96</TITLE>\n<STYLE type="text/css"><!--BODY\{background-color:#ffffff;font-family:verdana,sans-serif\}PRE\{font-family:sans-serif\}--></STYLE>\n</HEAD>'
+soft = false
+product_name = "Squid"
+info = "Chinese"
+
+[matches.laserfiche]
+regex = '^HLO 0 0 \. 0 71\r\nContent-type: application/vnd\.laserfiche\.lrnp\r\n\r\nLRNP/1\.1\r\n\r\nlistener\r\nEND\r\nERR 0 1 \. 71 80\r\nContent-type: application/vnd\.laserfiche\.lrnp\r\n\r\n451 0 Invalid message \(-2001\)\r\nEND\r\nMSG 0 2 \. 151 58\r\nContent-type: application/vnd\.laserfiche\.lrnp\r\n\r\nCLOSE 0\r\nEND\r\n$'
+soft = false
+product_name = "Laserfiche document service"
+
+[matches.nntp]
+regex = '^200 ([\w._-]+) news server ready - posting ok\r\n100 Help text follows\r\n$'
+soft = false
+product_name = "Intersquish nntpd"
+hostname = "$1"
+operating_system = "Windows"
+
+[matches.telnet]
+regex = '^HELP\r\n\n\x06 \nATHENA_READ\nATHENA_WRITE\nCHIPVAR_GET\nDEBUGTABLE\nDITEM\nDMEM\nDREG16\nDREG32\nDREG8\nDRV_CAT_FREE\nDRV_CAT_INIT\nDRV_NAME_GET\nDRV_VAL_GET\nDRV_VAL_SET\nEXIT\nGENIOCTL\nGETMIB\nHELP\nHYP_READ       \nHYP_WRITE      \nHYP_WRITEBUFFER\nITEM16\nITEM32\nITEM8\nITEMLIST\nMACCALIBRATE\nMACVARGET\nMACVARSET\nMEM_READ\nMEM_WRITE\nMTAPI\nPITEMLIST\nPRINT_LEVEL\nPROM_READ\nPROM_WRITE\nREAD_FILE\nREBOOT\nRECONF\nRG_CONF_GET\nRG_CONF_SET\nRG_SHELL\nSETMIB\nSHELL\nSTR_READ\nSTR_WRITE\nSYSTEM\nTEST32\nTFTP_GET\nTFTP_PUT\nVER\r\n00>$'
+soft = false
+product_name = "OpenRG telnetd"
+operating_system = "Linux"
+
+[matches.acpc]
+regex = '^Usage: Valid commands are\nLIST\nCLEAR\nSTATUS\nKILL\nNEW\nCONFIG\nAUTONCONNECT\nGETINFO\nHELP\nFor specific help on each command, type HELP:COMMAND\r\r\n\n'
+soft = false
+product_name = "Glassfrog computer poker server"
+
+[matches.slurm]
+regex = '^\0\0\0.\x1b\0\0\0\x1fA\0\0\0\x04\0\0\0\0......\0\0\0\x0bauth/munge\0\0\0\0\n\0\0..MUNGE:[\w/+=]+:\0\0\0\x03\xf0'
+regex_flags = "s"
+soft = false
+product_name = "SLURM"
+version = "API 2.7"
+
+[matches.gnuserv]
+regex = '^gnudoit: Connection refused\ngnudoit: unable to connect to remote$'
+soft = false
+product_name = "Gnuserv"
+
+[matches.echo]
+regex = '^HELP\r\n$'
+soft = false
+
+[matches.ftp-proxy]
+regex = '^220 Service Ready\r\n502 Command Not implemented\r\n$'
+soft = false
+product_name = "Novell iChain ftp proxy"
+
+[matches.vulnserver]
+regex = '^Welcome to Vulnerable Server! Enter HELP for help\.\nValid Commands:\nHELP\nSTATS \[stat_value\]\nRTIME \[rtime_value\]\nLTIME \[ltime_value\]\nSRUN \[srun_value\]\nTRUN \[trun_value\]\nGMON \[gmon_value\]\nGDOG \[gdog_value\]\nKSTET \[kstet_value\]\nGTER \[gter_value\]\nHTER \[hter_value\]\nLTER \[lter_value\]\nKSTAN \[lstan_value\]\nEXIT\n$'
+soft = false
+product_name = "Vulnserver"
+operating_system = "Windows"
+
+[matches.chat]
+regex = '^\r\n>STATUS\tset status\r\nINVISIBLE\tset invisible mode\r\nMAINWINDOW\tshow/hide main window\r\n'
+soft = false
+product_name = "Simple Instant Messenger control plugin"
+
+[matches.print-monitor]
+regex = '^false;error while receiving message from client\n$'
+soft = false
+product_name = "Genius Bytes print monitor"
+
+[matches.nut]
+regex = '^Commands: VER REQ HELP LISTVARS LOGOUT LOGIN PASSWORD LISTRW VARTYPE VARDESC ENUM SET INSTCMD LISTINSTCMD INSTCMDDESC FSD MASTER USERNAME STARTTLS\n'
+soft = false
+product_name = "Network UPS Tools upsd"
+
+[matches.webster]
+regex = '^DICTIONARY server protocol:\r\n\r\nContact name is'
+soft = false
+product_name = "Webster dictionary server"
+
+[matches.smtp]
+regex = '^220[\s-].*smtp[^\r]*\r\n214[\s-]'
+regex_flags = "i"
+soft = true
+
+[matches.irc]
+regex = '^:([-\w_.]+) 290  :\.-----------------=#\[ euIRCd HelpSystem \]#=----------------\.\n'
+soft = false
+product_name = "euIRCd"
+hostname = "$1"
+
+[matches.jabber]
+regex = "^</stream:stream>$"
+soft = false
+product_name = "Zimbra 6 jabberd"
+
+[matches.printer]
+regex = '^Command 48 is not supported\n'
+soft = false
+product_name = "BusyBox lpd"
+
+[matches.http]
+regex = '^HTTP/1\.1 400 Bad Request - Request Line: HELP tokens\.length 1\r\nConnection: close\r\nContent-Length: 0\r\n\r\n'
+soft = false
+product_name = "MobileIron Sentry"
+
+[matches.ipp]
+regex = '^HTTP/1\.1 405 Method Not Allowed\r\nContent-Length: 23\r\nContent-Type: text/html\r\nUpgrade: TLS/1\.0\r\n\r\n 405 Method Not Allowed'
+soft = false
+product_name = "Ecosys ipp"
+device_type = "print server"
+
+[matches.bindshell]
+regex = '^(([\w-]+)@([^:]+):[^#$]+)\$ bash: HELP: command not found\n\1\$ \1\$ $'
+soft = false
+product_name = "Bash shell"
+info = "**BACKDOOR**; user: $2"
+hostname = ""
+
+[matches.pop3pw]
+regex = '^200 Welcome to ([\w.-]+) password daemon\.\r\n214-Commands:\r\n214-\tUSER\tPASS\tNEWPASS\tQUIT\tHELP\r\n214-\r\n214-For more info use \"HELP <topic>\"\r\n214 End of HELP info\r\n$'
+soft = false
+product_name = "Gattaca PASS Server"
+hostname = "$1"
+operating_system = "Windows"
+
+[matches.aleph]
+regex = '^96\r$'
+soft = false
+product_name = "Aleph Integrated Library System"
+
+[matches.ftp]
+regex = '^220[\s-].*ftp[^\r]*\r\n214[\s-]'
+regex_flags = "i"
+soft = true
+
+[matches.ident]
+regex = "^0, 0 : ERROR : UNKNOWN-ERROR$"
+soft = false
+product_name = "Windows NT identd"
+operating_system = "Windows"
+
+[matches.speechd]
+regex = '^248-  SPEAK           -- say text \r\n248-  KEY             -- say a combination of keys \r\n248-  CHAR            -- say a character \r\n248-  SOUND_ICON      -- execute a sound icon \r\n248-  SET             -- set a parameter \r\n248-  LIST            -- list available arguments \r\n248-  HISTORY         -- commands related to history \r\n248-  QUIT            -- close the connection \r\n248 OK HELP SENT\r\n'
+soft = false
+product_name = "Speech Dispatcher text to speech"
+
+[matches.tcpmux]
+regex = '^(sgi_[-.\w]+\r\n(?:[-.\w]+\r\n)*)$'
+soft = false
+product_name = "SGI IRIX tcpmux"
+info = 'Available services: $SUBST(1, "rn", ",")'
+operating_system = "IRIX"
+
+[matches.freenet]
+regex = '^HTTP/1\.1 400 Parse error: Could not parse request line \(split\.length=1\): HELP\r\n'
+soft = false
+product_name = "Freenet"

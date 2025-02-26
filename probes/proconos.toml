@@ -1,0 +1,21 @@
+[metadata]
+name = "proconos"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "Ì\u0001\u0000\u000B@\u0002\u0000\u0000Gî"
+rarity = 9
+
+[matches.echo]
+regex = '^\xcc\x01\0\x0b@\x02\0\0G\xee'
+soft = false
+
+[matches.proconos]
+regex = '^\xcc\x01...\x02\x92\0V\d+\.\d+ProConOS V([\d.]+) \w\w\w +\d+ \d+\0+\0([^\0]+)\0+([^\0]+)\0+([^\0]+)\0+([^\0]+)\0'
+regex_flags = "s"
+soft = false
+product_name = "ProConOS"
+version = "$1"

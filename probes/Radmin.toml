@@ -1,0 +1,27 @@
+[metadata]
+name = "Radmin"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0001\u0000\u0000\u0000\u0001\u0000\u0000\u0000\b\b"
+rarity = 8
+
+[matches.fcgiwrap]
+regex = '^\x01\x0b\0\0\0\x08\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "fcgiwrap"
+
+[matches.radmin]
+regex = '^\x01\x00\x00\x00\x25.\x00..\x08.\x00..'
+regex_flags = "s"
+soft = true
+product_name = "Famatech Radmin"
+operating_system = "Windows"
+
+[matches.srcds]
+regex = '^\n\0\0\0\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "srcds game server"

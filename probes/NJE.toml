@@ -1,0 +1,15 @@
+[metadata]
+name = "NJE"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "Ö×ÅÕ@@@@ÆÁÒÅ@@@@\u0000\u0000\u0000\u0000ÆÁÒÅ@@@@\u0000\u0000\u0000\u0000\u0000"
+rarity = 9
+
+[matches.nje]
+regex = '^\xc1\xc3\xd2'
+soft = false
+product_name = "IBM Network Job Entry (JES)"

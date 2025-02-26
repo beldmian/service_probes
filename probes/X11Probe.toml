@@ -1,0 +1,124 @@
+[metadata]
+name = "X11Probe"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "l\u0000\u000B\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+rarity = 4
+ports = [
+    6000,
+    6001,
+    6002,
+    6003,
+    6004,
+    6005,
+    6006,
+    6007,
+    6008,
+    6009,
+    6010,
+    6011,
+    6012,
+    6013,
+    6014,
+    6015,
+    6016,
+    6017,
+    6018,
+    6019,
+]
+
+[matches.video]
+regex = '^\0\xdc0@p\xdc0@3\.[0-9a-f]{8}\.[0-9A-F]......\0\x000\0\0\0..(?:\*\0/sda/1/\d+/\d+\.0123\.[0-9a-f]{8}\.[0-9A-F]......\0\x000\0\0\0..)+'
+regex_flags = "s"
+soft = false
+product_name = "ECV ECV-REC16SH webcam video stream"
+device_type = "webcam"
+
+[matches.apcupsd]
+regex = '^\0\0\x02\0\0\0\0\0\0\0\0\0\x06\0\0\0\0@\x0c\0\x9c\x18\0\0X Consortium\x01\n\x01\0\x05\0\0\0f\x84\x017\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "apcupsd"
+
+[matches.font-service]
+regex = '^\0\0\x02\0\0\0\0\0\0\0\0\0\r\0\0\0\0.......International Business Machines Corp\.'
+regex_flags = "s"
+soft = false
+product_name = "IBM AIX X Font Server"
+operating_system = "AIX"
+
+[matches.rpcapd]
+regex = '^\0\x01\0\x03\0\0\0/Incompatible version number: message discarded\.$'
+soft = false
+product_name = "WinPcap remote packet capture daemon"
+operating_system = "Windows"
+
+[matches.retrospect]
+regex = '^\0\xca\0\0\0\0\0\x04\0\0\0\0\0\0\x02\($'
+soft = false
+product_name = "Dantz Retrospect backup client"
+
+[matches.modbus]
+regex = '^l\0\0\0\0\x03\0\x80\x01'
+soft = false
+product_name = "Modbus TCP"
+
+[matches.acti-control]
+regex = '^\x01\0\0\0\x01\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "ACTi E32 camera control server port"
+device_type = "webcam"
+
+[matches.networkaudio]
+regex = '^\0\x19\x02\0\x02\0\x07\0Protocol version mismatch\0'
+soft = false
+product_name = "Network Audio System"
+
+[matches.sphinx-search]
+regex = '^\0\0\0\x01\0\x01\0\0\0\0\0\x1c\0\0\0\x18unknown command \(code=0\)'
+soft = false
+product_name = "Sphinx Search daemon"
+
+[matches.giop]
+regex = '^GIOP\x01\0\x01\x06\0\0\0\0$'
+soft = false
+product_name = "omniORB omniNames"
+info = "Corba naming service"
+
+[matches.http-proxy]
+regex = '^HTTP/1\.1 400 Bad request\r\nContent-length: 90\r\nCache-Control: no-cache\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n<html><body><h1>400 Bad request</h1>\nYour browser sent an invalid request\.\n</body></html>\n$'
+soft = false
+product_name = "HAProxy http proxy"
+version = "2.0.0 or later"
+device_type = "load balancer"
+
+[matches.xfs]
+regex = '^\0\0\x02\0\0\0\x01\0\x04\0\0\0\0\r([\w._-]+):\d+\0\x07\0\0\0\0 \x10\0,\x1a\0\0X\.Org Foundation\x01\n\x01\0\x05\0\0\0\xe6\xbf\xc0\xb5\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "X.Org xfs font server"
+hostname = "$1"
+
+[matches.domain]
+regex = '^\x80\xf0\x80\x12\0\x01\0\0\0\0\0\0\x20CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01'
+soft = false
+product_name = "Microsoft DNS"
+operating_system = "Windows"
+
+[matches.fastcgi]
+regex = '^\x01\x0b\0\0\0\x08\0\0\0\0\0\0\0...'
+regex_flags = "s"
+soft = false
+product_name = "HHVM FastCGI"
+
+[matches.X11]
+regex = '^\x01\0\x0b\0\0......\0\0\0.'
+regex_flags = "s"
+soft = true
+
+[matches.gadu]
+regex = "^UDAG$"
+soft = false
+product_name = "Kadu polish IM client"

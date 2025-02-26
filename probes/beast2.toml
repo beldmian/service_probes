@@ -1,0 +1,18 @@
+[metadata]
+name = "beast2"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "666"
+rarity = 9
+
+[matches.backdoor]
+regex = '^666(\d+)\xff(\d+)\xff(\d+)\xff$'
+soft = false
+product_name = "Beast Trojan"
+version = "version 2"
+info = "**BACKDOOR**; No password; New server port: $1; New client ports: $2, $3"
+operating_system = "Windows"

@@ -1,0 +1,22 @@
+[metadata]
+name = "apple-iphoto"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+GET /server-info HTTP/1.1\r
+Client-DPAP-Version: 1.1\r
+User-Agent: iPhoto/9.1.1 (Macintosh; N; PPC)\r
+\r
+"""
+rarity = 8
+
+[matches.apple-iphoto]
+regex = '^HTTP/1\.1 200 OK\r\nDate: .*\r\nDPAP-Server: iPhoto/(.*)\r\nContent-Type: application/x-dmap-tagged\r\nContent-Length: \d+\r\n\r\nmsrv\0\0\0\x83mstt\0\0\0\x04\0\0\0\xc8mpro\0\0\0\x04\0\x02\0\0ppro\0\0\0\x04\0\x01\0\x01minm\0\0\0.(.*)mslr\0\0\0\x01\0mstm\0\0\0\x04\0\0\x07\x08msal\0\0\0\x01\0msau\0\0\0\x01\x02msas\0\0\0\x01\x03msix\0\0\0\x01\0msdc\0\0\0\x04\0\0\0\x01$'
+soft = false
+product_name = "Apple iPhoto"
+version = "$1"
+info = "Library name: $2"

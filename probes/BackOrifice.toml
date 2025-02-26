@@ -1,0 +1,19 @@
+[metadata]
+name = "BackOrifice"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "ÎcÑÒ\u0016ç\u0013Ï8¥¥²uKª2X"
+rarity = 9
+
+[matches.BackOrifice]
+regex = '^\xCE\x63\xD1\xD2\x16\xE7\x13\xCF........\x01\x12\x78\xC4\xE3\xD6\xA6\x65\x51\x75\x51\xEB\x2A\x3F'
+regex_flags = "s"
+soft = false
+product_name = "BackOrifice trojan"
+version = "1.20"
+info = "no password"
+operating_system = "Windows"

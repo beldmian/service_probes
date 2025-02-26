@@ -1,0 +1,22 @@
+[metadata]
+name = "TLS-PSK"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0016\u0003\u0000\u0000u\u0001\u0000\u0000q\u0003\u0003U8*bETXSJDSZNHMDFAONDKJXXZYZHWHR\u0000\u00000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000¨\u0000©\u0000ª\u0000«\u0000¬\u0000­\u0000®\u0000¯\u0000²\u0000³\u0000¶\u0000·\u0001\u0000\u0000\u0018\u0000\r\u0000\u0014\u0000\u0012\u0000\u0001\u0000\u0002\u0000\u0003\u0001\u0001\u0001\u0002\u0001\u0003\u0002\u0001\u0002\u0002\u0002\u0003"
+rarity = 9
+
+[matches.ssl]
+regex = '^\x15\x03[\0-\x04]\0\x02[\x01\x02].$'
+regex_flags = "s"
+soft = false
+
+[matches."ssl/steam"]
+regex = '^\x16\x03\x03\0.\x02\0\0.\x03\x03.*\x16\x03\x03\0\x0b\x0c\0\0\x07\0\x05steam'
+regex_flags = "s"
+soft = false
+product_name = "Valve Steam In-Home Streaming service"
+info = "TLSv1.2 PSK"

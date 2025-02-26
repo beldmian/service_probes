@@ -1,0 +1,32 @@
+[metadata]
+name = "Socks4"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0004\u0001\u0000\u0016\u007F\u0000\u0000\u0001root\u0000"
+rarity = 8
+ports = [
+    6660,
+    6661,
+    6662,
+    6663,
+    6664,
+    6665,
+    6666,
+    6667,
+    6668,
+]
+
+[matches.socks4]
+regex = '^\0\x5d'
+soft = false
+info = "Connection failed; username required"
+
+[matches.shell]
+regex = '^\0Access is denied\n$'
+soft = false
+product_name = "Windows Services for Unix rsh"
+operating_system = "Windows"

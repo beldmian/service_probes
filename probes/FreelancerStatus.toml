@@ -1,0 +1,17 @@
+[metadata]
+name = "FreelancerStatus"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0002ñ&\u0001&ð¦ð&WN¬ ìøhä!"
+rarity = 9
+
+[matches.freelancer]
+regex = '^\x00\x03\xf1\x26.{88}(.*)\0\0(?:.*?:){5}(.*)\0\0$'
+regex_flags = "s"
+soft = false
+product_name = "Freelancer"
+info = "name: $P(1); description: $P(2)"

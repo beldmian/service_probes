@@ -1,0 +1,12 @@
+[metadata]
+name = "RMCP_ASF_PING"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0006\u0000ÿ\u0006\u0000\u0000\u0011¾\u0000\u0000\u0000"
+rarity = 9
+
+[matches]

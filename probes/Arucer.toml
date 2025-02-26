@@ -1,0 +1,17 @@
+[metadata]
+name = "Arucer"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "Âååå ×¤¦ÐÕÝÜÈÖÝ×ÕÈÑÖÈÝ¤Ñ¡È¤ÒÕ×Ý£¤¡Ý¦×Ýå"
+rarity = 8
+
+[matches.arucer]
+regex = '^\xbc\xa0\xb6$'
+soft = false
+product_name = "Arucer backdoor"
+info = "**BACKDOOR**"
+operating_system = "Windows"

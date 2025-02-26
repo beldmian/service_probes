@@ -1,0 +1,17 @@
+[metadata]
+name = "ARD"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0014\u0000\u0001\u0003"
+rarity = 8
+
+[matches.netassistant]
+regex = '^\0\x01\x01d\x001\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x12\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0[^\0]([^\0]+)\0'
+regex_flags = "s"
+soft = false
+product_name = "Apple Remote Desktop"
+info = "name: $P(1)"

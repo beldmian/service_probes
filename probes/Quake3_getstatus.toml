@@ -1,0 +1,31 @@
+[metadata]
+name = "Quake3_getstatus"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "ÿÿÿÿgetstatus"
+rarity = 8
+ports = [
+    26000,
+    26001,
+    26002,
+    26003,
+    27960,
+    27961,
+    27962,
+    27963,
+    30720,
+    30721,
+    30722,
+    30723,
+]
+
+[matches.quake3]
+regex = '^\xff\xff\xff\xffstatusResponse\n.*\\version\\([^\\]* freebsd-[^\\]*)(?=\\)'
+soft = false
+product_name = "World of Padman game server"
+version = "$1"
+operating_system = "FreeBSD"

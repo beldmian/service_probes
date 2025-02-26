@@ -1,0 +1,41 @@
+[metadata]
+name = "DNSStatusRequest"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0000\u0000\u0010\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+rarity = 5
+
+[matches.iodine]
+regex = '^\x80\xa7\x84\0\0\x01\0\x01\0\0\0\0.*\0\0\x0a\0\x01\xc0\x0c\0\n\0\x01\0\0\0\0\0\x05BADIP$'
+soft = false
+product_name = "iodine IP-over-DNS tunnel"
+
+[matches.tftp]
+regex = '^\0\x05\0[\0-\x07][^\0]+\0$'
+soft = true
+
+[matches.domain]
+regex = '^(?:\0\x0c)?..[\x80\x90][\x00\x80\x90]\0\0\0\0\0.\0.'
+regex_flags = "s"
+soft = true
+
+[matches.landesk-rc]
+regex = '^\0\0\0\0USER\x01\0\x10\0\x08\0:\xd0\x08\0:\xd0\x01\x01\.\0O\0\x03\0T\0\xff\xff\0\0\0\xfd\0\0\0\0\0\0\x02\0\0\0LANDeskWorkgroup Manager ver ([\d.]+)\0'
+soft = false
+product_name = "LANDesk Workgroup Manager"
+version = "$1"
+operating_system = "Windows"
+
+[matches.netprobe]
+regex = '^\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$'
+soft = false
+product_name = "Mega System Technologies NetProbe Lite environmental sensor"
+device_type = "specialized"
+
+[matches.msrpc]
+regex = '^\x04\x06\0\0\x10\0\0\0\0\0\0\0'
+soft = false

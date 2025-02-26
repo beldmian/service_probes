@@ -1,0 +1,12 @@
+[metadata]
+name = "TRIN00_UNIX_PING"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "png l44adsl"
+rarity = 9
+
+[matches]

@@ -1,0 +1,14 @@
+[metadata]
+name = "ipmi-rmcp"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\u0006\u0000ÿ\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t \u0018È\u00008\u0004µ"
+rarity = 8
+
+[matches.asf-rmcp]
+regex = '^\x06\0\xff\x07\0\0\0\0\0\0\0\0\0\x10'
+soft = true

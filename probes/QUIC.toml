@@ -1,0 +1,15 @@
+[metadata]
+name = "QUIC"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "udp"
+request = "\rÁ\u001C*ÿüñQ999\u0000"
+rarity = 6
+
+[matches.quic]
+regex = '^\r\x89\xc1\x9c\x1c\*\xff\xfc\xf1((?:Q[0-8]\d\d)+)$'
+soft = true
+info = 'QUIC versions$SUBST(1,"Q",", Q")'

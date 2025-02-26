@@ -1,0 +1,18 @@
+[metadata]
+name = "TerminalServerCookie"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+\u0003\u0000\u0000*%à\u0000\u0000\u0000\u0000\u0000Cookie: mstshash=nmap\r
+\u0001\u0000\b\u0000\u0003\u0000\u0000\u0000"""
+rarity = 7
+
+[matches.ms-wbt-server]
+regex = '^\x03\0\0\x0b\x06\xd0\0\0\x124\0$'
+soft = false
+product_name = "a"
+operating_system = "Windows XP"

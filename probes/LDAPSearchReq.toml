@@ -1,0 +1,24 @@
+[metadata]
+name = "LDAPSearchReq"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+0\u0000\u0000\u0000-\u0002\u0001\u0007c\u0000\u0000\u0000$\u0004\u0000
+\u0001\u0000
+\u0001\u0000\u0002\u0001\u0000\u0002\u0001d\u0001\u0001\u0000\u000BobjectClass0\u0000\u0000\u0000\u0000"""
+rarity = 6
+
+[matches.ldap]
+regex = '^0..?\x02\x01\x07e..?\n\x01.\x04\0\x04'
+regex_flags = "s"
+soft = true
+
+[matches.modbus]
+regex = '^0\x84\0\0\0\x03\x02\x81[\x0a\x0b]'
+soft = false
+product_name = "Modbus TCP"
+info = "gateway"

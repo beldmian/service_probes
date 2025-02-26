@@ -1,0 +1,14 @@
+[metadata]
+name = "mqtt"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0010\u0010\u0000\u0004MQTT\u0004\u0002\u0000\u001E\u0000\u0004nmap"
+rarity = 9
+
+[matches.mqtt]
+regex = '^\x20\x02\x00.$'
+soft = false

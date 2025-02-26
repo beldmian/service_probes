@@ -1,0 +1,224 @@
+[metadata]
+name = "DNSVersionBindReqTCP"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = "\u0000\u001E\u0000\u0006\u0001\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0007version\u0004bind\u0000\u0000\u0010\u0000\u0003"
+rarity = 3
+ports = [
+    512,
+    513,
+]
+
+[matches.ormi]
+regex = '^\xe3\r\n\r\n\0\x01\0.\0vInvalid protocol verification, illegal ORMI request or request performed with an incompatible version of this protocol'
+regex_flags = "s"
+soft = false
+product_name = "Oracle Remote Method Invocation"
+
+[matches.sdlog]
+regex = '^\0\0\0\x01\0\x17\0\x14\0\x06\0\0\0\x01\0\0\0\0\0\0$'
+soft = false
+product_name = "RSA SecureID Ace Server"
+
+[matches.mc-nmf]
+regex = '^\x08Ihttp://schemas\.microsoft\.com/ws/2006/05/framing/faults/UnsupportedVersion'
+soft = false
+product_name = ".NET Message Framing"
+operating_system = "Windows"
+
+[matches.kvm]
+regex = '^BEEF\x83\0\0'
+soft = false
+product_name = "KVM daemon"
+
+[matches.utrmcd]
+regex = '^\x01in\.utrcmdd \(remote\): protocol error \(1\)\n\0'
+soft = false
+product_name = "Sun Ray utrmcdd"
+
+[matches.kshell]
+regex = '^\x01rshd: [-\d]+ The remote user login is not correct\.\n'
+soft = false
+product_name = "AIX (kerberized?) rshd"
+operating_system = "AIX"
+
+[matches.ssc-agent]
+regex = '^\0\x1e\0\x06\0\t\0\0$'
+soft = false
+product_name = "Novell NetWare ssc-agent"
+operating_system = "NetWare"
+
+[matches.minecraft]
+regex = '^\xff\0\x0eProtocol error'
+soft = false
+product_name = "Minecraft game server"
+
+[matches.qcheck]
+regex = '^.*\$Id: //ral_depot/products/current/ENDPOINT/CODE/client\.c'
+regex_flags = "s"
+soft = false
+product_name = "Ixia Q-Check network performance tester"
+
+[matches.klogin]
+regex = '''^\0\0's Password: $'''
+soft = false
+product_name = "AIX kerberized rlogin"
+operating_system = "AIX"
+
+[matches.sybase-adaptive]
+regex = '^\x04\x01\0\(\0\0\0\0\xaa\0\x14\0\0\x0f\xa2\x01\x0eLogin failed\.\n\xfd\0\x02\0\x02\0\0\0\0$'
+soft = false
+product_name = "Sybase Adaptive Server"
+operating_system = "Windows"
+
+[matches.tuya]
+regex = '^\0\0U\xaa\0\0\0\0\0\0\0.\0\0\0.\0\0\0\x00([\w.]+)\0.*\0\0\xaaU$'
+regex_flags = "s"
+soft = false
+product_name = "Tuya IoT protocol"
+info = "protocol $1"
+
+[matches.ixia]
+regex = '^\0.\x05\x02....\0\x01\x01@\0\0\0\0\0\0\0\0\0.\$Id: //ral_depot/products/IxChariot([\w._-]+)/(?:ENDPOINT|endpoint)/CODE/client\.c#\d+ \$\0\0\0..\0\x02\0\x0ce1_thread\0\0\x18main_process_incoming\0$'
+soft = false
+product_name = "IxChariot"
+version = "$1"
+info = "Ixia XR100 performance monitor"
+
+[matches.login]
+regex = '^\0\r\nlogin: '
+soft = false
+product_name = "Airspan MiMAX WiMAX WAP logind"
+device_type = "WAP"
+
+[matches.xtunnels]
+regex = '^\0\x03\x04\0\x04$'
+soft = false
+product_name = "XTunnels proxy server"
+
+[matches.ssl]
+regex = '^\x15\x03[\x00-\x04]\0\x02\x02[\nF\x28]'
+soft = false
+
+[matches.warcraft]
+regex = '^\0\0\x09$'
+soft = false
+product_name = "World of Warcraft game server"
+
+[matches.progress]
+regex = '^\0\0\0\x01\0\x17\0\x14\0\x06\0\0\0.\0\0\0\0\0\0'
+regex_flags = "s"
+soft = false
+product_name = "Progress Database"
+
+[matches.iscsi]
+regex = '^\0\x1e\0\x02\0\0\0\x01\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
+soft = false
+product_name = "Synology DSM Snapshot Replication iSCSI LUN"
+
+[matches.exec]
+regex = '^\x01INTERnet ACP AUXS failure  Status = %LOGIN-F-NOSUCHUSER\r\n\0$'
+soft = false
+product_name = "OpenVMS execd"
+operating_system = "OpenVMS"
+
+[matches.modbus]
+regex = '^\0\x1e\0\x06\0\x03\0\x80\x01'
+soft = false
+product_name = "Modbus TCP"
+
+[matches.sip]
+regex = '^\x01\x11\0\x18\x01\0\0\x01\0\0\0\0\0\0\x07versi\0\t\0\x12\0\0\x06\0Global Failure\0\0'
+soft = false
+product_name = "Kamailio sipd"
+
+[matches.clementine-remote]
+regex = '^\0\0\0\x04\x08\x15\x10-'
+soft = false
+product_name = "Clementine Music Player remote control"
+
+[matches.domaintime]
+regex = '^\0\x1e\0\x06\x01\0\0\x01......[\xb0-\xff]\x01$'
+soft = false
+product_name = "Greyware Domain Time II"
+
+[matches.vnetd]
+regex = '^1\0$'
+soft = false
+product_name = ""
+
+[matches.freeciv]
+regex = '^\0\x03\x58\0\x16\x01\0\0\0\0Freeciv ([\d.]+)\0\0\0\x03\0\0\x03\x01$'
+soft = false
+product_name = "Freeciv"
+version = "$1"
+
+[matches.upnp]
+regex = '^HTTP/1\.0 414 Request-URI Too Long\r\nServer: Linux/([\w._-]+) UPnP/([\w._-]+) fbxigdd/([\w._-]+)\r\nConnection: close\r\n\r\n$'
+soft = false
+product_name = "fbxigdd"
+version = "$3"
+info = "AliceBox PM203 UPnP; UPnP $2"
+operating_system = "Linux $1"
+device_type = "WAP"
+
+[matches.msrpc]
+regex = '^\x05\0\r\x03\x10\0\0\0\x18\0\0\0v\x07\0\0\x04\0\x01\x05\0\0.\0$'
+regex_flags = "s"
+soft = false
+product_name = "Microsoft RPC"
+operating_system = "Windows"
+
+[matches.ccnet]
+regex = '^\x01\x01\0\(\0\0\0\0([0-9a-f]{40})'
+soft = false
+info = "peer ID $1"
+
+[matches.apcupsd]
+regex = '^\0\x11Invalid command\n\0\0\0$'
+soft = false
+product_name = "apcupsd"
+
+[matches.http]
+regex = '^HTTP/1\.1 506 \r\nContent-Type: text/html\r\nServer: JavaWeb/0\r\n\r\n<html><body><h1>506 - IO Error</h1></body></html>$'
+soft = false
+product_name = "AirDroid httpd"
+operating_system = "Android"
+device_type = " cpe:"
+
+[matches.arkeia]
+regex = '^\0\x05\0\0\0\0\0\0$'
+soft = false
+product_name = "Arkeia Network Backup"
+
+[matches.telecom-misc]
+regex = '^\0\x1e\x02\x06\x01\0\0\0\0\0\0\xf1\0'
+soft = false
+product_name = "Radio IP MTG gateway"
+device_type = "telecom-misc"
+
+[matches.imaze-game]
+regex = '^\0\x18\x82iMaze server JC/HUK ([\d.]+)$'
+soft = false
+product_name = "iMaze game server"
+version = "$1"
+
+[matches.goldengate]
+regex = '^\0&  ERROR\tMGR Did Not Recognize Command\0'
+soft = false
+product_name = "Oracle GoldenGate"
+
+[matches.qmqp]
+regex = "^58:Dnetstring format error while receiving QMQP packet header,"
+soft = false
+product_name = "Postfix qmqpd"
+
+[matches.pafserver]
+regex = '^\0&\xeb\xefTQM\xee\[B'
+soft = false
+product_name = "Sun Cobalt Adaptive Firewall"
+operating_system = "Linux"

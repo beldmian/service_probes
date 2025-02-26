@@ -1,0 +1,84 @@
+[metadata]
+name = "NotesRPC"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = ":\u0000\u0000\u0000/\u0000\u0000\u0000\u0002\u0000\u0000@\u0002\u000F\u0000\u0001\u0000=\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000/\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000@\u001F\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+rarity = 6
+
+[matches.routeros-api]
+regex = '^\x06!fatal\rnot logged in\0'
+soft = false
+product_name = "MikroTik RouterOS API"
+operating_system = "RouterOS"
+
+[matches.lotusnotes]
+regex = '^.\0\0\0.\0\0\0\x03\0\0@\x02\x0f\0.*\x03\0\0\0\0\x02\0/\0.\0\0\0\0\0\0\0.*CN=([-.\w ]+)/OU=([-.\w ]+)/OU=([-.\w ]+)/O=([-.\w ]+)'
+regex_flags = "s"
+soft = false
+product_name = "Lotus Domino server"
+
+[matches.thrift-binary]
+regex = '^\x04\0\0\0\x11Invalid status 58$'
+soft = false
+product_name = "Hadoop Hive 2"
+
+[matches.xplorer]
+regex = '''Access violation at address \w+ in module 'Xplorer\.exe'\. Read of address'''
+soft = false
+product_name = "SoftOne Business Xplorer"
+operating_system = "Windows"
+
+[matches.pc-anywhere]
+regex = '\x1bY2\0\x01\x03B\0\0\x01\0\x14....................\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0'
+soft = false
+product_name = "Symantec pcAnywhere"
+
+[matches.slp-srvreg]
+regex = '^\x02\x05\0\0.\0\0\0\0\0..\0.\w+'
+regex_flags = "s"
+soft = true
+product_name = "SLP Directory Agent"
+
+[matches.srvloc]
+regex = '^\x02\x02\0\0\x12\0\0\0\0\0\0\0\0\x02en\0\x02$'
+soft = false
+product_name = "Apple slpd"
+operating_system = "Mac OS"
+
+[matches.svrloc]
+regex = '^\x02\x02\0\0.\0\0\0\0\0..\0.\w+'
+regex_flags = "s"
+soft = true
+product_name = "SLP Service Agent"
+
+[matches.megaraid-monitor]
+regex = '^\x02\0\0\0\0\0\0/\0\0\0\0\0\0\0\0\0@\x1f\0\0\0\0\0\0\0\0\0/\0\0\0\x02\0\0@\x02\x0f\0\x01\0=\x05\0\0\0\0\0\0\0\0\0\0\0\0\0\)\0\0\0<monitorcontrol><error/></monitorcontrol>$'
+soft = false
+product_name = "MegaRaid Monitoring Agent"
+
+[matches.rpcbind]
+regex = '^\x18\0\x01\x02Invalid packet length\0'
+soft = false
+product_name = "Amanda voicemail system"
+device_type = "telecom-misc"
+
+[matches.slmp]
+regex = '^\xd4\0MP\x04\0\0\0TNM\x0b\0P\0\0\0.......'
+regex_flags = "s"
+soft = true
+product_name = "Mitsubishi PLC SLMP"
+device_type = "specialized"
+
+[matches.tibia]
+regex = '^V\0\x02\0Your terminal version is too old\.\nPlease get a new version at\nhttp://www\.tibia\.com\.\0$'
+soft = false
+product_name = "Tibia graphical MUD"
+
+[matches.intersys-cache]
+regex = '^r\0\0\0\x03\xff\0\0\0\0\0\0\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0[\0\x01]\x008\0Cache Direct Server Fatal Error: Invalid subfunc code: 0$'
+soft = false
+product_name = "InterSystems Cache database"

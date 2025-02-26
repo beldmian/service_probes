@@ -1,0 +1,23 @@
+[metadata]
+name = "Verifier"
+description = "TODO: Add description"
+version = "0.1.0"
+author = "Belousov Dmitry <me@beldmian.ru>"
+
+[probe]
+protocol = "tcp"
+request = """
+Subscribe
+"""
+rarity = 8
+wait = 11000
+
+[matches.secure-socket]
+regex = '^\0$'
+soft = false
+product_name = "CA Secure Socket Adapter"
+
+[matches.crossmatchverifier]
+regex = '^(?:Idle|Notify)\r\n$'
+soft = false
+product_name = "Cross Match Verifier E fingerprint control"
