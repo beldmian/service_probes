@@ -16,8 +16,6 @@ rarity = 6                                              # Rarity of the probe on
 wait = 1000                                             # Wait time in milliseconds before sending the request, can be blank
 ports = [80, 443]                                       # Ports to be checked, can be blank, if not specified, all ports should be checked
 
-[matches]
-
 [matches.service-1]
 regex = "HTTP/1.1 200 OK (.*)" # PCRE-styled regex
 soft = true                    # Enable soft matching
